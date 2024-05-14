@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-// import AdminLayout from '../layouts/adminLayout.vue';
+import login from '../views/login.vue';
+
+import AdminLayout from '../layouts/adminLayout.vue';
 // import Dashboard from '../views/AdminViews/DashBoard.vue';
 // import candidates from '../views/AdminViews/candidates.vue';
 // import employers from '../views/AdminViews/employers.vue';
@@ -23,12 +25,17 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
-//     {
-//       path: '/admin',
-//       name:'AdminLayout',
-//       component: AdminLayout,
-//       // meta: { requiresAuth: true } 
-//     },
+    {
+      path: '/login',
+      component: login,
+      name:login,
+  },
+    {
+      path: '/admin',
+      name:'AdminLayout',
+      component: AdminLayout,
+      // meta: { requiresAuth: true } 
+    },
   
 //     {
 //       path: '/admin/dashboard',
