@@ -1,15 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import SearchResult from "../views/SearchResult.vue";
-import JobsPage from "../views/JobsPage.vue";
 import Sidebar from "../components/Sidebar.vue";
-import EmployerProfile from "../components/EmployerProfile.vue";
-import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+// import EmployerProfile from "../components/EmployerProfile.vue";
 import AboutView from "../views/AboutView.vue";
 import ApplicationForm from "../views/ApplicationForm.vue";
 import JobsPage from "../views/JobsPage.vue";
-import SearchResult from "../views/SearchResult.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,11 +25,11 @@ const router = createRouter({
       name: "empoyer_profile",
       component: Sidebar,
     },
-    {
-      path: "/employer-profile",
-      name: "profile",
-      component: EmployerProfile,
-    },
+    // {
+    //   path: "/employer-profile",
+    //   name: "profile",
+    //   component: EmployerProfile,
+    // },
     { 
       path: "/jobs", 
       name: "Jobs", 
