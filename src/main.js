@@ -9,8 +9,13 @@ import App from './App.vue'
 import router from './router'
 import Vueform from '@vueform/vueform'
 import vueformConfig from './../vueform.config'
+// import App from './App.vue'
+// import router from './router'
+// const app = createApp(App)
+import AdminLayout from './layouts/adminLayout.vue'
+import router from './router/adminRoutes'
+const app = createApp(AdminLayout)
 
-const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
