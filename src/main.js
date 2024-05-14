@@ -6,14 +6,13 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import router from './router'
 import Vueform from '@vueform/vueform'
 import vueformConfig from './../vueform.config'
 // import App from './App.vue'
 // import router from './router'
+import router from './router/adminRoutes'
 // const app = createApp(App)
 import AdminLayout from './layouts/adminLayout.vue'
-import router from './router/adminRoutes'
 const app = createApp(AdminLayout)
 
 

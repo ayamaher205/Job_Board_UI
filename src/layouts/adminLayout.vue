@@ -13,7 +13,7 @@
     </nav>
     <main>
         <p>
-            lay out
+            Layout
         </p>
       <router-view></router-view>
     </main>
@@ -31,5 +31,4 @@ export default {
 
 <style scoped>
 
-</style>>
 </style>
