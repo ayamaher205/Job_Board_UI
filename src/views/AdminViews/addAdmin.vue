@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2>updatePostStatus</h2>
+    <h2>add admin</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'updatePostStatus'
+  name: 'addAdmin'
 }
 </script>
