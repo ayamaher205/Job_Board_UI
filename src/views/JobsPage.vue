@@ -1,22 +1,18 @@
 <template>
-  <div class="jobs-page">
+  <main>   
+  <div class="job-listing-area pt-120 pb-120">
+    <div class="container">
+        <div class="row">
+   
     <!-- Filters sidebar for selecting job criteria -->
     <filters-sidebar @apply-filters="fetchJobs" />
-    <!-- Displays a loading indicator when data is being fetched -->
-    <div v-if="isLoading" class="loading">
-      Loading jobs...
-    </div>
-    <!-- Handles job list display or shows an error message -->
-    <div v-else>
-      <job-list v-if="jobs.length > 0" :jobs="jobs" />
-      <div v-else class="no-jobs">
-        No jobs found. Try adjusting your filters.
-      </div>
-    </div>
-    <div v-if="errorMessage" class="error">
-      Error: {{ errorMessage }}
-    </div>
+    <job-list v-if="jobs.length > 0" :jobs="jobs" :pagination="pagination" :filters="filters" @search-results="fetchJobsResults" />
+    
   </div>
+  </div>
+  </div>
+</main>
+  
 </template>
 
 <script>
@@ -31,6 +27,8 @@ export default {
       jobs: [],
       isLoading: false,
       errorMessage: '',
+      pagination: {},
+      filters:{},
     };
   },
   methods: {
@@ -39,8 +37,16 @@ export default {
       this.errorMessage = '';  
       try {
         const response = await JobService.searchJobs(filters);
+        this.filters=filters;
+        console.log(this.filters);
         console.log(response.data.data);
         this.jobs = response.data.data;
+        this.pagination = {
+          currentPage: response.data.current_page,
+          lastPage:  response.data.last_page,
+          nextPageUrl:  response.data.next_page_url,
+          prevPageUrl:  response.data.prev_page_url,
+        };
        
         this.isLoading = false;
       } catch (error) {
@@ -49,10 +55,22 @@ export default {
         this.isLoading = false;
         console.error('Error fetching jobs:', error);
       }
-    }
+    },
+    fetchJobsResults(results,filters) {
+        console.log('Search results:', results,filters);
+        this.filters=filters;
+        this.jobs=results.data.data;
+        this.pagination = {
+          currentPage: results.data.current_page,
+          lastPage: results.data.last_page,
+          nextPageUrl: results.data.next_page_url,
+          prevPageUrl: results.data.prev_page_url,
+        };
+      },
   },
   created() {
     this.fetchJobs({});  
+    
   }
 };
 </script>

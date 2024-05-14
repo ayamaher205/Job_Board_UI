@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Welcome to Job Search</h1>
+     
     <SearchBar @search-results="handleSearchResults" />
     
   </div>
