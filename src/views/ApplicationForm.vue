@@ -44,7 +44,23 @@
       <!-- Submit button -->
       <button type="submit" class="vf-btn-primary px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">Submit Application</button>
     </form>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Application Received</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Display application details here -->
+          <p>{{ newApplication }}</p>
+        </div>
+      </div>
+    </div>
   </div>
+  </div>
+  
 </template>
 
 <script>
@@ -60,8 +76,9 @@ export default {
         contact_details: '',
         app_email: '',
         app_phone: '',
-        resume: null // Placeholder for the resume file
-      }
+        resume: null 
+      },
+      newApplication: '' 
     };
   },
   methods: {
@@ -86,15 +103,31 @@ export default {
       };
     },
     onFileChange(event) {
-  try {
-    if (event && event.target && event.target.files && event.target.files.length > 0) {
-      this.formData.resume = event.target.files[0];
-    } else {
-      console.error('Event object or its properties are undefined.');
+      try {
+        if (event && event.target && event.target.files && event.target.files.length > 0) {
+          this.formData.resume = event.target.files[0];
+        } else {
+          console.error('Event object or its properties are undefined.');
+        }
+      } catch (error) {
+        console.error('Error in onFileChange:', error);
+      }
     }
-  } catch (error) {
-    console.error('Error in onFileChange:', error);
+  },
+  mounted() {
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher(process.env.VUE_APP_PUSHER_APP_KEY, {
+    cluster: process.env.VUE_APP_PUSHER_CLUSTER,
+    encrypted: true 
+  });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', (data) => {
+      console.log(data);
+      this.newApplication = JSON.stringify(data); 
+      $('#exampleModal').modal('show'); 
+    });
   }
-}}
 };
 </script>
