@@ -35,6 +35,12 @@
         <input type="text" v-model="formData.app_phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
       </div>
 
+      <!-- Resume -->
+      <div class="mb-4">
+        <label for="resume" class="block font-medium text-gray-700 dark:text-dark-200">Resume</label>
+        <input type="file" @change="onFileChange" name="resume" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+      </div>
+
       <!-- Submit button -->
       <button type="submit" class="vf-btn-primary px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">Submit Application</button>
     </form>
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import ApplicationService from '@/services/ApplicationService';
 
 export default {
   name: 'ApplicationForm',
@@ -53,23 +59,42 @@ export default {
         post_id: '',
         contact_details: '',
         app_email: '',
-        app_phone: ''
+        app_phone: '',
+        resume: null // Placeholder for the resume file
       }
     };
   },
   methods: {
     async submitApplication() {
-
       try {
-        console.log(this.formData)
-        const response = await axios.post('http://127.0.0.1:8000/api/applications', this.formData);
+        console.log(this.formData);
+        const response = await ApplicationService.submitApplication(this.formData);
         console.log('Application submitted successfully:', response.data);
         this.resetForm();
       } catch (error) {
         console.error('Error submitting application:', error);
       }
     },
-
+    resetForm() {
+      this.formData = {
+        user_id: '',
+        post_id: '',
+        contact_details: '',
+        app_email: '',
+        app_phone: '',
+        resume: null
+      };
+    },
+    onFileChange(event) {
+  try {
+    if (event && event.target && event.target.files && event.target.files.length > 0) {
+      this.formData.resume = event.target.files[0];
+    } else {
+      console.error('Event object or its properties are undefined.');
+    }
+  } catch (error) {
+    console.error('Error in onFileChange:', error);
   }
+}}
 };
 </script>

@@ -20,7 +20,7 @@ const router = createRouter({
     },
     {
       path: '/applications',
-      name: 'application',
+      name: 'ApplicationForm',
       component: ApplicationForm
     },
     {
