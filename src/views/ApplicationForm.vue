@@ -61,7 +61,7 @@ export default {
     async submitApplication() {
 
       try {
-        console.log(this.formData);
+        console.log(this.formData)
         const response = await axios.post('http://127.0.0.1:8000/api/applications', this.formData);
         console.log('Application submitted successfully:', response.data);
         this.resetForm();
