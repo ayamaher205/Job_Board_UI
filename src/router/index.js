@@ -12,6 +12,8 @@ import JobsPage from "../views/JobsPage.vue";
 // import employers from '../views/AdminViews/employers.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 // import addAdmin from '../views/AdminViews/addAdmin.vue';
+import Register from "../components/CandidateComponents/Register.vue";
+import Login from "../components/CandidateComponents/Login.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +23,16 @@ const router = createRouter({
     //   name: "home",
     //   component: HomeView,
     // },
+    {
+      path: "/candidate/login",
+      name: "candidate_login",
+      component: Login,
+    },
+    {
+      path: "/candidate/register",
+      name: "candidate_registration",
+      component: Register,
+    },
     {
       path: "/about",
       name: "about",
