@@ -3,7 +3,16 @@ import HomeView from '../views/HomeView.vue';
 import SearchResult from '../views/SearchResult.vue';
 import JobsPage from '../views/JobsPage.vue';
 import Sidebar from '../components/Sidebar.vue'
-import EmployerProfile from '../components/EmployerProfile.vue'
+import EmployerProfile from '../components/EmployerProfile.vue';
+import login from '../views/login.vue';
+
+import AdminLayout from '../layouts/adminLayout.vue';
+// import Dashboard from '../views/AdminViews/DashBoard.vue';
+// import candidates from '../views/AdminViews/candidates.vue';
+// import employers from '../views/AdminViews/employers.vue';
+// import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
+// import addAdmin from '../views/AdminViews/addAdmin.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -20,6 +29,55 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
+    {
+      path: '/login',
+      component: login,
+      name:login,
+  },
+    {
+      path: '/admin',
+      name:'AdminLayout',
+      component: AdminLayout,
+      // meta: { requiresAuth: true } 
+    },
+  
+//     {
+//       path: '/admin/dashboard',
+//       component: Dashboard,
+//       name:'Dashboard',
+//       // meta: { requiresAuth: true } 
+//     },
+// {
+// path: '/admin/dashboard',
+// component: Dashboard,
+// name:Dashboard,
+// // meta: { requiresAuth: true } 
+// },
+// {
+// path: '/admin/candidates',
+// component: candidates,
+// name:candidates,
+// // meta: { requiresAuth: true }
+// },
+// {
+// path: '/admin/employers',
+// component: employers,
+// name:employers,
+// // meta: { requiresAuth: true }
+// },
+// {
+// path: '/admin/update-post-status',
+// component: updatePostStatus,
+// name:updatePostStatus,
+// // meta: { requiresAuth: true }
+// },
+// {
+// path: '/admin/add-admin',
+// component: addAdmin,
+// name:addAdmin,
+// // meta: { requiresAuth: true }
+// },
+  
     {
       path:'/employer',
       name:'empoyer_profile',
@@ -38,3 +96,4 @@ const router = createRouter({
 })
 
 export default router
+
