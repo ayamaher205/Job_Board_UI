@@ -8,16 +8,18 @@ const getEmployer = (id) => {
   });
 };
 const updateEmployer = (id, data) => {
-  // console.log(`form data is: ${data.values().toArray()}`);
-  let config = {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      'Content-Type': 'multipart/form-data'
-    },
-    'content-type':'multipart/form-data',
-  }
-  return axios.put(`http://127.0.0.1:8000/api/employers/${id}`, data, config);
+ // console.log(`form data is: ${data.values().toArray()}`);
+  return axios.put(`http://127.0.0.1:8000/api/employers/${id}`, data, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
+    'Content-Type': 'multipart/form-data'
+   }
+  });
 };
+const deleteEmployer = (id)=>{
+return axios.delete(`http://127.0.0.1:8000/api/employers/${id}`, {
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
+ }
+});
+}
 
-export { getEmployer, updateEmployer };
+export { getEmployer, updateEmployer,deleteEmployer };
