@@ -1,6 +1,3 @@
-<script setup>
-import { RouterLink } from 'vue-router';
-</script>
 <template>
   <button
     data-drawer-target="default-sidebar"
@@ -144,6 +141,7 @@ import { RouterLink } from 'vue-router';
         </li>
         <li>
           <router-link
+          @click="showAlert()"
           to="/"
           class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
@@ -192,4 +190,23 @@ import { RouterLink } from 'vue-router';
     </div>
   </aside>
 </template>
+<script>
+import { RouterLink } from 'vue-router';
+import AuthService from '../services/AuthService';
+export default{
+  methods:{
+    showAlert(){
+      this.$swal({
+        title: "You Logged out Succefully!!",
+        //text: "That thing is still around?",
+        icon: "info"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          AuthService.logout();
+        }
+      });
+    },
+  }
+}
+</script>
 <style scoped></style>
