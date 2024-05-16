@@ -42,13 +42,17 @@
                           </div>
                         <!-- </div>   -->
                         
-                            <br> <br><br>
-                          <div class="col-12">
+                          <br> <br><br>
+                          <div class="col-sm-6">
                               <div class="form-group">
                                 <label>Upload your image  | (Optional )</label>  <br />
-                                <input type="file" name="image" id="imageFile" />
+                                <input @change="handleFileChange" type="file" name="image" id="imageFile" />
                               </div>
                           </div>
+                          <div class="col-sm-6">
+                            <img v-if="previewImage" :src="previewImage" style="width: 65%; height: 110%; border-radius: 10%;" alt="Profile Picture">
+                          </div>
+
                       </div>
                       <div class="form-group mt-3">
                           <button type="submit" class="button button-contactForm boxed-btn">Save</button>
@@ -90,6 +94,7 @@ export default {
   name: 'Register',
   data () {
     return {
+      previewImage: '',
       candidate: {
         name: '',
         email: '',
@@ -101,19 +106,22 @@ export default {
   },
   methods: {
     async saveData() {
-      console.log(this.candidate);
+      
       var AlertContainer = document.getElementById('alertDiv');
 
       const imageFile = document.getElementById("imageFile");        
-      console.log(imageFile.files.length);
-
+      
       if(imageFile.files.length)
       {
-        this.candidate.image = imageFile.files[0].name;
+        this.candidate.realimage =  imageFile.files[0];
       }
-
+      
       try {
-        await axios.post("http://127.0.0.1:8000/api/user/register", this.candidate)
+        console.log(this.candidate);
+        await axios.post("http://127.0.0.1:8000/api/user/register", this.candidate,
+        {headers: {
+           'Content-Type': 'multipart/form-data', // Set content type header for FormData
+        }})
         AlertContainer.removeAttribute('style');
         AlertContainer.removeAttribute('class');
         AlertContainer.setAttribute('class', 'alert alert-success');
@@ -125,7 +133,7 @@ export default {
         
         // Cast error object to array
         const errorsArray = Object.entries(error.response.data);
-        console.log(errorsArray);
+        
         errorsArray.forEach(([key, value]) => {
             AlertContainer.innerHTML += value + "<br>";
         });
@@ -135,6 +143,17 @@ export default {
         AlertContainer.setAttribute('style', 'display: none;');
       }, 3050);
 
+    },
+
+    handleFileChange(event){
+      const imageFile = document.getElementById("imageFile");        
+      const imageContent = imageFile.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(imageContent);
+      reader.onload = (e) => {
+        console.log(e);
+        this.previewImage = e.target.result;
+      };
     }
   }
 }

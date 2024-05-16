@@ -7,7 +7,7 @@
 					<div class="col-lg-8 col-md-8">
 						<h3 class="mb-30"> Candidate | Profile info </h3>
 
-            <form @submit.prevent="handleUpdateSubmit">
+            <form @submit.prevent="handleUpdateSubmit" enctype="multipart/form-data">
 
               <input type="text" v-model="profile.summary" name="summary" class="single-input" :placeholder="profile.summary"/>            <br>
                    
