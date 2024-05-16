@@ -1,12 +1,12 @@
 <template>
 
-  <div class="container col w-100">
+  <div class="container col-lg-12 col-xl-11 w-100">
   <h2 class="row">Hi, Welcome Back!</h2>
     <p class="row">
       Still do not have an account?
       <a href="/register">Sign up</a>
     </p>
-    <div class="row">
+    <div class="row w-100 h-100" >
 <form @submit.prevent="login" class="loginForm col w-100">
       <div class="input-group">
       <label for="email">Email:</label>
@@ -16,9 +16,9 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" class="form-control"  v-model="password" required>
     </div>
-<div>
-    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-      </div>
+    <div>
+        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </div>
       <button type="submit" 
       class="btn"
       :disabled="!email || !password">Log In
@@ -103,9 +103,14 @@ body {
   width: 300px;
 }
 
-.container h2 {
+.container h2 , p {
   text-align: center;
   margin-bottom: 20px;
+  color: hsla(154, 92%, 10%, 0.692);
+}
+a{
+  color: hsl(154, 42%, 33%);
+  text-decoration: none;
 }
 .loginForm {
   color: rgb(75, 73, 73);
@@ -130,20 +135,20 @@ body {
   width: 100%;
   padding: 5px;
   border: 0;
-  border-bottom: 2px solid #00000063;
+  border-bottom: 2px solid hsla(154, 92%, 10%, 0.692);
   margin-bottom: 20px !important;
   border-radius: 5px !important;
 }
 
 button {
-  border: 1px solid#0D6EFD !important;
-  color: #0d6efd !important;
+  border: 1px solid hsl(154, 42%, 33%) !important;
+  color: hsl(154, 42%, 33%) !important;
   cursor: pointer !important;
   padding: 5px 15px;
   margin-top: 10px;
 }
 button:hover {
-  background-color: #0d6efd;
+  background-color: hsl(154, 42%, 33%);
   color: white !important;
   cursor: pointer !important;
 }
@@ -151,7 +156,9 @@ button:hover {
   background-color: transparent;
   outline: none;
 }
-
+.error-message{
+ color: rgba(255, 0, 0, 0.74);
+}
 @media screen and (max-width: 400px) {
   .container {
     width: 90%;
