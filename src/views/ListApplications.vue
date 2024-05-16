@@ -22,15 +22,19 @@
             <li><strong>Phone:</strong> {{ application.app_phone }}</li>
           </ul>
         </div>
-        <!-- Buttons for Update and Delete -->
-        <div class="flex justify-end px-4 pb-4">
+        <!-- Buttons for Update, Delete, and Show -->
+        <div class="flex justify-between px-4 pb-4">
           <button @click="goToUpdateComponent(application.id)"
-            class="text-sm text-blue-500 hover:text-blue-700 mr-4">
+            class="text-sm text-blue-500 hover:text-blue-700">
             Update
           </button>
           <button @click="deleteComponent(application.id)"
             class="text-sm text-red-500 hover:text-red-700">
             Delete
+          </button>
+          <button @click="showApplicationDetails(application.id)"
+            class="text-sm text-gray-500 hover:text-gray-700">
+            Show
           </button>
         </div>
       </div>
@@ -50,6 +54,8 @@ import ApplicationService from '../services/ApplicationService.js';
 import Swal from 'sweetalert2';
 
 export default {
+  name: 'getApplications',
+
   data() {
     return {
       applications: []
@@ -72,33 +78,34 @@ export default {
       this.$router.push({ path: `/edit-applications/${id}` });
     },
     deleteComponent(id) {
-  // Display a confirmation dialog using SweetAlert
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'You are about to delete this application.',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // If user confirms deletion, call the ApplicationService to delete the application
-      ApplicationService.deleteApplication(id)
-        .then(response => {
-          console.log('Application deleted successfully:', response.data.message);
-          // Optionally, you can refresh the application list after deletion
-          this.fetchApplications();
-        })
-        .catch(error => {
-          console.error('Error deleting application:', error.response.data.error);
-          // Handle error, show notification, etc.
-        });
-    }
-  });
-}
+      // Display a confirmation dialog using SweetAlert
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to delete this application.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          ApplicationService.deleteApplication(id)
+            .then(response => {
+              console.log('Application deleted successfully:', response.data.message);
+              this.fetchApplications();
+            })
+            .catch(error => {
+              console.error('Error deleting application:', error.response.data.error);
+            });
+        }
+      });
+    },
+    showApplicationDetails(id) {
 
+      this.$router.push({ path: `/show-applications/${id}` });
+      console.log('Application Details:', application);
+    }
   }
 };
 </script>

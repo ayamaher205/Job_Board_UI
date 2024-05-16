@@ -16,7 +16,7 @@ export default {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
   },
-  getApplication(id) {
+  showApplication(id) {
     return axios.get(`${API_BASE_URL}/applications/${id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
