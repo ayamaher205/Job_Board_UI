@@ -66,21 +66,10 @@ export default {
                             }
                         });
                         
-      console.log(profileResult);
-      console.log(profileResult.data.summary);
+      // console.log(profileResult);
+      // console.log(profileResult.data.summary);
       profile.value.summary = profileResult.data.summary;
       profile.value.experience = profileResult.data.experience;
-
-      // var file = document.getElementById('resumeFile');
-      // if(file.files.length)
-      // {
-      //     var reader = new FileReader();
-      //     console.log(file.files[0]);
-      //     // reader.readAsBinaryString(file.files[0]);
-      // }
-
-
-      // profile.value.resume = profileResult.data.resume;
       profile.value.skills = profileResult.data.skills;
       profile.value.phone = profileResult.data.phone;
       profile.value.address = profileResult.data.address;

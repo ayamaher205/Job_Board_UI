@@ -3,6 +3,8 @@
   <section class="contact-section">
       <div class="container">
           <div class="row">
+              <div class="" role="alert" id="alertDiv">
+              </div>
               <div class="col-12">
                   <h2 class="contact-title"> Register your account </h2>
               </div>
@@ -44,7 +46,7 @@
                           <div class="col-12">
                               <div class="form-group">
                                 <label>Upload your image  | (Optional )</label>  <br />
-                                <input type="file" name="image" id="image" />
+                                <input type="file" name="image" id="imageFile" />
                               </div>
                           </div>
                       </div>
@@ -97,17 +99,35 @@ export default {
     }
   },
   methods: {
-    saveData() {
-      console.log(this.candidate);
-      axios.post("http://127.0.0.1:8000/api/user/register", this.candidate)
-      .then(response => {
-        console.log(response.data);
-        alert("Data saved successfully!");
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Failed to save data!");
-      });
+    async saveData() {
+      
+      var ErrorContainer = document.getElementById('alertDiv');
+
+      try {
+        
+        await axios.post("http://127.0.0.1:8000/api/user/register", this.candidate)
+        ErrorContainer.removeAttribute('class');
+        ErrorContainer.setAttribute('class', 'alert alert-success');
+        ErrorContainer.innerHTML = "Your data is saved ✅";
+
+      } catch (error) {
+        
+        ErrorContainer.removeAttribute('style');
+        ErrorContainer.innerHTML = "";
+        ErrorContainer.setAttribute('class', 'alert alert-danger');
+        
+        // Cast error object to array
+        const errorsArray = Object.entries(error.response.data);
+        console.log(errorsArray);
+        errorsArray.forEach(([key, value]) => {
+            ErrorContainer.innerHTML += value + "<br>";
+        });
+      }
+
+      setTimeout(function () {
+        ErrorContainer.setAttribute('style', 'display: none;');
+      }, 3000);
+
     }
   }
 }
