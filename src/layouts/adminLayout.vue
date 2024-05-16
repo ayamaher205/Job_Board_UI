@@ -10,11 +10,9 @@
         <li><router-link to="/admin/employers">employers</router-link></li>
         <li><router-link to="/admin/add-admin">add</router-link></li>
       </ul>
+        <button @click="logout">Logout</button>
     </nav>
     <main>
-        <p>
-            lay out
-        </p>
       <router-view></router-view>
     </main>
     <footer>
@@ -24,8 +22,14 @@
 </template>
 
 <script>
+import AuthService from '../services/AuthService';
 export default {
-  name: 'AdminLayout'
+  name: 'AdminLayout',
+   methods: {
+    logout() {
+      AuthService.logout();
+    }
+  }
 }
 </script>
 

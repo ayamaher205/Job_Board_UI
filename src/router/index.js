@@ -5,13 +5,14 @@ import JobsPage from '../views/JobsPage.vue';
 import Sidebar from '../components/Sidebar.vue'
 import EmployerProfile from '../components/EmployerProfile.vue';
 import login from '../views/login.vue';
-
+import registeration from '../views/registeration.vue';
 import AdminLayout from '../layouts/adminLayout.vue';
+import { requireAuth } from '../services/auth';
+import addAdmin from '../views/AdminViews/addAdmin.vue';
 // import Dashboard from '../views/AdminViews/DashBoard.vue';
 // import candidates from '../views/AdminViews/candidates.vue';
 // import employers from '../views/AdminViews/employers.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
-// import addAdmin from '../views/AdminViews/addAdmin.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,18 +35,30 @@ const router = createRouter({
       component: login,
       name:login,
   },
+  {
+    path: '/register',
+    component: registeration,
+    name:registeration,
+},
     {
       path: '/admin',
       name:'AdminLayout',
       component: AdminLayout,
-      // meta: { requiresAuth: true } 
+      beforeEnter: requireAuth
     },
+    {
+    path: '/admin/add-admin',
+    component: addAdmin,
+    name:addAdmin,
+    beforeEnter: requireAuth
+  },
   
 //     {
 //       path: '/admin/dashboard',
 //       component: Dashboard,
 //       name:'Dashboard',
-//       // meta: { requiresAuth: true } 
+// beforeEnter: requireAuth 
+ 
 //     },
 // {
 // path: '/admin/dashboard',
@@ -72,27 +85,9 @@ const router = createRouter({
 // // meta: { requiresAuth: true }
 // },
 // {
-// path: '/admin/add-admin',
-// component: addAdmin,
-// name:addAdmin,
-// // meta: { requiresAuth: true }
-// },
+
+]
   
-    {
-      path:'/employer',
-      name:'empoyer_profile',
-      component:Sidebar
-    },
-    {
-      path:'/employer-profile',
-      name:'profile',
-      component:EmployerProfile
-    },
-    { path: '/jobs', name: 'Jobs', component: JobsPage }
-    ,
-   
-    { path: '/searchResult', name: 'searchResult', component: SearchResult }
-  ]
 })
 
 export default router
