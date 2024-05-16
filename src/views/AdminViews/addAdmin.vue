@@ -63,11 +63,6 @@ export default {
     }
   },
   methods: {
-    handleImageChange(event) {
-            const selectedFile = event.target.files[0];
-            this.employer.image = selectedFile;
-        },
-
     async addAdmin() {
       const adminStore = useAdminStore();
       try {

@@ -1,15 +1,9 @@
 <template>
   <div class="admin-layout">
     <header>
-      <h1>Admin Panel</h1>
+    <SideBar/>
     </header>
     <nav>
-      <ul>
-        <li><router-link to="/admin/dashboard">Dashboard</router-link></li>
-        <li><router-link to="/admin/candidates">candidates</router-link></li>
-        <li><router-link to="/admin/employers">employers</router-link></li>
-        <li><router-link to="/admin/add-admin">add</router-link></li>
-      </ul>
         <button @click="logout">Logout</button>
     </nav>
     <main>
@@ -22,9 +16,13 @@
 </template>
 
 <script>
+import SideBar from '@/components/AdminComponenets/SideBar.vue';
 import AuthService from '../services/AuthService';
 export default {
   name: 'AdminLayout',
+  components: {
+    SideBar
+  },
    methods: {
     logout() {
       AuthService.logout();

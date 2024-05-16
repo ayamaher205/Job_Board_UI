@@ -1,4 +1,3 @@
-// stores/admin.js
 
 import { defineStore } from 'pinia';
 import axios from 'axios';
@@ -6,6 +5,7 @@ import axios from 'axios';
 export const useAdminStore = defineStore('admin', {
   state: () => ({
     admins: [],
+    admin: {},
   }),
   actions: {
     async addAdmin(adminData) {
@@ -33,6 +33,9 @@ export const useAdminStore = defineStore('admin', {
   getters: {
     allAdmins() {
       return this.admins;
+    },
+    getAdmin(id) {
+      return this.admins.find((admin) => admin.id === id);
     },
   },
 });
