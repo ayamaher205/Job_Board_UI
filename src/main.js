@@ -1,4 +1,4 @@
-import './assets/main.css'
+// import './assets/main.css'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.css';
 

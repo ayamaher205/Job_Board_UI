@@ -1,10 +1,17 @@
 <template>
-    <div class="container col-lg-12 col-xl-11 w-auto">
-      <h2>Add Admin</h2>
-    <form @submit.prevent="addAdmin" class="adminform">
+  <div class="container col-lg-12 col-xl-11 w-auto">
+    <h2>Add Admin</h2>
+    <form @submit.prevent="addAdmin" class="adminform" enctype="multipart/form-data">
       <div class="input-group">
-        <label for="profile-photo">Profile Photo:</label>
-        <input type="file" id="profile-photo" @change="handleFileUpload">
+        <div class="flex items-center py-4">
+          <div class="w-20 h-20 mr-4 flex-none rounded-lg border overflow-hidden">
+            <img class="mr-4 object-cover" :src="imageUrl" alt="Avatar Upload" />
+          </div>
+          <label class="cursor-pointer">
+            <span class="focus:outline-none text-white text-sm py-2 px-4 rounded-full bg-green-900 hover:bg-green-600 hover:shadow-lg">Browse</span>
+            <input type="file" class="hidden" accept="image/*" name="image" @change="handleImageSelected" />
+          </label>
+        </div>
       </div>
       <div class="input-group">
         <label for="name">Name:</label>
@@ -16,7 +23,7 @@
       </div>
       <div class="input-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password"  required minlength="8">
+        <input type="password" id="password" v-model="password" required minlength="8">
       </div>
       <div class="input-group">
         <label for="confirm-password">Confirm Password:</label>
@@ -30,54 +37,64 @@
       <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
       <button type="submit" class="btn" :disabled="!formIsValid">Add</button>
     </form>
-    </div>
+  </div>
 </template>
-
-
 
 <script>
 import { useAdminStore } from '@/stores/admin';
+import { useImageUpload } from "@/Helpers/useImageUpload.js";
+
 export default {
-    data() {
+  data() {
+    const { imageFile, imageUrl, handleImageSelected } = useImageUpload();
     return {
       name: '',
       email: '',
       password: '',
       confirmPassword: '',
       role: 'admin',
-      errorMessage: ''
+      errorMessage: '',
+      ...useImageUpload(), 
     };
   },
-   computed: {
+  computed: {
     formIsValid() {
       return this.name && this.email && this.password && this.password === this.confirmPassword && this.role;
     }
   },
-    methods: {
+  methods: {
+    handleImageChange(event) {
+            const selectedFile = event.target.files[0];
+            this.employer.image = selectedFile;
+        },
+
     async addAdmin() {
       const adminStore = useAdminStore();
       try {
-        const adminData = {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          role: this.role
-        };
-        await adminStore.addAdmin(adminData);
+         let formData = new FormData();
+            formData.append("image", this.imageFile);
+            formData.append("name", this.name)
+            formData.append("email", this.email)
+            formData.append("password",  this.password)
+            formData.append("role",  this.role)
+            formData.append("_method", 'post')
+
+                console.log(formData.values().toArray());
+                await adminStore.addAdmin(formData);
+
         console.log('Admin added successfully!');
         this.$router.push('/admins');
       } catch (error) {
-       console.log(error.response.data.data)
-          if(error.response.data.data) {
-            if (error.response && error.response.data && error.response.data.data.password)
-                this.errorMessage = error.response.data.data.password[0];
-            if (error.response && error.response.data && error.response.data.data.email)
-                this.errorMessage = error.response.data.data.email[0];
-
-          }else{
-            this.errorMessage = 'An error occurred while adding the admin.';
-            console.error('Error adding admin:', error.response.data);
-          }
+        console.log(error.response.data.data)
+        if (error.response.data.data) {
+          if (error.response && error.response.data && error.response.data.data.password)
+            this.errorMessage = error.response.data.data.password[0];
+          if (error.response && error.response.data && error.response.data.data.email)
+            this.errorMessage = error.response.data.data.email[0];
+        } else {
+          this.errorMessage = 'An error occurred while adding the admin.';
+          console.error('Error adding admin:', error.response.data);
+        }
       }
     },
   },
