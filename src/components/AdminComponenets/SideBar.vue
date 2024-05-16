@@ -1,16 +1,16 @@
 <template>
 <div class="flex flex-row"> 
- <div class="flex flex-col items-center w-40 h-full overflow-hidden text-dark-400 bg-white border border-gray-900 rounded-tr-2xl">
+  <div class="flex flex-col items-center w-40 h-full overflow-hidden text-dark-400 bg-white border border-gray-700 rounded-tr-2xl">
 		<div class="flex flex-col items-center my-6 -mx-2">
         <img
         class="object-cover w-24 h-24 mx-2 rounded-full"
         :src="user.image"
         alt="avatar"
-      />
+        />
         <h4 class="mx-2 mt-2 font-medium text-green-900 dark:text-green-900">
         {{ user.name }}
-      </h4>
-      </div>
+        </h4>
+    </div>
 		<div class="w-full px-2">
 			<div class="flex flex-col items-center w-full mt-3 border-t border-gray-700">
 				<router-link to="/admin/dashboard" class="flex items-center w-full h-10 px-2 mt-2 rounded hover:bg-green-900 text-green-700 hover:text-green-100">
@@ -39,7 +39,6 @@
           </svg>
 					<span class="ml-2 text-sm font-medium">Admins</span>
 				</router-link>
-			<div class="flex flex-col items-center w-full mt-2 border-t border-gray-700">
 				<router-link to="/admin/posts"  class="flex items-center w-full h-10 px-2 mt-2 rounded hover:bg-green-900 text-green-700 hover:text-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
               <path fill-rule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0 1 12 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 0 1 7.5 5.455V5.25Zm7.5 0v.09a49.488 49.488 0 0 0-6 0v-.09a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5Zm-3 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
@@ -48,16 +47,16 @@
 					<span class="ml-2 text-sm font-medium">Jobs</span>
 				</router-link>
 			</div>
-			</div>
-		</div>
-    <router-link to="/admin/add-admin" class="flex items-center w-full h-10 px-2 mt-2 rounded hover:bg-green-900 text-green-700 hover:text-green-100">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-        <path d="M5.25 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM2.25 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM18.75 7.5a.75.75 0 0 0-1.5 0v2.25H15a.75.75 0 0 0 0 1.5h2.25v2.25a.75.75 0 0 0 1.5 0v-2.25H21a.75.75 0 0 0 0-1.5h-2.25V7.5Z" />
-      </svg>
-			<span class="ml-2 text-sm font-medium">Add Admin</span>
-		</router-link>
-	</div>
-
+			<div class="flex flex-col items-center w-full mt-3 border-t border-gray-700">
+        <router-link to="/admin/add-admin" class="flex items-center w-full h-10 px-2 mt-2 rounded hover:bg-green-900 text-green-700 hover:text-green-100">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path d="M5.25 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM2.25 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM18.75 7.5a.75.75 0 0 0-1.5 0v2.25H15a.75.75 0 0 0 0 1.5h2.25v2.25a.75.75 0 0 0 1.5 0v-2.25H21a.75.75 0 0 0 0-1.5h-2.25V7.5Z" />
+          </svg>
+			    <span class="ml-2 text-sm font-medium">Add Admin</span>
+		   </router-link>
+	    </div>
+    </div>
+  </div>
 <div class="flex flex-col items-center h-full w-auto overflow-hidden text-dark-400 bg-gray-100 p-7">
   <router-view />
 </div>

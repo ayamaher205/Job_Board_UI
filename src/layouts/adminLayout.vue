@@ -1,9 +1,10 @@
 <template>
-  <div class="admin-layout">
+  <div class="admin-layout bg-gray-100">
     <header>
       <Header/>
+      <hr class ="w-75 m-0 mx-auto color-black">
     </header>
-    <main class="bg-gray-100 ">
+    <main>
     <SideBar/>
     </main>
     <footer>
