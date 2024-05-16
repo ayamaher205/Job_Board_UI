@@ -7,6 +7,7 @@ import SearchResult from '../views/SearchResult.vue'
 import ShowApplications from '@/views/ListApplications.vue'
 import EditApplication from './../views/EditApplication.vue'
 import ListApplications from '@/views/ListApplications.vue'
+import DeleteApplication from './../views/DeleteApplication.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/show-applications/:id',
       name: 'showApplications',
       component: ShowApplications
+    },
+    {
+      path: '/delete-applications/:id',
+      name: 'deleteApplications',
+      component: DeleteApplication
     },
     {
       path: '/jobs',
