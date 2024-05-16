@@ -47,6 +47,7 @@
   
 <script>
 import ApplicationService from '../services/ApplicationService.js';
+import Swal from 'sweetalert2';
 
 export default {
   data() {
@@ -71,8 +72,33 @@ export default {
       this.$router.push({ path: `/edit-applications/${id}` });
     },
     deleteComponent(id) {
-       ApplicationService.deleteApplication(id);
+  // Display a confirmation dialog using SweetAlert
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You are about to delete this application.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // If user confirms deletion, call the ApplicationService to delete the application
+      ApplicationService.deleteApplication(id)
+        .then(response => {
+          console.log('Application deleted successfully:', response.data.message);
+          // Optionally, you can refresh the application list after deletion
+          this.fetchApplications();
+        })
+        .catch(error => {
+          console.error('Error deleting application:', error.response.data.error);
+          // Handle error, show notification, etc.
+        });
     }
+  });
+}
+
   }
 };
 </script>

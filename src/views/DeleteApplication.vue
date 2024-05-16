@@ -9,7 +9,7 @@
   <script>
   import ApplicationService from '@/services/ApplicationService';
   import { useRouter } from 'vue-router';
-  
+
   export default {
     name: 'ShowApplications',
     data() {
