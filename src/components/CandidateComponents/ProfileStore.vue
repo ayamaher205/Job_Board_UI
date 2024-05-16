@@ -1,6 +1,5 @@
 <template>
 
-	<!-- Start Align Area -->
 	<div class="whole-wrap">
 		<div class="container box_1170">
 			<div class="section-top-border">
@@ -15,7 +14,7 @@
               <input type="text" v-model="profile.experience" name="experience" class="single-input" placeholder="Experience"/>              <br>
 
               <label>Upload your resume: </label>  &nbsp; &nbsp;
-              <input type="file" name="resume"/>           <br>  <br>
+              <input type="file" name="resume" id="resumeFile"/>           <br>  <br>
       
               <input type="text" v-model="profile.skills" name="skills" class="single-input" placeholder="Skills (comma-separated)"/>            <br>
               
@@ -40,7 +39,6 @@
 
 <script>
 
-// import { useMainStore } from "@/stores/mainstore";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from 'axios';
@@ -53,6 +51,7 @@ export default {
     const profile = ref({
         summary: '',
         experience: '',
+        resume: '',
         skills: '',
         phone: '',
         address: '',
@@ -66,10 +65,22 @@ export default {
                               'Accept': 'application/json',
                             }
                         });
+                        
       console.log(profileResult);
       console.log(profileResult.data.summary);
       profile.value.summary = profileResult.data.summary;
       profile.value.experience = profileResult.data.experience;
+
+      // var file = document.getElementById('resumeFile');
+      // if(file.files.length)
+      // {
+      //     var reader = new FileReader();
+      //     console.log(file.files[0]);
+      //     // reader.readAsBinaryString(file.files[0]);
+      // }
+
+
+      // profile.value.resume = profileResult.data.resume;
       profile.value.skills = profileResult.data.skills;
       profile.value.phone = profileResult.data.phone;
       profile.value.address = profileResult.data.address;
@@ -78,25 +89,32 @@ export default {
 
     const handleUpdateSubmit = async () => {
       
-      await axios.put("http://127.0.0.1:8000/api/profiles/1", 
-        { 
-          summary: profile.value.summary,
-          experience: profile.value.experience,
-          skills: profile.value.skills,
-          phone: profile.value.phone,
-          address: profile.value.address,
-          personal_website: profile.value.personal_website, 
-        }, 
-        {
-          headers: { 
-              'Authorization': `Bearer 28|Ci7TMPfGReVVZvUVJfLOHUAmCPTRxK57dd1xj2j0c2dce9f9`,
-              'Accept': 'application/json',
-            }
-        }
-    );
+      const resumeFile = document.getElementById("resumeFile").files[0];
       
-    alert('updated');
-    
+      try {
+        await axios.put("http://127.0.0.1:8000/api/profiles/1", 
+          { 
+            summary: profile.value.summary,
+            experience: profile.value.experience,
+            resume: resumeFile,
+            skills: profile.value.skills,
+            phone: profile.value.phone,
+            address: profile.value.address,
+            personal_website: profile.value.personal_website, 
+          }, 
+          {
+            headers: { 
+                'Authorization': `Bearer 28|Ci7TMPfGReVVZvUVJfLOHUAmCPTRxK57dd1xj2j0c2dce9f9`,
+                'Accept': 'application/json',
+              }
+          });
+
+        alert('updated');
+      } catch (error) {
+        alert(error)
+      }
+      
+
     };
 
     return {
@@ -107,40 +125,4 @@ export default {
   },
 };
 
-// import axios from 'axios';
-
-// export default {
-//   name: 'Register',
-//   data () {
-//     return {
-//       candidate: {
-//         summary: '',
-//         experience: '',
-//         skills: '',
-//         phone: '',
-//         address: '',
-//         personal_website: '',
-//       }
-//     }
-//   },
-//   methods: {
-//     saveData() {
-//       console.log(this.candidate);
-//       axios.post("http://127.0.0.1:8000/api/profiles", this.candidate, {
-//         headers: { 
-//           'Authorization': `Bearer 28|Ci7TMPfGReVVZvUVJfLOHUAmCPTRxK57dd1xj2j0c2dce9f9`,
-//           'Accept': 'application/json' 
-//         }
-//       })
-//       .then(response => {
-//         console.log(response.data);
-//         alert("Data saved successfully!");
-//       })
-//       .catch(error => {
-//         console.error(error);
-//         alert("Data already saved before!");
-//       });
-//     }
-//   }
-// }
 </script>
