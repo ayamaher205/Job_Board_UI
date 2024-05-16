@@ -1,13 +1,10 @@
 <template>
   <div class="admin-layout">
     <header>
-    <SideBar/>
+      <Header/>
     </header>
-    <nav>
-        <button @click="logout">Logout</button>
-    </nav>
-    <main>
-      <router-view></router-view>
+    <main class="bg-gray-100 ">
+    <SideBar/>
     </main>
     <footer>
       <p>&copy; 2024 Admin Panel</p>
@@ -17,17 +14,13 @@
 
 <script>
 import SideBar from '@/components/AdminComponenets/SideBar.vue';
-import AuthService from '../services/AuthService';
+import Header from '@/components/AdminComponenets/Header.vue';
 export default {
   name: 'AdminLayout',
   components: {
-    SideBar
+    SideBar,
+    Header
   },
-   methods: {
-    logout() {
-      AuthService.logout();
-    }
-  }
 }
 </script>
 

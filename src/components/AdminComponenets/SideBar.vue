@@ -1,5 +1,6 @@
 <template>
- <div class="flex flex-col items-center w-40 h-full overflow-hidden text-dark-400 bg-white-900">
+<div class="flex flex-row"> 
+ <div class="flex flex-col items-center w-40 h-full overflow-hidden text-dark-400 bg-white border border-gray-900 rounded-tr-2xl">
 		<div class="flex flex-col items-center my-6 -mx-2">
         <img
         class="object-cover w-24 h-24 mx-2 rounded-full"
@@ -56,6 +57,11 @@
 			<span class="ml-2 text-sm font-medium">Add Admin</span>
 		</router-link>
 	</div>
+
+<div class="flex flex-col items-center h-full w-auto overflow-hidden text-dark-400 bg-gray-100 p-7">
+  <router-view />
+</div>
+  </div>
  </template>
 
 <script>

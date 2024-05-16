@@ -8,16 +8,18 @@ import { createPinia } from 'pinia'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-import App from './App.vue'
-import router from './router'
-const app = createApp(App)
+// import App from './App.vue'
+// import router from './router'
+// const app = createApp(App)
 
 
 
 
-// import AdminLayout from './layouts/adminLayout.vue'
+import AdminLayout from './layouts/adminLayout.vue'
 // import router from './router/adminRoutes'
-// const app = createApp(AdminLayout)
+import router from './router'
+
+const app = createApp(AdminLayout)
 
 
 app.use(createPinia())

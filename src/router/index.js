@@ -9,9 +9,9 @@ import registeration from '../views/registeration.vue';
 import AdminLayout from '../layouts/adminLayout.vue';
 import { requireAuth } from '../services/auth';
 import addAdmin from '../views/AdminViews/addAdmin.vue';
-// import Dashboard from '../views/AdminViews/DashBoard.vue';
-// import candidates from '../views/AdminViews/candidates.vue';
-// import employers from '../views/AdminViews/employers.vue';
+import Dashboard from '../views/AdminViews/DashBoard.vue';
+import candidates from '../views/AdminViews/candidates.vue';
+import employers from '../views/AdminViews/employers.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 
 const router = createRouter({
@@ -40,12 +40,12 @@ const router = createRouter({
     component: registeration,
     name:registeration,
 },
-    {
-      path: '/admin',
-      name:'AdminLayout',
-      component: AdminLayout,
-      beforeEnter: requireAuth
-    },
+    // {
+    //   path: '/admin',
+    //   name:'AdminLayout',
+    //   component: AdminLayout,
+    //   beforeEnter: requireAuth
+    // },
     {
     path: '/admin/add-admin',
     component: addAdmin,
@@ -53,43 +53,31 @@ const router = createRouter({
     beforeEnter: requireAuth
   },
   
-//     {
-//       path: '/admin/dashboard',
-//       component: Dashboard,
-//       name:'Dashboard',
-// beforeEnter: requireAuth 
+    {
+      path: '/admin/dashboard',
+      component: Dashboard,
+      name:'Dashboard',
+      beforeEnter: requireAuth 
  
-//     },
-// {
-// path: '/admin/dashboard',
-// component: Dashboard,
-// name:Dashboard,
-// // meta: { requiresAuth: true } 
-// },
-// {
-// path: '/admin/candidates',
-// component: candidates,
-// name:candidates,
-// // meta: { requiresAuth: true }
-// },
-// {
-// path: '/admin/employers',
-// component: employers,
-// name:employers,
-// // meta: { requiresAuth: true }
-// },
-// {
-// path: '/admin/update-post-status',
-// component: updatePostStatus,
-// name:updatePostStatus,
-// // meta: { requiresAuth: true }
-// },
-// {
-// path: '/admin/add-admin',
-// component: addAdmin,
-// name:addAdmin,
-// // meta: { requiresAuth: true }
-// },
+    },
+    {
+    path: '/admin/candidates',
+    component: candidates,
+    name:candidates,
+    beforeEnter: requireAuth 
+  },
+    {
+    path: '/admin/employers',
+    component: employers,
+    name:employers,
+    beforeEnter: requireAuth 
+    },
+    // {
+    // path: '/admin/update-post-status',
+    // component: updatePostStatus,
+    // name:updatePostStatus,
+    // // meta: { requiresAuth: true }
+    // },
   
  /*    {
       path:'/employer',
