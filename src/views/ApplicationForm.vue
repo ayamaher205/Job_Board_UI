@@ -42,29 +42,18 @@
       </div>
 
       <!-- Submit button -->
-      <button type="submit" class="vf-btn-primary px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">Submit Application</button>
+      <button type="submit" class="vf-btn-primary px-4 py-2 bg-indigo-600 text-black rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">Submit Application</button>
     </form>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Application Received</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Display application details here -->
-          <p>{{ newApplication }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+
   </div>
   
 </template>
 
 <script>
 import ApplicationService from '@/services/ApplicationService';
+import Pusher from 'pusher-js';
+import Swal from 'sweetalert2';
 
 export default {
   name: 'ApplicationForm',
@@ -117,16 +106,16 @@ export default {
   mounted() {
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher(process.env.VUE_APP_PUSHER_APP_KEY, {
-    cluster: process.env.VUE_APP_PUSHER_CLUSTER,
+    var pusher = new Pusher("5d052631cd1334c57a9d", {
+    cluster: 'eu',
     encrypted: true 
   });
 
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', (data) => {
       console.log(data);
-      this.newApplication = JSON.stringify(data); 
-      $('#exampleModal').modal('show'); 
+      this.newApplication = JSON.stringify(data.message); 
+      Swal.fire({ text: this.newApplication });
     });
   }
 };

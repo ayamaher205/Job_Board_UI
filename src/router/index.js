@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import ApplicationForm from '../views/ApplicationForm.vue'
 import JobsPage from '../views/JobsPage.vue'
 import SearchResult from '../views/SearchResult.vue'
+import ShowApplications from '@/views/ShowApplications.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/applications',
       name: 'ApplicationForm',
       component: ApplicationForm
+    },
+    {
+      path: '/get-applications',
+      name: 'showApplications',
+      component: ShowApplications
     },
     {
       path: '/jobs',
