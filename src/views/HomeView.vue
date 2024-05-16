@@ -7,3 +7,26 @@ import WelcomeItem from '../components/WelcomeItem.vue'
     <WelcomeItem />
   </main>
 </template>
+
+<script>
+import SearchBar from '../components/SearchBar.vue';
+ 
+
+export default {
+  components: {
+    SearchBar,
+     
+  },
+  data() {
+    return {
+       
+    };
+  },
+  methods: {
+    handleSearchResults(results) {
+      console.log('Search results:', results);
+       this.$router.push({ name: 'searchResult', query: { results: JSON.stringify(results) } });
+    },
+  },
+};
+</script>

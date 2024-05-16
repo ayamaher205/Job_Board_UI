@@ -1,5 +1,4 @@
 <template>
-
   <div class="container col-lg-12 col-xl-11 w-100">
   <h2 class="row">Hi, Welcome Back!</h2>
     <p class="row">
@@ -24,6 +23,7 @@
       :disabled="!email || !password">Log In
       </button>
   </form>
+  
      <img class="col w-50"
               style="width: 90%"
               src="../assets/logo.png"
@@ -35,6 +35,7 @@
 
 <script>
 import AuthService from '../services/AuthService';
+import { useLoggedUser } from '@/stores/User.js'
 
 export default {
   name: 'login',
@@ -48,6 +49,7 @@ export default {
   },
   methods: {
     login() {
+      
       if (!this.email) {
         this.errorMessage = 'Email is required';
         return;
@@ -60,14 +62,18 @@ export default {
       
       AuthService.login({ email: this.email, password: this.password })
         .then(response => {
+          // console.log(response);
+          const userStore = useLoggedUser();
+          userStore.setUser(response.data.user);
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('loggedUser', response.data.user.name);
           localStorage.setItem('role', response.data.user.role);
 
           if (response.data.user.role == 'admin') {
             this.$router.push('/admin');
-          } else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
-            this.$router.push('/');
+          }
+          else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
+            this.$router.push('/employer');
           }
 
         })
@@ -82,7 +88,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 body {
   font-family: Arial, sans-serif;

@@ -20,6 +20,7 @@ class AuthService {
     localStorage.removeItem('role');
     router.push('/');
   }
+
 }
 
 export default new AuthService();

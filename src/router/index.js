@@ -1,5 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import SearchResult from '../views/SearchResult.vue';
+import JobsPage from '../views/JobsPage.vue';
+import Sidebar from '../components/Sidebar.vue'
+import EmployerProfile from '../views/EmployerProfileView.vue';
 import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import AdminLayout from '../layouts/adminLayout.vue';
@@ -81,9 +85,27 @@ const router = createRouter({
 // // meta: { requiresAuth: true }
 // },
 // {
-
-]
+// path: '/admin/add-admin',
+// component: addAdmin,
+// name:addAdmin,
+// // meta: { requiresAuth: true }
+// },
   
+ /*    {
+      path:'/employer',
+      name:'empoyer_profile',
+      component:Sidebar
+    }, */
+    {
+      path:'/employer',
+      name:'profile',
+      component:EmployerProfile
+    },
+    { path: '/jobs', name: 'Jobs', component: JobsPage }
+    ,
+   
+    { path: '/searchResult', name: 'searchResult', component: SearchResult }
+  ]
 })
 
 export default router
