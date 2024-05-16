@@ -1,38 +1,55 @@
 <template>
-  
-    <!-- ================ contact section start ================= -->
-    <section class="contact-section">
+
+  <section class="contact-section">
       <div class="container">
           <div class="row">
               <div class="col-12">
-                  <h2 class="contact-title">Get in Touch</h2>
+                  <h2 class="contact-title"> Register your account </h2>
               </div>
               <div class="col-lg-8">
-                  <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                  <form class="form-contact contact_form"  @submit.prevent="saveData" action="" method="post" id="contactForm" novalidate="novalidate">
                       <div class="row">
-                          <div class="col-12">
+                          <div class="col-sm-6">
                               <div class="form-group">
-                                  <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Enter Message"></textarea>
+                                  <input class="form-control valid" type="text" name="name" v-model="candidate.name" id="name" placeholder="Enter your name">
                               </div>
                           </div>
                           <div class="col-sm-6">
                               <div class="form-group">
-                                  <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
+                                  <input class="form-control valid" name="email" type="email" v-model="candidate.email" id="email" placeholder="Enter your Email">
                               </div>
                           </div>
                           <div class="col-sm-6">
-                              <div class="form-group">
-                                  <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                              </div>
+                            <div class="form-group">
+                                <input class="form-control valid"  type="password"  name="password" v-model="candidate.password" placeholder="Enter your password">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input class="form-control valid" type="password" v-model="candidate.password_confirmation" name="password_confirmation" id="password_confirmation" placeholder="Re-type your password">
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="single-element-widget mt-30"> -->
+                          <div class="default-select" id="default-select">
+                            <label>Role: </label> &nbsp; &nbsp; 
+                            <select>
+                              <option value="1" selected>Candidate</option>
+                              <option value="1">Employer</option>
+                            </select>
                           </div>
+                        <!-- </div>   -->
+                        
+                            <br> <br><br>
                           <div class="col-12">
                               <div class="form-group">
-                                  <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
+                                <label>Upload your image  | (Optional )</label>  <br />
+                                <input type="file" name="image" id="image" />
                               </div>
                           </div>
                       </div>
                       <div class="form-group mt-3">
-                          <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                          <button type="submit" class="button button-contactForm boxed-btn">Save</button>
                       </div>
                   </form>
               </div>
@@ -62,31 +79,6 @@
           </div>
       </div>
   </section>
-<!-- ================ contact section end ================= -->
-  <!-- <div class="card" align="left">
-    <div class="card-header">Candidate Register Form</div>
-    <div class="card-body"> 
-      <form @submit.prevent="saveData">
-
-        <label>Name</label>
-        <input type="text" v-model="candidate.name" name="name" id="name" class="form-control"/>
-
-        <label>Email</label>
-        <input type="email" v-model="candidate.email" name="email" id="email" class="form-control"/>
-
-        <label>Password</label>
-        <input type="password" v-model="candidate.password" name="password" id="password" class="form-control"/>
-
-        <label>Re-type Password</label>
-        <input type="password" v-model="candidate.password_confirmation" name="password_confirmation" id="password_confirmation" class="form-control"/>
-
-        <label>Image ( Optional )</label>
-        <input type="file" name="image" id="image" class="form-control"/> <br>
-
-        <input type="submit" value="Save" class="btn btn-success"> 
-      </form>
-    </div>
-  </div> -->
 </template>
 
 <script>
