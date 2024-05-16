@@ -35,9 +35,9 @@
                         <!-- <div class="single-element-widget mt-30"> -->
                           <div class="default-select" id="default-select">
                             <label>Role: </label> &nbsp; &nbsp; 
-                            <select>
-                              <option value="1" selected>Candidate</option>
-                              <option value="1">Employer</option>
+                            <select v-model="candidate.role" name="role">
+                              <option value="candidate" selected>Candidate</option>
+                              <option value="employer">Employer</option>
                             </select>
                           </div>
                         <!-- </div>   -->
@@ -95,38 +95,45 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
+        role: 'candidate',
       }
     }
   },
   methods: {
     async saveData() {
-      
-      var ErrorContainer = document.getElementById('alertDiv');
+      console.log(this.candidate);
+      var AlertContainer = document.getElementById('alertDiv');
+
+      const imageFile = document.getElementById("imageFile");        
+      console.log(imageFile.files.length);
+
+      if(imageFile.files.length)
+      {
+        this.candidate.image = imageFile.files[0].name;
+      }
 
       try {
-        
         await axios.post("http://127.0.0.1:8000/api/user/register", this.candidate)
-        ErrorContainer.removeAttribute('class');
-        ErrorContainer.setAttribute('class', 'alert alert-success');
-        ErrorContainer.innerHTML = "Your data is saved ✅";
-
+        AlertContainer.removeAttribute('style');
+        AlertContainer.removeAttribute('class');
+        AlertContainer.setAttribute('class', 'alert alert-success');
+        AlertContainer.innerHTML = "Your data is saved ✅";
       } catch (error) {
-        
-        ErrorContainer.removeAttribute('style');
-        ErrorContainer.innerHTML = "";
-        ErrorContainer.setAttribute('class', 'alert alert-danger');
+        AlertContainer.removeAttribute('style');
+        AlertContainer.innerHTML = "";
+        AlertContainer.setAttribute('class', 'alert alert-danger');
         
         // Cast error object to array
         const errorsArray = Object.entries(error.response.data);
         console.log(errorsArray);
         errorsArray.forEach(([key, value]) => {
-            ErrorContainer.innerHTML += value + "<br>";
+            AlertContainer.innerHTML += value + "<br>";
         });
       }
 
       setTimeout(function () {
-        ErrorContainer.setAttribute('style', 'display: none;');
-      }, 3000);
+        AlertContainer.setAttribute('style', 'display: none;');
+      }, 3050);
 
     }
   }
