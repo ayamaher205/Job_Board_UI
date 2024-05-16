@@ -35,6 +35,7 @@
 
 <script>
 import AuthService from '../services/AuthService';
+import { useLoggedUser } from '@/stores/User.js'
 
 export default {
   name: 'login',
@@ -60,14 +61,18 @@ export default {
       
       AuthService.login({ email: this.email, password: this.password })
         .then(response => {
+          // console.log(response);
+          const userStore = useLoggedUser();
+          userStore.setUser(response.data.user);
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('loggedUser', response.data.user.name);
           localStorage.setItem('role', response.data.user.role);
 
           if (response.data.user.role == 'admin') {
             this.$router.push('/admin');
-          } else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
-            this.$router.push('/');
+          }
+          else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
+            this.$router.push('/employer');
           }
 
         })
@@ -82,6 +87,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 body {

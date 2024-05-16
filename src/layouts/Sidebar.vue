@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router';
+</script>
 <template>
   <button
     data-drawer-target="default-sidebar"
@@ -46,9 +48,9 @@
       </div>
       <ul class="space-y-2 font-medium">
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
+          <router-link
+            to="employer-dashboard"
+            class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
               class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-green-900 group-hover:text-white dark:group-hover:text-white"
@@ -62,12 +64,12 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
+          <router-link
+            to="/employer"
+            class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
               class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-green-900 group-hover:text-white dark:group-hover:text-white"
@@ -92,12 +94,12 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">My Profile</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
+          <router-link
+            to="/employer-jobs"
+            class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -115,12 +117,12 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Jobs</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
+          <router-link
+          to="/employer-notifications"
+          class="flex items-center p-2 text-gray-900 no-underline rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -138,12 +140,12 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Notifications</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
+          <router-link
+          to="/"
+          class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
               class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-green-900 group-hover:text-white dark:group-hover:text-white"
@@ -161,12 +163,12 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Log Out</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a
+          <router-link
             href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
+            class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +186,7 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Delete Account</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
