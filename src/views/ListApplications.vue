@@ -22,6 +22,17 @@
             <li><strong>Phone:</strong> {{ application.app_phone }}</li>
           </ul>
         </div>
+        <!-- Buttons for Update and Delete -->
+        <div class="flex justify-end px-4 pb-4">
+          <button @click="goToUpdateComponent(application.id)"
+            class="text-sm text-blue-500 hover:text-blue-700 mr-4">
+            Update
+          </button>
+          <button @click="deleteComponent(application.id)"
+            class="text-sm text-red-500 hover:text-red-700">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
     <div class="p-6 pt-0">
@@ -34,33 +45,38 @@
   </div>
 </template>
   
-  <script>
-  import ApplicationService from '../services/ApplicationService.js';
-  
-  export default {
-    data() {
-      return {
-        applications: []
-      };
-    },
-    mounted() {
-      this.fetchApplications();
-    },
-    methods: {
-      async fetchApplications() {
-        try {
-          const response = await ApplicationService.getApplications();
-          this.applications = response.data;
-          console.log(this.applications.data);
-        } catch (error) {
-          console.error('Error fetching applications:', error);
-        }
+<script>
+import ApplicationService from '../services/ApplicationService.js';
+
+export default {
+  data() {
+    return {
+      applications: []
+    };
+  },
+  mounted() {
+    this.fetchApplications();
+  },
+  methods: {
+    async fetchApplications() {
+      try {
+        const response = await ApplicationService.getApplications();
+        this.applications = response.data;
+        console.log(this.applications.data);
+      } catch (error) {
+        console.error('Error fetching applications:', error);
       }
+    },
+    goToUpdateComponent(id) {
+      this.$router.push({ path: `/edit-applications/${id}` });
+    },
+    deleteComponent(id) {
+       ApplicationService.deleteApplication(id);
     }
-  };
-  </script>
+  }
+};
+</script>
   
-  <style scoped>
-  /* Add your scoped styles here */
-  </style>
-  
+<style scoped>
+/* Add your scoped styles here */
+</style>
