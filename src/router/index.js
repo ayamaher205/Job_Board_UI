@@ -27,13 +27,18 @@ const router = createRouter({
     },
     {
       path: '/get-applications',
-      name: 'showApplications',
+      name: 'getApplications',
       component: ListApplications
     },
     {
       path: '/edit-applications/:id',
       name: 'editApplications',
       component: EditApplication
+    },
+    {
+      path: '/show-applications/:id',
+      name: 'showApplications',
+      component: ShowApplications
     },
     {
       path: '/jobs',
