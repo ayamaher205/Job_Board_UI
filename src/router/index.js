@@ -8,10 +8,6 @@ import ShowApplications from '@/views/ShowApplications.vue'
 import EditApplication from './../views/EditApplication.vue'
 import ListApplications from '@/views/ListApplications.vue'
 import DeleteApplication from './../views/DeleteApplication.vue'
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import SearchResult from '../views/SearchResult.vue';
-import JobsPage from '../views/JobsPage.vue';
 import JobDetails from '../views/JobDetails.vue';
 
 const router = createRouter({
@@ -61,7 +57,7 @@ const router = createRouter({
       path: '/searchResult',
       name: 'searchResult',
       component: SearchResult
-    }
+    },
    
     { path: '/jobs', name: 'Jobs', component: JobsPage }
     ,
