@@ -16,7 +16,7 @@ export const useUserstore = defineStore('users', {
     async fetchUsers() {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/all-users');
-  
+
         this.allusers = response.data.data;
         this.Admins = this.allusers.filter(user => user.role === 'admin');
         this.Candidates = this.allusers.filter(user => user.role === 'candidate');
