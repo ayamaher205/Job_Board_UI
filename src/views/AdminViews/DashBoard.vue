@@ -16,7 +16,7 @@
     </div>
     <br>
     <div>
-      <BarChart :chartData="chartData" :options="chartOptions"></BarChart>
+      <BarChart v-if="isDataReady" :chartData="employerChartData" :options="barChartOptions"></BarChart>
     </div>
   </div>
 </template>
@@ -30,6 +30,9 @@ import DoughnutChart from '@/components/AdminComponenets/DoughnutChart.vue'
 import { useUserstore } from '@/stores/users'
 import { usePostsstore } from '@/stores/posts'
 import { useCategorystore } from '@/stores/categories'
+import { useEmployerstore } from '@/stores/employer'
+
+
 
 export default {
   name: 'Dashboard',
@@ -39,16 +42,20 @@ export default {
     DoughnutChart,
     CategoryTable
   },
+
   setup() {
     const userstore = useUserstore()
     const postsstore = usePostsstore()
     const categorystore = useCategorystore()
+    const employerstore = useEmployerstore()
 
     const adminCount = computed(() => userstore.Adminscount)
     const candidateCount = computed(() => userstore.Candidatescount)
     const employerCount = computed(() => userstore.Employerscount)
     const postsCount = computed(() => postsstore.PostsCount)
     const categoriesWithPostsCount = computed(() => categorystore.categoriesWithPostsCount)
+    const employersWithPostsCount = computed(() => employerstore.employersWithPostsCount)
+
 
     const doughnutChartData = ref({
       labels: [],
@@ -69,29 +76,54 @@ export default {
       }
     })
 
-    const isDataReady = ref(false)
+    const employerChartData = ref({
+      labels: [],
+      datasets: [
+        {
+          label: 'Posts by Employers',
+          backgroundColor: '#588157',
+          borderColor: '#d9ed92',
+          borderWidth: 1,
+          data: []
+        }
+      ]
+    })
 
-    onMounted(async () => {
-      try {
-        await userstore.fetchUsers()
-        await postsstore.fetchPostsCount()
-        await categorystore.fetchCategories()
-
-        // Sort categories by the number of posts and take the top 10
-        const sortedCategories = categoriesWithPostsCount.value
-          .slice()
-          .sort((a, b) => b.postsCount - a.postsCount)
-          .slice(0, 10)
-
-        doughnutChartData.value.labels = sortedCategories.map(category => category.name)
-        doughnutChartData.value.datasets[0].data = sortedCategories.map(category => category.postsCount)
-        doughnutChartData.value.datasets[0].backgroundColor = sortedCategories.map(() => `#${Math.floor(Math.random() * 16777215).toString(16)}`)
-
-        isDataReady.value = true
-      } catch (error) {
-        console.error('Error fetching data:', error)
+  const barChartOptions = ref({
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     })
+
+    const isDataReady = ref(false)
+
+   onMounted(async () => {
+  try {
+    await userstore.fetchUsers()
+    await postsstore.fetchPostsCount()
+    await categorystore.fetchCategories()
+
+    const categories = categoriesWithPostsCount.value
+    const employers = employersWithPostsCount.value
+    
+        const topCategories = categories.slice(0, 10)
+        doughnutChartData.value.labels = topCategories.map(category => category.name)
+        doughnutChartData.value.datasets[0].data = topCategories.map(category => category.postsCount)
+        doughnutChartData.value.datasets[0].backgroundColor = topCategories.map(() => `#${Math.floor(Math.random() * 16777215).toString(16)}`)
+
+        const topEmployers = employers.slice(0, 10)
+        employerChartData.value.labels = topEmployers.map(employer => employer.name)
+        employerChartData.value.datasets[0].data = topEmployers.map(employer => employer.postsCount)
+
+    isDataReady.value = true 
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+})
 
     return {
       adminCount,
@@ -100,8 +132,12 @@ export default {
       postsCount,
       doughnutChartData,
       chartOptions,
-      isDataReady
+      isDataReady,
+      employerChartData,
+      barChartOptions
     }
   }
 }
 </script>
+
+
