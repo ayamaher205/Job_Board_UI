@@ -2,8 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import SearchResult from '../views/SearchResult.vue';
 import JobsPage from '../views/JobsPage.vue';
-import Jobs from '@/components/Jobs.vue';
+import Sidebar from '../layouts/Sidebar.vue'
 import ViewJob from '../components/ViewJob.vue'
+import EmployerJobsView from '@/views/EmployerJobsView.vue';
+import EmployerPostJob from '@/views/EmployerPostJob.vue';
+import EmployerProfile from '../components/EmployerProfile.vue';
 import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import AdminLayout from '../layouts/adminLayout.vue';
@@ -114,9 +117,24 @@ const router = createRouter({
       component:EmployerDashboardView
     },
     {
-      path: '/posts',
-      name: 'posts',
-      component: Jobs
+      path:'/employer-dashboard',
+      name:'Employer Dashboard',
+      component:EmployerDashboardView
+    },
+    {
+      path:'/post-job',
+      name:'create_post',
+      component:EmployerPostJob
+    },
+    {
+      path:'/post-job',
+      name:'create_post',
+      component:EmployerPostJob
+    },
+    {
+      path:'/posts',
+      name:'posts',
+      component:EmployerJobsView
     },
     {
       path: '/post/:id',

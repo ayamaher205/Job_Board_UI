@@ -69,6 +69,7 @@
                     <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                         <input v-model="formData.title" type="text" name="name" id="name" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                        <span class="text-red-500" v-if="errors.title">{{ errors.title }}</span>
                     </div>
                     <div>
                         <label for="deadline" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deadline</label>
@@ -83,8 +84,9 @@
                         <input v-model="formData.work_type" type="text" name="work_type" id="work_type" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                     </div>
                     <div>
-                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Salary</label>
-                        <input v-model="formData.price" type="text" value="" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$">
+                        <label for="salary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Salary</label>
+                        <input v-model="formData.salary" type="text" value="" name="salary" id="salary" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                        <span class="text-red-500" v-if="errors.title">{{ errors.salary_range }}</span>
                     </div>
                     <div>
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
@@ -103,7 +105,7 @@
                         <textarea v-model="formData.responsibilities" id="responsibilities" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description..."></textarea>                    
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="qualifications" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">qualifications</label>
+                        <label for="qualifications" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualifications</label>
                         <textarea v-model="formData.qualifications" id="qualifications" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description..."></textarea>                    
                     </div>
                 </div>
@@ -124,18 +126,20 @@ import { ref, onMounted } from 'vue';
 import PostService from '@/services/PostService';
 import { getEmployer } from '@/services/EmployerService';
 import { useLoggedUser } from '@/stores/User.js';
+import Swal from 'sweetalert2';
 
 const isDropdownOpen = ref({});
 const isModalVisible = ref(false);
 const modalPostId = ref(null);
 const posts = ref([]);
+const errors = ref({});
 
 const formData = ref({
     title: '',
     deadline: '',
     location: '',
     work_type: '',
-    price: '',
+    salary: '',
     category: '',
     description: '',
     skills: '',
@@ -146,13 +150,23 @@ const formData = ref({
 const submitForm = async () => {
     const data = formData.value;
     try {
-        await updatePost(modalPostId.value, data);
-        toggleModal(); // Close the modal after successful update
-        await getPosts(); // Refresh the posts
+        const response = await updatePost(modalPostId.value, data);
+        if (response.errors) {
+            errors.value = {};
+            Object.keys(response.errors).forEach(key => {
+                errors.value[key] = response.errors[key][0];
+            });
+            console.log('Validation errors:', errors.value);
+        } else {
+            errors.value = {};
+            toggleModal();
+            await getPosts();
+        }
     } catch (error) {
         console.error('Error updating post:', error);
     }
 };
+
 
 const toggleModal = (post = null) => {
   if (post) {
@@ -162,8 +176,8 @@ const toggleModal = (post = null) => {
       deadline: post.deadline,
       location: post.location,
       work_type: post.work_type,
-      price: post.price,
-      category: post.category,
+      salary: post.salary_range,
+      category: post.category_id,
       description: post.description,
       skills: post.skills,
       responsibilities: post.responsibilities,
@@ -196,13 +210,51 @@ const getPosts = async () => {
 };
 
 const deletePost = async (postId) => {
-  try {
-    await PostService.deletePost(postId);
-    posts.value = posts.value.filter(post => post.id !== postId);
-  } catch (error) {
-    console.error('Error deleting post:', error);
+  const result = await Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    confirmButtonColor: '#00A170',
+    cancelButtonColor: '#EF4444',
+    reverseButtons: true,
+    showClass: {
+      popup: 'swal2-show',
+      backdrop: 'swal2-backdrop-show',
+      icon: 'swal2-icon-show'
+    }
+  });
+
+  if (result.isConfirmed) {
+    try {
+      await PostService.deletePost(postId);
+      posts.value = posts.value.filter(post => post.id !== postId);
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'Your post has been deleted.',
+        icon: 'success',
+        confirmButtonColor: '#00A170',
+      });
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while deleting the post.',
+        icon: 'error'
+      });
+    }
+  } else if (result.dismiss === Swal.DismissReason.cancel) {
+    Swal.fire({
+      title: 'Cancelled',
+      text: 'Your post is safe :)',
+      icon: 'error',
+      confirmButtonColor: '#00A170',
+    });
   }
 };
+
 
 const editDate = (date) => {
   const datecreated = new Date(date);
@@ -228,6 +280,7 @@ onMounted(() => {
   getPosts();
 });
 </script>
+
 
 
 <style scoped>

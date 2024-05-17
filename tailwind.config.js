@@ -9,7 +9,7 @@ const tailwindConfig = {
       },
       fontFamily: {
         'body': [
-          'Source Sans Pro', 
+          'Lato', 
           'ui-sans-serif', 
           'system-ui', 
           '-apple-system', 
@@ -26,7 +26,7 @@ const tailwindConfig = {
           'Noto Color Emoji'
         ],
         'sans': [
-          'Source Sans Pro', 
+          'Lato', 
           'ui-sans-serif', 
           'system-ui', 
           '-apple-system', 
