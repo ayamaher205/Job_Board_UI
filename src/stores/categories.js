@@ -61,7 +61,27 @@ export const useCategorystore = defineStore('categories', {
         Swal.fire('Error', 'Failed to delete category', 'error');
       }
 
-      }
+      },
+      async addCategory(categoryName) {
+        try {
+          const response = await axios.post('http://127.0.0.1:8000/api/categories', { name: categoryName },
+            {
+              headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              }
+            }
+          );
+          const newCategory = response.data.data;
+          this.categories.push(newCategory);
+        } catch (error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `Failed to add category: ${error.response.data.errors.name[0]}`
+          });
+        }
+      },
     },
   getters: {
     categoriesWithPostsCount() {
