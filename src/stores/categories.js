@@ -8,6 +8,7 @@ import axios from 'axios';
 export const useCategorystore = defineStore('categories', {
   state: () => ({
     categories: [],
+    
   }),
   actions: {
     async fetchCategories() {

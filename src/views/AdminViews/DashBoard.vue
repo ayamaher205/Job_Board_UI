@@ -7,74 +7,101 @@
       <Card class="w-full sm:w-auto mb-4 sm:mb-0" name="Posts" :number="postsCount" color="#081c15" backgroundColor="#74c69d" />
     </div>
     <div class="flex flex-wrap justify-between">
-    <div>
-      <CategoryTable />
-    </div >
-    <div>
-    <BarChart :chartData="chartData" :options="chartOptions"></BarChart>
+      <div>
+        <CategoryTable />
+      </div>
+      <div>
+        <DoughnutChart v-if="isDataReady" :chartData="doughnutChartData" :chartOptions="chartOptions"></DoughnutChart>
+      </div>
     </div>
-  </div>
+    <br>
+    <div>
+      <BarChart :chartData="chartData" :options="chartOptions"></BarChart>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
-import Card from '@/components/AdminComponenets/Card.vue';
-import CategoryTable from '@/components/AdminComponenets/CategoryTable.vue';
-
-import BarChart from '@/components/BarChart.vue';
-import { useUserstore } from '@/stores/users';
-import { usePostsstore } from '@/stores/posts';
+import { computed, onMounted, ref } from 'vue'
+import Card from '@/components/AdminComponenets/Card.vue'
+import CategoryTable from '@/components/AdminComponenets/CategoryTable.vue'
+import BarChart from '@/components/AdminComponenets/BarChart.vue'
+import DoughnutChart from '@/components/AdminComponenets/DoughnutChart.vue'
+import { useUserstore } from '@/stores/users'
+import { usePostsstore } from '@/stores/posts'
+import { useCategorystore } from '@/stores/categories'
 
 export default {
   name: 'Dashboard',
   components: {
     Card,
     BarChart,
+    DoughnutChart,
     CategoryTable
   },
-    data() {
-    return {
-      chartData: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-          {
-            label: 'Data 1',
-            backgroundColor: '#f87979',
-            data: [65, 59, 80, 81, 56, 55, 40]
-          }
-        ]
-      },
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    };
-  },
   setup() {
-    const userstore = useUserstore();
-    const postsstore = usePostsstore();
+    const userstore = useUserstore()
+    const postsstore = usePostsstore()
+    const categorystore = useCategorystore()
+
+    const adminCount = computed(() => userstore.Adminscount)
+    const candidateCount = computed(() => userstore.Candidatescount)
+    const employerCount = computed(() => userstore.Employerscount)
+    const postsCount = computed(() => postsstore.PostsCount)
+    const categoriesWithPostsCount = computed(() => categorystore.categoriesWithPostsCount)
+
+    const doughnutChartData = ref({
+      labels: [],
+      datasets: [
+        {
+          label: 'Number of Posts',
+          backgroundColor: [],
+          data: []
+        }
+      ]
+    })
+
+    const chartOptions = ref({
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        animateScale: true
+      }
+    })
+
+    const isDataReady = ref(false)
+
     onMounted(async () => {
       try {
-        const users = await userstore.fetchUsers();
-        const posts = await postsstore.fetchPostsCount();
+        await userstore.fetchUsers()
+        await postsstore.fetchPostsCount()
+        await categorystore.fetchCategories()
+
+        // Sort categories by the number of posts and take the top 10
+        const sortedCategories = categoriesWithPostsCount.value
+          .slice()
+          .sort((a, b) => b.postsCount - a.postsCount)
+          .slice(0, 10)
+
+        doughnutChartData.value.labels = sortedCategories.map(category => category.name)
+        doughnutChartData.value.datasets[0].data = sortedCategories.map(category => category.postsCount)
+        doughnutChartData.value.datasets[0].backgroundColor = sortedCategories.map(() => `#${Math.floor(Math.random() * 16777215).toString(16)}`)
+
+        isDataReady.value = true
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error)
       }
-    });
-    const adminCount = computed(() => userstore.Adminscount);
-    const candidateCount = computed(() => userstore.Candidatescount);
-    const employerCount = computed(() => userstore.Employerscount);
-    const postsCount = computed(() => postsstore.PostsCount);
+    })
 
     return {
       adminCount,
       candidateCount,
       employerCount,
-      postsCount
-
-
-    };
+      postsCount,
+      doughnutChartData,
+      chartOptions,
+      isDataReady
+    }
   }
 }
 </script>
