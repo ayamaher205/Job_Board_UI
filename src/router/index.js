@@ -2,16 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import SearchResult from '../views/SearchResult.vue';
 import JobsPage from '../views/JobsPage.vue';
-import EmployerProfile from '../views/EmployerProfileView.vue';
+import Sidebar from '../layouts/Sidebar.vue'
+import Jobs from '@/components/Jobs.vue';
+import ViewJob from '../components/ViewJob.vue'
+import EmployerProfile from '../components/EmployerProfile.vue';
 import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import AdminLayout from '../layouts/adminLayout.vue';
 import { requireAuth } from '../services/auth';
 import addAdmin from '../views/AdminViews/addAdmin.vue';
-// import Dashboard from '../views/AdminViews/DashBoard.vue';
-// import candidates from '../views/AdminViews/candidates.vue';
-// import employers from '../views/AdminViews/employers.vue';
-// import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
+import Dashboard from '../views/AdminViews/DashBoard.vue';
+import candidates from '../views/AdminViews/candidates.vue';
+import employers from '../views/AdminViews/employers.vue';
+import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -90,15 +93,25 @@ const router = createRouter({
 // // meta: { requiresAuth: true }
 // },
   
- /*    {
+     {
       path:'/employer',
       name:'empoyer_profile',
       component:Sidebar
-    }, */
+    }, 
     {
       path:'/employer',
       name:'profile',
       component:EmployerProfile
+    },
+    {
+      path:'/posts',
+      name:'posts',
+      component:Jobs
+    },
+    {
+      path:'/post/:id',
+      name:'post',
+      component:ViewJob
     },
     { path: '/jobs', name: 'Jobs', component: JobsPage }
     ,

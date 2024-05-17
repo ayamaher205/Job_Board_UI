@@ -95,7 +95,7 @@
         </li>
         <li>
           <router-link
-            to="/employer-jobs"
+            to="/posts"
             class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
             <svg
