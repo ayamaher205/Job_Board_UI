@@ -1,24 +1,25 @@
 <template>
-  <div>
+    <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
+
+  <div class="flex justify-center items-center h-screen">
     <div v-if="application">
       <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
         <div class="p-6">
           <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             Application Details
           </h5>
-          <p><strong>ID:</strong> {{ application.id }}</p>
-          <p><strong>User ID:</strong> {{ application.user_id }}</p>
-          <p><strong>Post ID:</strong> {{ application.post_id }}</p>
-          <p><strong>Contact Details:</strong> {{ application.contact_details }}</p>
-          <p><strong>Applicant Email:</strong> {{ application.app_email }}</p>
-          <p><strong>Applicant Phone:</strong> {{ application.app_phone }}</p>
+          <p><strong>ID:</strong> {{ application.data.id }}</p>
+          <p><strong>Contact Details:</strong> {{ application.data.contact_details }}</p>
+          <p><strong>Applicant Email:</strong> {{ application.data.app_email }}</p>
+          <p><strong>Applicant Phone:</strong> {{ application.data.app_phone }}</p>
         </div>
         <div class="p-6 pt-0">
-          <button
-            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-            type="button">
-            Read More
-          </button>
+          <a
+          :href="`http://127.0.0.1:8000/${application.data.resume}`"
+            download="resume.pdf"
+            class="font-sans font-bold text-center uppercase transition-all text-xs py-3 px-6 rounded-lg bg-green-500 text-black shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+            Show Resume
+          </a>
         </div>
       </div>
     </div>
@@ -28,6 +29,7 @@
     <div v-else>
       <p>Loading...</p>
     </div>
+  </div>
   </div>
 </template>
 

@@ -1,19 +1,19 @@
 <template>
-  <div class="relative flex  flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full">
-    <div class="p-6">
-      <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-        UI/UX Review Check
-      </h5>
-      <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-        The place is close to Barceloneta Beach and bus stop just 2 min by walk
-        and near to "Naviglio" where you can enjoy the main night life in
-        Barcelona.
-      </p>
-    </div>
+    <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
+    <div class="typing-animation">
+      <div class="p-6">
+        <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+           Check Applications
+        </h5>
+        <div id="typing-text" class="p-6"> 
+        </div>
+
+      </div>
+    </div>      
     <div class="row w-full mx-auto">
       <div v-for="application in applications.data" :key="application.id" class="p-6 col-12 col-md-6 col-lg-4">
       <!-- Application Card -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class=" bg-[#fafafae5] shadow-lg rounded-lg overflow-hidden">
         <!-- Application Details -->
         <div class="p-4">
           <ul>
@@ -41,14 +41,6 @@
       </div>
     </div>
     </div>
-
-    <div class="p-6 pt-0">
-      <button
-        class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-        type="button">
-        Read More
-      </button>
-    </div>
   </div>
 </template>
   
@@ -65,7 +57,9 @@ export default {
     };
   },
   mounted() {
-    this.fetchApplications();
+    this.fetchApplications(),
+    this.typingEffect();
+
   },
   methods: {
     async fetchApplications() {
@@ -108,11 +102,42 @@ export default {
 
       this.$router.push({ path: `/show-applications/${id}` });
       console.log('Application Details:', application);
-    }
+    }, typingEffect() {
+      const text = "Candidate applications you can receive, edit, or delete.";
+      let index = 0;
+      const speed = 50; // typing speed in milliseconds
+
+      const typeWriter = () => {
+        if (index < text.length) {
+          document.getElementById("typing-text").innerHTML += text.charAt(index);
+          index++;
+          setTimeout(typeWriter, speed);
+        }
+      };
+
+      typeWriter();}
   }
 };
 </script>
   
 <style scoped>
-/* Add your scoped styles here */
+.typing-animation {
+  position: relative;
+}
+
+#typing-text {
+  border-right: 2px solid transparent; /* adjust thickness and color as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 5s steps(40, end); /* Adjust duration as needed */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
+  <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover; height:650px">
     <div class="flex justify-center items-center ">
       <div class=" my-4 rounded-lg p-10  max-w-xl shadow-box-circle bg-[#fafafae5] dark:bg-dark-1000 animate__animated animate__bounceIn">
         <form class="w-full" @submit.prevent="submitApplication">
@@ -8,16 +8,16 @@
           </div>
 
           <!-- User ID -->
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label for="user_id" class="block font-medium text-gray-700 dark:text-dark-200 w-64">User ID</label>
             <input type="text" v-model="formData.user_id"  class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
-          </div>
+          </div> -->
 
           <!-- Post ID -->
-          <div class="mb-4">
+          <!-- <div class="mb-4">
             <label for="post_id" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Post ID</label>
             <input type="text" v-model="formData.post_id"  class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
-          </div>
+          </div> -->
 
           <!-- Contact Details -->
           <div class="mb-4">
@@ -121,3 +121,12 @@ export default {
   }
 };
 </script>
+<style>
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+</style>
