@@ -46,7 +46,7 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                 <label>Upload your image  | (Optional )</label>  <br />
-                                <input @change="handleFileChange" type="file" name="image" id="imageFile" />
+                                <input @change="handleFileChange" type="file" name="realimage" id="imageFile" />
                               </div>
                           </div>
                           <div class="col-sm-6">
@@ -109,19 +109,14 @@ export default {
       
       var AlertContainer = document.getElementById('alertDiv');
 
-      const imageFile = document.getElementById("imageFile");        
-      
-      if(imageFile.files.length)
-      {
-        this.candidate.realimage =  imageFile.files[0];
-      }
-      
       try {
-        console.log(this.candidate);
-        await axios.post("http://127.0.0.1:8000/api/user/register", this.candidate,
+        var formData = new FormData(contactForm);
+        console.log(formData);
+        await axios.post("http://127.0.0.1:8000/api/user/register", formData,
         {headers: {
-           'Content-Type': 'multipart/form-data', // Set content type header for FormData
+           'Content-Type': 'multipart/form-data', 
         }})
+
         AlertContainer.removeAttribute('style');
         AlertContainer.removeAttribute('class');
         AlertContainer.setAttribute('class', 'alert alert-success');
@@ -146,13 +141,18 @@ export default {
     },
 
     handleFileChange(event){
+      
+      // Catch the image file.
       const imageFile = document.getElementById("imageFile");        
       const imageContent = imageFile.files[0];
+      
       const reader = new FileReader();
+      // to be able to preview it read the image as data url.
       reader.readAsDataURL(imageContent);
+
       reader.onload = (e) => {
-        console.log(e);
         this.previewImage = e.target.result;
+        this.candidate.realimage = imageContent;
       };
     }
   }
