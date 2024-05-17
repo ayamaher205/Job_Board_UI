@@ -67,6 +67,7 @@ export default {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('loggedUser', response.data.user.name);
           localStorage.setItem('role', response.data.user.role);
+          localStorage.setItem('id', response.data.user.id);
 
           if (response.data.user.role == 'admin') {
             this.$router.push('/admin');

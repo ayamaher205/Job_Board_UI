@@ -114,10 +114,10 @@
         </div>
     </div>
 </template>
-
 <script>
 import { getEmployer, updateEmployer } from "../services/EmployerService.js";
 import { useLoggedUser } from '@/stores/User.js';
+import { useEmployer } from '@/stores/EmployerStore.js'
 import router from "@/router/index.js";
 
 export default {
@@ -133,23 +133,25 @@ export default {
                 industry: '',
                 branches: '',
                 branding_elements: '',
-                image: ''
+                image: '',
+                employer_id:''
             },
             errorList: [],
             loggedEmployer: useLoggedUser(),
+            employerData: useEmployer()
         }
     },
     methods: {
         handleImageChange(event) {
             const selectedFile = event.target.files[0];
             this.employer.image = selectedFile;
-            console.log(this.employer.image);
         },
         async fetchEmployer() {
             try {
-                const response = await getEmployer(this.loggedEmployer.user.id);
+                const response = await getEmployer(localStorage.getItem('id'));
                 this.employer = {
                     id: response.data.data.id,
+                    employer_id:response.data.data.employer_id,
                     name: response.data.data.name,
                     email: response.data.data.email,
                     password: response.data.data.password,
@@ -160,19 +162,27 @@ export default {
                     '_method': 'put'
                 };
                 this.loggedEmployer.setUser(response.data.data);
+                if (response.data.posts) {
+                    this.employerData.setPosts(response.data.posts)
+                    this.employerData.setNumberOfApplications(response.data.NumberOfApplications)
+                    this.employerData.setNumberOfPosts(response.data.NumberOfPosts)
+                }
+                console.log(this.loggedEmployer.user)
             } catch (error) {
                 console.log(error)
             }
         },
         async handleSubmit() {
             try {
-                const response = await updateEmployer(this.employer.id, this.employer);
+                if (!this.employer.image) { delete this.employer.image; }
+                //delete this.employer.employer_id;
+                const response = await updateEmployer(this.loggedEmployer.user.employer_id, this.employer);
                 router.push({ path: '/employer' })
                 this.loggedEmployer.setUser(response.data.data);
                 this.errorList = [];
             } catch (error) {
                 if (error.response) {
-                    this.errorList =[];
+                    this.errorList = [];
                     this.errorList = error.response.data.errors;
                 } else if (error.request) {
                     this.errorList = error.request;
