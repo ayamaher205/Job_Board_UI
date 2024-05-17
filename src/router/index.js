@@ -20,7 +20,7 @@ import EditApplication from './../views/EditApplication.vue'
 import ListApplications from '@/views/ListApplications.vue'
 import DeleteApplication from './../views/DeleteApplication.vue'
 import ApplicationForm from '@/views/ApplicationForm.vue';
-
+import EmployerDashboardView from '@/views/EmployerDashboardView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -104,9 +104,14 @@ const router = createRouter({
       component: EmployerProfileView
     },
     {
-      path: '/applications',
+      path: '/employer-applications',
       name: 'profile',
       component: EmployerApplicationsView
+    },
+    {
+      path:'/employer-dashboard',
+      name:'Employer Dashboard',
+      component:EmployerDashboardView
     },
     {
       path: '/posts',

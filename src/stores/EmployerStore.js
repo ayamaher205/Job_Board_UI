@@ -6,6 +6,7 @@ export const useEmployer = defineStore('employer',
             posts: [],
             NumberOfPosts: null,
             NumberOfApplications: null,
+            NumberOfUsers:null,
         }),
         actions: {
             setPosts(posts) {
@@ -16,6 +17,9 @@ export const useEmployer = defineStore('employer',
             },
             setNumberOfApplications(n) {
                 this.NumberOfApplications = n
+            },
+            setNumberOfUsers(n) {
+                this.NumberOfUsers = n
             },
         }
     })

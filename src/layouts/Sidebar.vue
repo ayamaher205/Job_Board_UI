@@ -81,7 +81,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/applications"
+          <router-link to="/employer-applications"
             class="flex items-center p-2 text-green-900 no-underline rounded-lg dark:text-green-900 hover:bg-green-700 dark:hover:bg-green-900 dark:hover:text-white group">
             <svg
               class="flex-shrink-0 w-5 h-5 text-green-800 transition duration-75 dark:text-green-800 group-hover:text-white dark:group-hover:text-white"
