@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500">
+    <table v-if="posts.length > 0" class="w-full text-sm text-left text-gray-500">
       <thead class="text-xs text-gray-700 uppercase custom-thead">
         <tr>
           <th scope="col" class="px-6 py-3">Title</th>
@@ -46,6 +46,7 @@
         </tr>
       </tbody>
     </table>
+    <div v-else class="text-center py-4 text-gray-500">You don't have posts yet.</div>
   </div>
 
 <!-- Main modal -->

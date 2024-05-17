@@ -94,18 +94,6 @@
                             <a href="#" class="btn apply-btn">Apply Now</a>
                          </div>
                        </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Employer Information</h4>
-                           </div>
-                              <span>{{post.employer.name}}</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <ul>
-                              <li>Name: <span>{{post.employer.name}}</span></li>
-                              <li>Email: <span>{{post.employer.email}}</span></li>
-                            </ul>
-                       </div>
                     </div>
                 </div>
             </div>
