@@ -1,14 +1,14 @@
 <template>
   <div class="col-xl-9 col-lg-9 col-md-8">
-    <!-- Featured_job_start -->
+     
     <section class="featured-job-area">
         <div class="container">
-            <!-- Count of Job list Start -->
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="count-job mb-35">
                         <span class="pretty-jobs-count">{{jobs.length}} jobs found</span>
-                        <!-- Select job items start -->
+                      
                         <div class="select-job-items">
                             <span>Sort by</span>
                             <select v-model="selectedSort" @change="sortJobs" class="pretty-select">
@@ -18,16 +18,15 @@
                               <option value="date">Date</option>
                             </select>
                         </div>
-                        <!--  Select job items End-->
+                        
                     </div>
                 </div>
             </div>
-            <!-- Count of Job list End -->
-            <!-- single-job-content -->
+            
             <div v-for="job in sortedJobs" :key="job.id" class="single-job-items mb-30">
                 <div class="job-items">
                     <div class="company-img">
-                        <a href="#"> <img v-if="job.employer.logo" :src="job.employer.logo" width="70px" height="70px" alt="Employer Logo" />
+                        <a href="#"> <img v-if="job.employer.profile_photo_url" :src="job.employer.logo" width="70px" height="70px" alt="Employer Logo" />
                             <img v-else src="https://5.imimg.com/data5/SELLER/Default/2023/9/340980630/YL/AL/SM/59465795/company-logo-design-service-500x500.jpg" width="70px" height="70px" alt="Default Logo" /></a>
                     </div>
                     <div class="job-tittle job-tittle2">
@@ -42,13 +41,13 @@
                     </div>
                 </div>
                 <div class="items-link items-link2 f-right">
-                    <a href="job_details.html">{{ job.work_type }}</a>
+                   
+                    <router-link :to="{ name: 'job-details', params: { id: job.id } }">{{ job.work_type }}</router-link>
                     <span class="job-deadline">Deadline: {{ job.deadline }}</span>
                 </div>
             </div>
             
-            <!-- single-job-content -->
-         <!--Pagination Start  -->
+           
 <div class="pagination-area pb-115 text-center">
   <div class="container">
   <div class="row">
@@ -77,7 +76,7 @@
   </div>
   </div>
   </div>
-<!--Pagination End  -->
+ 
 
 
             </div>
@@ -88,7 +87,7 @@
 
  
  
-<!-- Job List Area End -->
+ 
  
 
   </template>
@@ -132,7 +131,7 @@
           }
         });
       } else {
-        // If no sort option selected, return the original jobs array
+        
         return this.jobs;
       }
     }
@@ -170,14 +169,14 @@
 
 
   .pretty-jobs-count {
-    color: #4a4a4a; /* Dark gray for good visibility */
-    font-size: 16px; /* Moderate text size */
-    padding: 5px 10px; /* Smaller padding for a compact look */
-    border: 1px solid #ddd; /* Subtle border for definition */
-    border-radius: 5px; /* Slight rounding of corners */
-    font-family: 'Helvetica', sans-serif; /* Clean and professional font */
-    display: inline-block; /* Keeps background and padding effective */
-    margin: 5px; /* Minimal spacing from other elements */
+    color: #4a4a4a;  
+    font-size: 16px;  
+    padding: 5px 10px;  
+    border: 1px solid #ddd;  
+    border-radius: 5px;  
+    font-family: 'Helvetica', sans-serif;  
+    display: inline-block;  
+    margin: 5px;  
   }
 
 
@@ -185,7 +184,7 @@
     display: flex;
     align-items: center;
     font-family: 'Arial', sans-serif;
-    margin-bottom: 10px; /* Adjusts spacing below the container */
+    margin-bottom: 10px;  
 }
 
 .select-job-items span {
@@ -208,18 +207,18 @@
 
 .pretty-select:focus {
     outline: none;
-    border-color: #d2f34c; /* Focus color that indicates active element */
+    border-color: #d2f34c;  
 }
 
 .pretty-select:hover {
-    border-color: #d2f34c; /* Slightly lighter blue on hover for visual feedback */
+    border-color: #d2f34c;  
 }
 
 .job-deadline {
   font-size: 14px;
   color: #888;
   font-style: italic;
-  /* Add any additional styling you want */
+   
 }
 
 

@@ -1,6 +1,6 @@
 <template>
    
-            <!-- Left content -->
+             
             <div class="col-xl-3 col-lg-3 col-md-4">
                 <div class="row">
                     <div class="col-12">
@@ -17,22 +17,22 @@
                         </div>
                     </div>
                 </div>
-                <!-- Job Category Listing start -->
+                
                 <div class="job-category-listing mb-50 ">
-                    <!-- single one -->
+                    
                     <div class="single-listing">
                        <div class="small-section-tittle2">
                              <h4>Job Category</h4>
                        </div>
-                        <!-- Select job items start -->
+                        
                         <div class="select-job-items2">
                             <select v-model="selectedCategory" name="select" class="pretty">
                                 <option value="">All Categories</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                             </select>
                         </div>
-                        <!--  Select job items End-->
-                        <!-- select-Categories start -->
+                        
+                     
                         <div class="select-Categories pt-80 pb-50">
                             <div class="small-section-tittle2">
                                 <h4>Job Type</h4>
@@ -51,59 +51,58 @@
                             </label>
                             
                         </div>
-                        <!-- select-Categories End -->
+                       
                     </div>
-                    <!-- single two -->
+                    
                     <div class="single-listing">
                        <div class="small-section-tittle2">
                              <h4>Job Location</h4>
                        </div>
-                        <!-- Select job items start -->
+                      
                         <div class="select-job-items2">
                             <select v-model="selectedLocation" name="select" class="pretty">
                                 <option value="">Anywhere</option>
                                 <option v-for="location in locations" :key="location" :value="location" name="location">{{ location }}</option>
                             </select>
                         </div>
-                        <!--  Select job items End-->
-                        <!-- select-Categories start -->
+                       
                         <div class="select-Categories pt-80 pb-50">
                             <div class="small-section-tittle2">
                                 <h4>Skills</h4>
                             </div>
                             <input type="text" v-model="selectedSkills" placeholder="Enter skills" class="pretty">
                         </div>
-                        <!-- select-Categories End -->
+                    
                     </div>
-                    <!-- single three -->
+                  
                     <div class="single-listing">
-                        <!-- select-Categories start -->
+                       
                         <div class="select-Categories pb-50">
                             <div class="small-section-tittle2">
                                 <h4>Deadline</h4>
                             </div>
                             <input type="date" v-model="selectedDeadline" class="pretty">
                         </div>
-                        <!-- select-Categories End -->
+                       
                     </div>
                     <div class="single-listing">
-                        <!-- Range Slider Start -->
+                      
                         <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                             <div class="small-section-tittle2">
                                 <h4>Salary Range</h4>
                             </div>
-                            <div class="widgets_inner">
-                                <div class="range_item">
-                                    <input  class="js-range-slider colorful-slider" type="range" v-model="salaryRange" min="0" max="100000" step="1000" >
+                            <div class=" ">
+                                <div class=" ">
+                                    <input  class=" colorful-slider" type="range" v-model="salaryRange" min="0" max="100000" step="1000" >
                                     <span>{{ salaryRange }}</span>
                                 </div>
                             </div>
                         </aside>
-                      <!-- Range Slider End -->
+                     
                     </div>
                     <button class="pretty-button" @click="applyFilters">Apply Filters</button>
                 </div>
-                <!-- Job Category Listing End -->
+               
             </div>
            
             
@@ -180,48 +179,48 @@
   }
 
   .container input:checked ~ .checkmark {
-    background-color: #d2f34c !important; /* Change to a different background color when checked */
+    background-color: #d2f34c !important;  
 }
 
 
 .colorful-slider {
   -webkit-appearance: none; 
-  appearance: none;
+  appearance: none !important;
   width: 100%;  
   height: 8px; 
-  background:  #d2f34c;  
+  background:  #d2f34c !important;  
   outline: none;  
   opacity: 0.9; 
   transition: opacity 0.2s; 
 }
 
-/* Hover effect */
+ 
 .colorful-slider:hover {
   color: #244034 !important;
   opacity: 1;
 }
 
 .pretty-button {
-  background-image: linear-gradient(to right, #244034 0%, #496709 100%); /* Gradient background */
-  border: none; /* No border */
-  color: white; /* White text color */
-  padding: 10px 20px; /* Padding around the text */
-  font-size: 16px; /* Text size */
-  font-weight: bold; /* Font weight */
-  border-radius: 30px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions for hover effects */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16); /* Subtle shadow for depth */
+  background-image: linear-gradient(to right, #244034 0%, #496709 100%);  
+  border: none;  
+  color: white; 
+  padding: 10px 20px;  
+  font-size: 16px; 
+  font-weight: bold;  
+  border-radius: 30px;  
+  cursor: pointer;  
+  transition: transform 0.2s, box-shadow 0.2s;  
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);  
 }
 
 .pretty-button:hover {
-  transform: translateY(-2px); /* Slightly raise the button when hovered */
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2); /* Increase shadow for lifting effect */
+  transform: translateY(-2px);  
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);  
 }
 
 .pretty-button:active {
-  transform: translateY(1px); /* Slightly press the button when clicked */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Decrease shadow to mimic pressing */
+  transform: translateY(1px); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  
 }
 
  

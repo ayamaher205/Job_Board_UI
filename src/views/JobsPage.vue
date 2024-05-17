@@ -1,12 +1,33 @@
 <template>
   <main>   
+
+       
+       <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="../..assets/img/hero/about.jpg">
+          <!-- <div class="single-slider section-overly slider-height2 d-flex align-items-center" :style="{ backgroundImage: `url(${require('@/assets/img/hero/about.jpg')})` }">  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Get your job</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
   <div class="job-listing-area pt-120 pb-120">
+    
     <div class="container">
         <div class="row">
    
-    <!-- Filters sidebar for selecting job criteria -->
+    
     <filters-sidebar @apply-filters="fetchJobs" />
     <job-list v-if="jobs.length > 0" :jobs="jobs" :pagination="pagination" :filters="filters" @search-results="fetchJobsResults" />
+      <div v-else class="no-jobs">
+        <p>No jobs found. Please try different filters.</p>
+      </div>
     
   </div>
   </div>
@@ -80,4 +101,31 @@ export default {
   text-align: center;
   margin-top: 20px;
 }
+.section-overly::before {
+   
+  background-color: rgba(36, 64, 52, 0.8) !important;
+}
+
+.no-jobs {
+  text-align: center;
+  padding: 50px;
+  background-color: #f8f9fa;
+  border: 2px dashed #6c757d;
+  border-radius: 10px;
+  color: #343a40;
+  font-size: 18px;
+  font-family: 'Arial', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.no-jobs p {
+  margin: 0;
+}
+
+.no-jobs:hover {
+  background-color: #e9ecef;
+  border-color: #495057;
+  color: #212529;
+}
+
 </style>

@@ -2,8 +2,11 @@
     <div>
        
       <SearchBar @search-results="handleSearchResults" />
-      <!-- <JobList  :jobs="jobs" /> -->
-      <JobList :jobs="jobs" :pagination="pagination" :filters="filters" @search-results="handleSearchResults" />
+       
+      <JobList v-if="jobs.length > 0" :jobs="jobs" :pagination="pagination" :filters="filters" @search-results="handleSearchResults" />
+      <div v-else class="no-jobs">
+        <p>No jobs found. Please try different filters.</p>
+      </div>
     </div>
   </template>
   
@@ -61,4 +64,28 @@
   },
   };
   </script>
+  <style scoped>
+  .no-jobs {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f9fa;
+    border: 2px dashed #6c757d;
+    border-radius: 10px;
+    color: #343a40;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease;
+  }
+  
+  .no-jobs p {
+    margin: 0;
+  }
+  
+  .no-jobs:hover {
+    background-color: #e9ecef;
+    border-color: #495057;
+    color: #212529;
+  }
+  
+</style>
   

@@ -1,4 +1,4 @@
-// src/services/JobService.js
+ 
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8000/api';
@@ -8,10 +8,10 @@ export default {
     return axios.get(`${API_BASE_URL}/jobs/search`, {
       params: { ...filters, page }
     });
-  }
-  // searchJobs(filters) {
-  //   return axios.get(`${API_BASE_URL}/jobs/search`, { params: filters });
-  // }
+  },
+   getRecentPosts() {
+     return axios.get(`${API_BASE_URL}/jobs/recent`);
+   }
  , getLocations() {
     return axios.get(`${API_BASE_URL}/locations`);
   },
