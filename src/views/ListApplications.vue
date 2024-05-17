@@ -2,11 +2,9 @@
     <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
     <div class="typing-animation">
       <div class="p-6">
-        <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-           Check Applications
-        </h5>
-        <div id="typing-text" class="p-6"> 
-        </div>
+
+        <h1 id="typing-text" class="p-6 text-2xl font-bold text-[#fafafaf6]" style="color:#fafafaf6"> 
+        </h1>
 
       </div>
     </div>      
@@ -18,7 +16,6 @@
         <div class="p-4">
           <ul>
             <li><strong>ID:</strong> {{ application.id }}</li>
-            <!-- <li><strong>Resume:</strong> {{ application.resume }}</li> -->
             <li><strong>Email:</strong> {{ application.app_email }}</li>
             <li><strong>Phone:</strong> {{ application.app_phone }}</li>
           </ul>
@@ -105,7 +102,7 @@ export default {
     }, typingEffect() {
       const text = "Candidate applications you can receive, edit, or delete.";
       let index = 0;
-      const speed = 50; // typing speed in milliseconds
+      const speed = 50; 
 
       const typeWriter = () => {
         if (index < text.length) {
@@ -125,11 +122,13 @@ export default {
   position: relative;
 }
 
-#typing-text {
-  border-right: 2px solid transparent; /* adjust thickness and color as needed */
+.typing-text {
+  border-right: 2px solid transparent; 
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 5s steps(40, end); /* Adjust duration as needed */
+  animation: typing 5s steps(40, end); 
+  margin: auto; 
+  width: fit-content; 
 }
 
 @keyframes typing {

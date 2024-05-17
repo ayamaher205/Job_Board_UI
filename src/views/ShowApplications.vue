@@ -3,7 +3,7 @@
 
   <div class="flex justify-center items-center h-screen">
     <div v-if="application">
-      <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
+      <div class="relative flex flex-col mt-6 text-gray-700 bg-[#fafafae5] shadow-md bg-clip-border rounded-xl w-96">
         <div class="p-6">
           <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
             Application Details
@@ -45,7 +45,6 @@ export default {
     };
   },
   created() {
-    // Fetch application data when the component is created
     this.fetchApplication();
   },
   methods: {

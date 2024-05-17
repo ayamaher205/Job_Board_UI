@@ -1,6 +1,5 @@
 <template>
     <div>
-      <!-- Display application details here -->
       
       <button @click="deleteApplication">Delete Application</button>
     </div>
