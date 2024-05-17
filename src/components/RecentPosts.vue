@@ -47,7 +47,7 @@
                         <p class="pera1">FEATURED TOURS Packages</p>
                         <p class="pera2"> Make a Difference with Your Online Resume!</p>
                         
-                        <router-link to="/applications" class="border-btn2 border-btn4">Upload your cv</router-link>
+                        <router-link @click="apply" to="/applications" class="border-btn2 border-btn4">Upload your cv</router-link>
                     </div>
                 </div>
             </div>
@@ -161,6 +161,7 @@
     </template>
     
     <script>
+    import { useRouter } from 'vue-router';
    
     export default {
       props: {
@@ -178,6 +179,23 @@
         
       };
     },
+    methods: {
+     
+    async apply() {
+      console.log(localStorage.getItem('token'));
+      if (this.isAuthenticated()) {
+ 
+        this.$router.push('/applications');
+      } else {
+        
+        this.$router.push('/login');
+      }
+    },
+    isAuthenticated() {
+      console.log(localStorage.getItem('token'));
+      return localStorage.getItem('token') !== null; 
+    },
+  },
     
   
     };
