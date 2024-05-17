@@ -164,7 +164,8 @@
           </router-link>
         </li>
         <li>
-          <router-link
+          <a
+            @click.prevent="showDeleteAlert"
             href="#"
             class="flex no-underline items-center p-2 text-gray-900 rounded-lg dark:text-green-900 hover:bg-green-100 dark:hover:bg-green-900 dark:hover:text-white group"
           >
@@ -184,36 +185,79 @@
               />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Delete Account</span>
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
   </aside>
 </template>
+
 <script>
 import { RouterLink } from 'vue-router';
+import Swal from 'sweetalert2';
 import AuthService from '../services/AuthService';
 import { useLoggedUser } from '@/stores/User';
-export default{
-data(){
-  return{
-    loggedEmployer:useLoggedUser(),
-  }
-},
-methods:{
-  showAlert(){
-      this.$swal({
-        title: "You Logged out Succefully!!",
-        //text: "That thing is still around?",
+import { deleteEmployer } from '@/services/EmployerService';
+
+export default {
+
+  data() {
+    return {
+      loggedEmployer: useLoggedUser()
+    };
+  },
+  methods: {
+    showAlert() {
+      Swal.fire({
+        title: "You Logged out Successfully!!",
         icon: "info"
-      }).then((res)=>{
+      }).then((result) => {
         if (result.isConfirmed) {
           AuthService.logout();
         }
-      })}
-}
+      });
+    },
+    showDeleteAlert() {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
 
-}
-
+      swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          try {
+            deleteEmployer(this.loggedEmployer.user.id);
+            this.$router.push('/');
+            swalWithBootstrapButtons.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          } catch (error) {
+            console.error('Error fetching employer:', error);
+          }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error"
+          });
+        }
+      });
+    },
+  }
+};
 </script>
+
 <style scoped></style>
