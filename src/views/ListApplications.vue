@@ -3,7 +3,7 @@
     <div class="typing-animation">
       <div class="p-6">
 
-        <h1 id="typing-text" class="p-6 text-2xl font-bold text-[#fafafaf6]" style="background-color:#fafafaf6"> 
+        <h1 id="typing-text" class="p-6 text-2xl text-[#fafafaf6] flex justify-center items-center" style="background-color:#fafafaf6"> 
         </h1>
 
       </div>
@@ -12,7 +12,7 @@
         <div v-if="applications.data && applications.data.length === 0" class="text-center p-6">
       <p class="text-xl font-semibold text-gray-700">No applications found.</p>
     </div>
-      
+
     <div class="row w-full mx-auto">
       <div v-for="application in applications.data" :key="application.id" class="p-6 col-12 col-md-6 col-lg-4">
       <!-- Application Card -->
