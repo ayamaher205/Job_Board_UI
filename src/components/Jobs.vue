@@ -34,7 +34,7 @@
                   <router-link :to="'/post/'+post.id" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">View</router-link>
                 </li>
                 <li>
-                  <a @click="toggleModal(post.id)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Edit</a>
+                  <a @click="toggleModal(post)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Edit</a>
                 </li>
 
                 <li>
@@ -120,12 +120,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue';
+import PostService from '@/services/PostService';
+import { getEmployer } from '@/services/EmployerService';
+import { useLoggedUser } from '@/stores/User.js';
 
 const isDropdownOpen = ref({});
 const isModalVisible = ref(false);
 const modalPostId = ref(null);
+const posts = ref([]);
 
 const formData = ref({
     title: '',
@@ -140,102 +143,92 @@ const formData = ref({
     qualifications: ''
 });
 
-const submitForm = (postId) => {
+const submitForm = async () => {
     const data = formData.value;
-
-    updatePost(postId, data);
+    try {
+        await updatePost(modalPostId.value, data);
+        toggleModal(); // Close the modal after successful update
+        await getPosts(); // Refresh the posts
+    } catch (error) {
+        console.error('Error updating post:', error);
+    }
 };
 
-const toggleModal = (postId) => {
-  modalPostId.value = postId;
+const toggleModal = (post = null) => {
+  if (post) {
+    modalPostId.value = post.id;
+    Object.assign(formData.value, {
+      title: post.title,
+      deadline: post.deadline,
+      location: post.location,
+      work_type: post.work_type,
+      price: post.price,
+      category: post.category,
+      description: post.description,
+      skills: post.skills,
+      responsibilities: post.responsibilities,
+      qualifications: post.qualifications
+    });
+  } else {
+    modalPostId.value = null;
+    Object.keys(formData.value).forEach(key => {
+      formData.value[key] = '';
+    });
+  }
   isModalVisible.value = !isModalVisible.value;
 };
 
 const toggleDropdown = (postId) => {
   isDropdownOpen.value[postId] = !isDropdownOpen.value[postId];
-}
+};
 
 const updatePost = (postId, data) => {
-  PostService.updatePost(postId, data)
-    .then(console.log(data))
-    .catch(err => console.error(err));
+  return PostService.updatePost(postId, data);
 };
 
-
-</script>
-
-<script>
-import PostService from '@/services/PostService';
-import { getEmployer } from '@/services/EmployerService';
-import { useLoggedUser } from '@/stores/User.js'
-
-export default {
-  setup() {
-
-    return {
-      isDropdownOpen,
-      toggleDropdown,
-      isModalVisible,
-      toggleModal
-    }
-  },
-  data() {
-    return {
-      loggedEmployer: useLoggedUser(),
-      posts: []
-    };
-  },
-  methods: {
-
-    async getPosts() {
-            try {
-                const response = await getEmployer(this.loggedEmployer.user.id);
-                this.posts = response.data.posts;
-                
-            } catch (error) {
-                console.error('Error fetching employer:', error);
-            }
-        },
-    deletePost(postId){
-      PostService.deletePost(postId)
-      .then(() => {
-        this.posts = this.posts.filter(post => post.id !== postId);
-      })
-      .catch(err => console.error(err));
-    },
-    updatePost(postId, data){
-      PostService.updatePost(postId, data)
-      .then(console.log(data))
-      .catch(err => console.error(err));
-    },
-    editDate(date){
-      const datecreated = new Date(date);
-      const year = datecreated.getUTCFullYear();
-      const month = String(datecreated.getUTCMonth() + 1).padStart(2, '0');
-      const day = String(datecreated.getUTCDate()).padStart(2, '0');
-      return `${year}-${month}-${day}`;
-    },
-    getStatus(deadline) {
-      const now = new Date();
-      const deadlineDate = new Date(deadline);
-      return now > deadlineDate ? 'Expired' : 'Active';
-    },
-    getStatusClass(deadline) {
-      const now = new Date();
-      const deadlineDate = new Date(deadline);
-      return now > deadlineDate ? 'bg-red-500' : 'bg-green-500';
-    }
-  },
-  mounted() {
-    this.getPosts();
-    this.deletePost();
-
-    document.addEventListener("DOMContentLoaded", function(event) {
-      document.getElementById('updateProductButton').click();
-    });
+const getPosts = async () => {
+  try {
+    const response = await getEmployer(useLoggedUser().user.id);
+    posts.value = response.data.posts;
+  } catch (error) {
+    console.error('Error fetching posts:', error);
   }
 };
+
+const deletePost = async (postId) => {
+  try {
+    await PostService.deletePost(postId);
+    posts.value = posts.value.filter(post => post.id !== postId);
+  } catch (error) {
+    console.error('Error deleting post:', error);
+  }
+};
+
+const editDate = (date) => {
+  const datecreated = new Date(date);
+  const year = datecreated.getUTCFullYear();
+  const month = String(datecreated.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(datecreated.getUTCDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const getStatus = (deadline) => {
+  const now = new Date();
+  const deadlineDate = new Date(deadline);
+  return now > deadlineDate ? 'Expired' : 'Active';
+};
+
+const getStatusClass = (deadline) => {
+  const now = new Date();
+  const deadlineDate = new Date(deadline);
+  return now > deadlineDate ? 'bg-red-500' : 'bg-green-500';
+};
+
+onMounted(() => {
+  getPosts();
+});
 </script>
+
 
 <style scoped>
 .custom-thead {
