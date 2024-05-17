@@ -134,7 +134,7 @@ export default {
                 branches: '',
                 branding_elements: '',
                 image: '',
-                employer_id:''
+                employer_id: ''
             },
             errorList: [],
             loggedEmployer: useLoggedUser(),
@@ -148,26 +148,28 @@ export default {
         },
         async fetchEmployer() {
             try {
-                const response = await getEmployer(localStorage.getItem('id'));
-                this.employer = {
-                    id: response.data.data.id,
-                    employer_id:response.data.data.employer_id,
-                    name: response.data.data.name,
-                    email: response.data.data.email,
-                    password: response.data.data.password,
-                    industry: response.data.data.industry,
-                    branches: response.data.data.branches,
-                    image: response.data.data.image,
-                    branding_elements: response.data.data.branding_elements,
-                    '_method': 'put'
-                };
-                this.loggedEmployer.setUser(response.data.data);
-                if (response.data.posts) {
-                    this.employerData.setPosts(response.data.posts)
-                    this.employerData.setNumberOfApplications(response.data.NumberOfApplications)
-                    this.employerData.setNumberOfPosts(response.data.NumberOfPosts)
+                if (Object.keys(this.loggedEmployer.user).length == 0 || !this.employerData.posts.length == 0) {
+                    const response = await getEmployer(localStorage.getItem('id'));
+                    this.employer = {
+                        id: response.data.data.id,
+                        employer_id: response.data.data.employer_id,
+                        name: response.data.data.name,
+                        email: response.data.data.email,
+                        password: response.data.data.password,
+                        industry: response.data.data.industry,
+                        branches: response.data.data.branches,
+                        image: response.data.data.image,
+                        branding_elements: response.data.data.branding_elements,
+                        '_method': 'put'
+                    };
+                    this.loggedEmployer.setUser(response.data.data);
+                    if (response.data.posts) {
+                        this.employerData.setPosts(response.data.posts)
+                        this.employerData.setNumberOfApplications(response.data.NumberOfApplications)
+                        this.employerData.setNumberOfPosts(response.data.NumberOfPosts)
+                    }
+                    console.log(this.loggedEmployer.user)
                 }
-                console.log(this.loggedEmployer.user)
             } catch (error) {
                 console.log(error)
             }
