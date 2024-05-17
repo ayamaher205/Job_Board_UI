@@ -16,7 +16,8 @@ import candidates from '../views/AdminViews/candidates.vue';
 import employers from '../views/AdminViews/employers.vue';
 import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 import EmployerProfileView from '@/views/EmployerProfileView.vue';
-import EmplployerApplicationsView from '@/views/EmployerApplicationsView.vue'
+import EmployerApplicationsView from '@/views/EmployerApplicationsView.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -101,13 +102,8 @@ const router = createRouter({
     }, 
     {
       path:'/applications',
-      name:'empoyer_applications',
-      component:EmplployerApplicationsView
-    }, 
-    {
-      path:'/employer',
       name:'profile',
-      component:EmployerProfile
+      component:EmployerApplicationsView
     },
     {
       path:'/posts',
@@ -127,4 +123,3 @@ const router = createRouter({
 })
 
 export default router
-

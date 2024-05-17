@@ -1,4 +1,3 @@
-
 <script setup>
 import Sidebar from '../layouts/Sidebar.vue'
 import EmployerProfile from '../components/EmployerProfile.vue'
@@ -13,7 +12,7 @@ import EmployerProfile from '../components/EmployerProfile.vue'
   </div>
   
   <div class="flex flex-col flex-1 overflow-y-auto">
-     <h1 class="font-semibold text-lg mr-auto text-green-900 m-5">Profile</h1>
+    <h1 class="font-semibold text-lg mr-auto text-green-900 m-5">Profile</h1>
     <EmployerProfile class="mx-5"/>
   </div>
 </div>
