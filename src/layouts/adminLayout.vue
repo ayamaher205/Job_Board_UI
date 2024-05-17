@@ -2,7 +2,7 @@
   <div class="admin-layout bg-gray-100">
     <header>
       <Header/>
-      <hr class ="w-75 m-0 mx-auto color-black">
+      <hr class =" h-1 m-0 mx-auto bg-gray-900" >
     </header>
     <main>
     <SideBar/>
@@ -26,5 +26,8 @@ export default {
 </script>
 
 <style scoped>
+hr{
+  width: 68%;
+}
 
 </style>
