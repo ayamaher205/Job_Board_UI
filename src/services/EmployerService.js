@@ -9,8 +9,9 @@ const getEmployer = (id) => {
 };
 const updateEmployer = (id, data) => {
  // console.log(`form data is: ${data.values().toArray()}`);
-  return axios.put(`http://127.0.0.1:8000/api/employers/${id}`, data, {
+  return axios.post(`http://127.0.0.1:8000/api/employers/${id}`, data, {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
+    Accept:'application/json',
     'Content-Type': 'multipart/form-data'
    }
   });
@@ -22,4 +23,4 @@ return axios.delete(`http://127.0.0.1:8000/api/employers/${id}`, {
 });
 }
 
-export { getEmployer, updateEmployer,deleteEmployer };
+export { getEmployer, updateEmployer,deleteEmployer};

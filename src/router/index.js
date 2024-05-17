@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import SearchResult from '../views/SearchResult.vue';
 import JobsPage from '../views/JobsPage.vue';
-import Sidebar from '../components/Sidebar.vue'
 import EmployerProfile from '../views/EmployerProfileView.vue';
 import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
