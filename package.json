@@ -12,6 +12,7 @@
     "@vueform/vueform": "^1.9.8",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "pinia": "^2.1.7",
     "pusher-js": "^8.4.0-rc2",
     "sweetalert2": "^11.11.0",
