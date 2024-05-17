@@ -80,7 +80,7 @@
                       </ul>
                      <div class="apply-btn2">
                         
-                        <router-link to="/applications" class="btn">Apply Now</router-link>
+                        <router-link @click="apply" to="/applications" class="btn">Apply Now</router-link>
                      </div>
                    </div>
                     <div class="post-details4  mb-50">
@@ -105,6 +105,8 @@
 </template>
 <script>  
 import axios from 'axios';
+import { useRouter } from 'vue-router';
+
 
 export default {
   data() {
@@ -122,6 +124,20 @@ export default {
       } catch (error) {
         console.error('Error fetching post:', error);
       }
+    },
+    async apply() {
+      console.log(localStorage.getItem('token'));
+      if (this.isAuthenticated()) {
+ 
+        this.$router.push('/applications');
+      } else {
+        
+        this.$router.push('/login');
+      }
+    },
+    isAuthenticated() {
+      console.log(localStorage.getItem('token'));
+      return localStorage.getItem('token') !== null; 
     },
   },
   created() {
