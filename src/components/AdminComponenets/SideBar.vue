@@ -4,11 +4,11 @@
 		<div class="flex flex-col items-center my-6 -mx-2">
         <img
         class="object-cover w-24 h-24 mx-2 rounded-full"
-        :src="user.image"
+          :src="'http://127.0.0.1:8000/images/users/' + loggedadmin.user.image"
         alt="avatar"
         />
         <h4 class="mx-2 mt-2 font-medium text-green-900 dark:text-green-900">
-        {{ user.name }}
+        {{ loggedadmin.user.name }}
         </h4>
     </div>
 		<div class="w-full px-2">
@@ -68,9 +68,8 @@ import { useLoggedUser } from '@/stores/User.js'
 
 export default {
   data () {
-    console.log(useLoggedUser().user)
     return {
-      user: useLoggedUser().user 
+    loggedadmin: useLoggedUser()
 
     }
   },

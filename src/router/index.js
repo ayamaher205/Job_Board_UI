@@ -40,12 +40,7 @@ const router = createRouter({
     component: registeration,
     name:registeration,
 },
-    // {
-    //   path: '/admin',
-    //   name:'AdminLayout',
-    //   component: AdminLayout,
-    //   beforeEnter: requireAuth
-    // },
+
     {
     path: '/admin/add-admin',
     component: addAdmin,

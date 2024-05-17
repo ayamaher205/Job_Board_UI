@@ -1,10 +1,14 @@
 <template>
-  <div class="container col-lg-12 col-xl-11 w-100">
-  <h2 class="row">Hi, Welcome Back!</h2>
-    <p class="row">
+  <div class="container col-lg-12 col-xl-11 w-100 mx-auto">
+  <h2 class="col p-3">Hi, Welcome Back!</h2>
+    <p class="row mx-auto">
       Still do not have an account?
       <a href="/register">Sign up</a>
     </p>
+     <img class="row w-25 mx-auto object-full"
+              style="width: 90%"
+              src="../assets/logo.png"
+          />
     <div class="row w-100 h-100" >
 <form @submit.prevent="login" class="loginForm col w-100">
       <div class="input-group">
@@ -23,12 +27,8 @@
       :disabled="!email || !password">Log In
       </button>
   </form>
-  
-     <img class="col w-50"
-              style="width: 90%"
-              src="../assets/logo.png"
-            />
     </div>
+  
   </div>
   
 </template>
@@ -64,13 +64,14 @@ export default {
         .then(response => {
           // console.log(response);
           const userStore = useLoggedUser();
+          // console.log(response.data.user);
           userStore.setUser(response.data.user);
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('loggedUser', response.data.user.name);
           localStorage.setItem('role', response.data.user.role);
 
           if (response.data.user.role == 'admin') {
-            this.$router.push('/admin');
+            this.$router.push('/admin/dashboard');
           }
           else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
             this.$router.push('/employer');
@@ -114,8 +115,8 @@ body {
   color: hsla(154, 92%, 10%, 0.692);
 }
 a{
-  color: hsl(154, 42%, 33%);
-  text-decoration: none;
+  color: hsl(154, 42%, 38%);
+  text-decoration: under-line;
 }
 .loginForm {
   color: rgb(75, 73, 73);
