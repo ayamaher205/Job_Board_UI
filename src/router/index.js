@@ -1,13 +1,29 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import ApplicationForm from '../views/ApplicationForm.vue'
-import JobsPage from '../views/JobsPage.vue'
-import SearchResult from '../views/SearchResult.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import SearchResult from '../views/SearchResult.vue';
+import JobsPage from '../views/JobsPage.vue';
+import Sidebar from '../layouts/Sidebar.vue'
+import ViewJob from '../components/ViewJob.vue'
+import EmployerJobsView from '@/views/EmployerJobsView.vue';
+import EmployerPostJob from '@/views/EmployerPostJob.vue';
+import EmployerProfile from '../components/EmployerProfile.vue';
+import login from '../views/login.vue';
+import registeration from '../views/registeration.vue';
+import AdminLayout from '../layouts/adminLayout.vue';
+import { requireAuth } from '../services/auth';
+import addAdmin from '../views/AdminViews/addAdmin.vue';
+import Dashboard from '../views/AdminViews/DashBoard.vue';
+import candidates from '../views/AdminViews/candidates.vue';
+import employers from '../views/AdminViews/employers.vue';
+import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
+import EmployerProfileView from '@/views/EmployerProfileView.vue';
+import EmployerApplicationsView from '@/views/EmployerApplicationsView.vue';
 import ShowApplications from '@/views/ShowApplications.vue'
 import EditApplication from './../views/EditApplication.vue'
 import ListApplications from '@/views/ListApplications.vue'
 import DeleteApplication from './../views/DeleteApplication.vue'
+import ApplicationForm from '@/views/ApplicationForm.vue';
+import EmployerDashboardView from '@/views/EmployerDashboardView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -19,7 +35,101 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: AboutView
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/login',
+      component: login,
+      name: login,
+    },
+    {
+      path: '/register',
+      component: registeration,
+      name: registeration,
+    },
+    {
+      path: '/admin',
+      name: 'AdminLayout',
+      component: AdminLayout,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/admin/add-admin',
+      component: addAdmin,
+      name: addAdmin,
+      beforeEnter: requireAuth
+    },
+
+    //     {
+    //       path: '/admin/dashboard',
+    //       component: Dashboard,
+    //       name:'Dashboard',
+    // beforeEnter: requireAuth 
+
+    //     },
+    // {
+    // path: '/admin/dashboard',
+    // component: Dashboard,
+    // name:Dashboard,
+    // // meta: { requiresAuth: true } 
+    // },
+    // {
+    // path: '/admin/candidates',
+    // component: candidates,
+    // name:candidates,
+    // // meta: { requiresAuth: true }
+    // },
+    // {
+    // path: '/admin/employers',
+    // component: employers,
+    // name:employers,
+    // // meta: { requiresAuth: true }
+    // },
+    // {
+    // path: '/admin/update-post-status',
+    // component: updatePostStatus,
+    // name:updatePostStatus,
+    // // meta: { requiresAuth: true }
+    // },
+    // {
+    // path: '/admin/add-admin',
+    // component: addAdmin,
+    // name:addAdmin,
+    // // meta: { requiresAuth: true }
+    // },
+
+    {
+      path: '/employer',
+      name: 'empoyer_profile',
+      component: EmployerProfileView
+    },
+    {
+      path: '/employer-applications',
+      name: 'profile',
+      component: EmployerApplicationsView
+    },
+    {
+      path:'/employer-dashboard',
+      name:'Employer Dashboard',
+      component:EmployerDashboardView
+    },
+    {
+      path:'/post-job',
+      name:'create_post',
+      component:EmployerPostJob
+    },
+    {
+      path:'/employer-posts',
+      name:'posts',
+      component:EmployerJobsView
+    },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: ViewJob
     },
     {
       path: '/applications',
@@ -46,16 +156,10 @@ const router = createRouter({
       name: 'deleteApplications',
       component: DeleteApplication
     },
-    {
-      path: '/jobs',
-      name: 'jobs',
-      component: JobsPage
-    },
-    {
-      path: '/searchResult',
-      name: 'searchResult',
-      component: SearchResult
-    }
+    { path: '/jobs', name: 'Jobs', component: JobsPage }
+    ,
+
+    { path: '/searchResult', name: 'searchResult', component: SearchResult }
   ]
 })
 

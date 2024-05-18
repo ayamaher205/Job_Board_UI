@@ -1,9 +1,11 @@
+<script setup>
+import WelcomeItem from '../components/WelcomeItem.vue'
+</script>
+
 <template>
-  <div>
-    <h1>Welcome to Job Search</h1>
-    <SearchBar @search-results="handleSearchResults" />
-    
-  </div>
+  <main>
+    <WelcomeItem />
+  </main>
 </template>
 
 <script>

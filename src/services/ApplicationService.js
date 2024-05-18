@@ -22,7 +22,7 @@ export default {
     });
   },
   updateApplication(id, applicationData) {
-    return axios.put(`${API_BASE_URL}/applications/${id}`, applicationData, {
+    return axios.put(`${API_BASE_URL}/applications/${id}`,{ status: applicationData}, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
   },
