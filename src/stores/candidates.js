@@ -23,6 +23,7 @@ export const useCandidateStore = defineStore('candidates', {
         );
         this.candidates = response.data.data.data;
         console.log(this.candidates)
+        return this.candidates;
       } catch (error) {
         console.log(error.response.data.data)
         if (error.response.data.data) {
@@ -49,6 +50,7 @@ export const useCandidateStore = defineStore('candidates', {
         if (candidate) {
           candidate.active = false;
         }
+        // this.fetchCandidates();
       } catch (error) {
         Swal.fire({
           icon: 'error',

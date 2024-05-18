@@ -1,11 +1,11 @@
 <template>
-  <div class="w-100">
+  <div>
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold mx-auto">Admins</h2>
     </div>
     <Spinner v-if="loading" />
     <div v-else class="table-container">
-      <table class="w-full bg-gray">
+      <table class="w-full bg-gray table-head">
         <thead class="table-head">
           <tr>
             <th class="py-2 px-2 border-b border-gray-200">ID</th>
@@ -57,8 +57,8 @@ export default {
   },
   async created() {
     try {
-      const adminStore = useAdminStore();
-      this.admins = await adminStore.fetchAdmins();
+      const adminstore = useAdminStore();
+      this.admins = await adminstore.fetchAdmins();
       console.log(this.admins);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -67,11 +67,11 @@ export default {
     }
   },
   methods: {
-    async deactivate(admin) {
-      const adminStore = useAdminStore();
+     async deactivate(admin) {
+      const adminstore = useAdminStore();
       Swal.fire({
         title: 'Are you sure?',
-        text: 'You want to deactivate this admin!',
+        text: 'You want to deactivate this employer!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',
@@ -80,14 +80,14 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            await adminStore.deactivateAdmin(admin.id);
+            await adminstore.deactivateAdmin(admin.id);
             this.admins = this.admins.filter(c => c.id !== admin.id);
           } catch (error) {
-            console.error('Error deactivating admin:', error);
+            console.error('Error deactivating candidate:', error);
           }
         }
       });
-      console.log('Deactivating admin', admin);
+      console.log('Deactivating candidate', admin);
     }
   }
 }
@@ -104,10 +104,5 @@ export default {
   top: 0;
   background-color: white;
   z-index: 1;
-}
-
-.table-body {
-  max-height: 400px;
-  overflow-y: auto;
 }
 </style>

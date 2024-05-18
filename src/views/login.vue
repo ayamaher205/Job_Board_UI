@@ -1,5 +1,5 @@
 <template>
-  <div class="container col-lg-12 col-xl-11 w-100 mx-auto">
+  <div class="container col-lg-12 col-xl-11 w-50 mx-auto">
   <h2 class="col p-3">Hi, Welcome Back!</h2>
     <p class="row mx-auto">
       Still do not have an account?

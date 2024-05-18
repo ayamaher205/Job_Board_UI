@@ -18,6 +18,7 @@ import ApplicationForm from '@/views/ApplicationForm.vue';
 import EmployerDashboardView from '@/views/EmployerDashboardView.vue'
 import Dashboard from '../views/AdminViews/DashBoard.vue';
 import candidates from '../views/AdminViews/candidates.vue';
+import admins from '../views/AdminViews/admins.vue';
 import employers from '../views/AdminViews/employers.vue';
 import AdminProfile from '@/components/AdminComponenets/AdminProfile.vue';
 import PostsAdmin from '@/views/AdminViews/PostsAdmin.vue';
@@ -81,7 +82,13 @@ const router = createRouter({
     component: employers,
     name:employers,
     beforeEnter: requireAuth 
-  },
+    },
+    {
+      path: '/admin/admins',
+      component: admins,
+      name:admins,
+      beforeEnter: requireAuth 
+      },
     // {
     // path: '/admin/update-post-status',
     // component: updatePostStatus,

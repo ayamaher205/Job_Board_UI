@@ -32,11 +32,43 @@ export const useAdminStore = defineStore('admin', {
           }
         });
         this.admins = response.data.data;
-        this.count = response.data.count;
+        // this.count = response.data.count;
         console.log(this.admins);
-        return response;
+        return this.admins;
       } catch (error) {
-        throw error;
+        console.log(error.response.data.data)
+        if (error.response.data.data) {
+            this.errorMessage = error.response.data.data.name[0];
+        } else {
+          this.errorMessage = 'An error occurred while fetching candidates.';
+          console.error('Error:', error.response.data);
+        }
+      }
+    },
+ 
+     
+    
+    async deactivateAdmin(adminId) {
+      try {
+        console.log(candidateId)
+        await axios.delete(`http://127.0.0.1:8000/api/users/${adminId}/deactivate`,
+            {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  }
+            }
+        );
+        const admin = this.admins.find(c => c.id === adminId);
+        if (admin) {
+          admin.active = false;
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error deactivating candidate`
+        });
       }
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-100">
     <div class="flex flex-wrap justify-between">
       <Card class="w-full sm:w-auto mb-4 sm:mb-0" name="Admins" :number="adminCount" color="#40916c" backgroundColor="#d8f3dc" />
       <Card class="w-full sm:w-auto mb-4 sm:mb-0" name="Employers" :number="employerCount" color="#2d6a4f" backgroundColor="#b7e4c7" />

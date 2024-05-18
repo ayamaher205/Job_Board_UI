@@ -1,6 +1,8 @@
 // import './assets/main.css'
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 import '../node_modules/flowbite-vue/dist/index.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
