@@ -17,6 +17,17 @@ import UpdateProfile from "../components/CandidateComponents/UpdateProfile.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView
+    },
+    {
+      path: '/applications',
+      name: 'ApplicationForm',
+      component: ApplicationForm
+    },
     {
       path: "/candidate/login",
       name: "candidate_login",
