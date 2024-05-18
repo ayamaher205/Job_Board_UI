@@ -1,21 +1,50 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
+import ApplicationForm from "../views/ApplicationForm.vue";
+import JobsPage from "../views/JobsPage.vue";
+import ShowApplications from "@/views/ShowApplications.vue";
+import EditApplication from "./../views/EditApplication.vue";
+import ListApplications from "@/views/ListApplications.vue";
+import DeleteApplication from "./../views/DeleteApplication.vue";
 import JobDetails from "../views/JobDetails.vue";
 import Register from "../components/CandidateComponents/Register.vue";
 import Login from "../components/CandidateComponents/Login.vue";
 import ProfileStore from "../components/CandidateComponents/ProfileStore.vue";
 import UpdateProfile from "../components/CandidateComponents/UpdateProfile.vue";
+import HomeView from '../views/HomeView.vue'
+// import AdminLayout from '../layouts/adminLayout.vue';
+// import Dashboard from '../views/AdminViews/DashBoard.vue';
+// import candidates from '../views/AdminViews/candidates.vue';
+// import employers from '../views/AdminViews/employers.vue';
+import HomeView from '../views/HomeView.vue';
 import SearchResult from '../views/SearchResult.vue';
 import JobsPage from '../views/JobsPage.vue';
+import Sidebar from '../components/Sidebar.vue'
+import EmployerProfile from '../views/EmployerProfileView.vue';
+import login from '../views/login.vue';
+import registeration from '../views/registeration.vue';
+import AdminLayout from '../layouts/adminLayout.vue';
+import { requireAuth } from '../services/auth';
+import addAdmin from '../views/AdminViews/addAdmin.vue';
+import Dashboard from '../views/AdminViews/DashBoard.vue';
+import candidates from '../views/AdminViews/candidates.vue';
+import employers from '../views/AdminViews/employers.vue';
+// import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    
     {
       path: '/about',
       name: 'about',
       component: AboutView
+    },
+    {
+      path: '/applications',
+      name: 'ApplicationForm',
+      component: ApplicationForm
     },
     {
       path: "/candidate/login",
@@ -33,6 +62,26 @@ const router = createRouter({
       component: ProfileStore,
     },
     {
+      path: "/get-applications",
+      name: "getApplications",
+      component: ListApplications,
+    },
+    {
+      path: "/edit-applications/:id",
+      name: "editApplications",
+      component: EditApplication,
+    },
+    {
+      path: "/show-applications/:id",
+      name: "showApplications",
+      component: ShowApplications,
+    },
+    {
+      path: "/delete-applications/:id",
+      name: "deleteApplications",
+      component: DeleteApplication,
+    },
+    {
       path: "/jobs",
       name: "jobs",
       component: JobsPage,
@@ -42,6 +91,10 @@ const router = createRouter({
       name: "searchResult",
       component: SearchResult,
     },
+
+    { path: "/jobs", name: "Jobs", component: JobsPage },
+    { path: "/searchResult", name: "searchResult", component: SearchResult },
+
     { path: "/posts/:id", name: "job-details", component: JobDetails },
     {
       path: "/candidate/profile/me",
