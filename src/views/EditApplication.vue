@@ -1,12 +1,22 @@
 <template>
-  <div style="background-color:#EFF6F3; background-size: cover;">
+      <div style="background-color:#EFF6F3; background-size: cover;">
 
-<div class="h-screen flex justify-center items-center" >
-<div class="my-4 rounded-lg p-10  max-w-xl shadow-box-circle bg-[#fafafae5] dark:bg-dark-1000 animate_animated animate_bounceIn">
-  <form class="w-full" @submit.prevent="submitApplication">
-    <div class="text-xl mb-4 col-span-12 text-green-800 dark:text-green-400">
-      <div class="border-b border-gray-300 pb-2 dark:border-dark-600">Application Details</div>
-    </div>
+  <div class="h-screen flex justify-center items-center" >
+    <div class="my-4 rounded-lg p-10  max-w-xl shadow-box-circle bg-[#fafafae5] dark:bg-dark-1000 animate__animated animate__bounceIn">
+      <form class="w-full" @submit.prevent="submitApplication">
+        <div class="text-xl mb-4 col-span-12 text-green-800 dark:text-green-400">
+          <div class="border-b border-gray-300 pb-2 dark:border-dark-600">Update status</div>
+        </div>
+
+        <!-- Status dropdown -->
+        <div class="mb-4">
+          <label for="status" class="block font-medium text-gray-700 dark:text-dark-200">Status</label>
+          <select v-model="formData.status" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
+            <option value="pending">Pending</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
 
     <!-- Status dropdown -->
     <div class="mb-4">

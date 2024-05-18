@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#EFF6F3; background-size: cover;">
+    <div style="background-color:#EFF6F3; background-size: cover;">
 
 <div class="flex justify-center items-center h-screen">
   <div v-if="application">
