@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import Sidebar from '../layouts/Sidebar.vue'
 import ViewJob from '../components/ViewJob.vue'
-import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import { requireAuth } from '../services/auth';
 
