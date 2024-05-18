@@ -26,7 +26,7 @@
             <div v-for="job in sortedJobs" :key="job.id" class="single-job-items mb-30">
                 <div class="job-items">
                     <div class="company-img">
-                        <a href="#"> <img v-if="job.employer.profile_photo_url" :src="job.employer.logo" width="70px" height="70px" alt="Employer Logo" />
+                        <a href="#"> <img v-if="job.image" :src="job.image" width="70px" height="70px" alt="Employer Logo" />
                             <img v-else src="https://5.imimg.com/data5/SELLER/Default/2023/9/340980630/YL/AL/SM/59465795/company-logo-design-service-500x500.jpg" width="70px" height="70px" alt="Default Logo" /></a>
                     </div>
                     <div class="job-tittle job-tittle2">
@@ -34,7 +34,7 @@
                             <h4 >{{ job.title }}</h4>
                         </a>
                         <ul>
-                            <li>{{ job.employer.name }}</li>
+                            <li>{{ job.posted_by }}</li>
                             <li><i class="bi bi-geo-alt-fill"></i>{{ job.location }}</li>
                             <li>Salary: {{ job.salary_range }}</li>
                         </ul>

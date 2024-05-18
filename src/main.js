@@ -1,6 +1,4 @@
-import './assets/style.css'
-import './assets/main.css'
-import './index.css'
+ 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
