@@ -36,7 +36,7 @@
                 <div class="header-btn d-none f-right d-lg-block">
                     <router-link class="btn head-btn2" :to="'/register'"> Register </router-link>
                     <router-link class="btn head-btn2" :to="'/login'"> Login </router-link>
-                    <a @click.prevent="showAlert()"  class="btn head-btn2" href="logout">job Details</a>
+                    <a @click.prevent="showAlert()"  class="btn head-btn2" href="logout"> Logout </a>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
 
  </template>
 
- <script>
+<script>
 import { RouterLink } from 'vue-router';
 import AuthService from '../services/AuthService';
 export default{
@@ -61,7 +61,6 @@ export default{
     showAlert(){
       this.$swal({
         title: "You Logged out Succefully!!",
-        //text: "That thing is still around?",
         icon: "info"
       }).then((result) => {
         if (result.isConfirmed) {

@@ -24,15 +24,6 @@
                               <input class="form-control valid" v-model="password"  type="password"  name="password" placeholder="Enter your password">
                           </div>
                       </div>
-
-                      <div>
-                        <label>Role: | Click here it's hidden -> </label> &nbsp; &nbsp; 
-                        <select v-model="role" name="role" required>
-                          <option value="candidate" selected>Candidate</option>
-                          <option value="employer">Employer</option>
-                          <option value="admin">Admin</option>
-                        </select>
-                      </div>
                                            
                     </div>
                     <div class="form-group mt-3">
