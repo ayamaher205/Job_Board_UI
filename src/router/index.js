@@ -48,7 +48,6 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // component: AboutView
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -95,6 +94,16 @@ const router = createRouter({
       name: "job-details",
       component: JobDetails 
     },
+    {
+      path:'/post-job',
+      name:'create_post',
+      component:EmployerPostJob
+    },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: ViewJob
+    },
 
     // employer
     {
@@ -118,25 +127,8 @@ const router = createRouter({
       component:EmployerJobsView
     },
 
-    // posts
-    {
-      path:'/post-job',
-      name:'create_post',
-      component:EmployerPostJob
-    },
-    {
-      path: '/post/:id',
-      name: 'post',
-      component: ViewJob
-    }
-    // employer
-    {
-      path: '/employer',
-      name: 'empoyer_profile',
-      component: EmployerProfileView
-    },
-
   ],
+
 });
 
 export default router;
