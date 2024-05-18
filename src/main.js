@@ -11,7 +11,6 @@ import { createPinia } from 'pinia'
 
 import Vueform from '@vueform/vueform'
 import vueformConfig from '../vueform.config'
-import vueformConfig from './../vueform.config'
 import router from './router'
 import CandidateLayout from './layouts/CandidateLayout.vue'
 
