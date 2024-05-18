@@ -20,23 +20,13 @@
                     <ul id="navigation">
                       <li> <router-link :to="'/'"> Home </router-link> </li>
                       <li> <router-link :to="'/jobs'"> Find a Job </router-link> </li>
-                      <li><a href="#">Page</a>
-                        <ul class="submenu">
-                          <li><a href="blog.html">Blog</a></li>
-                          <li><a href="single-blog.html">Blog Details</a></li>
-                          <li><a href="elements.html">Elements</a></li>
-                          <li><a href="job_details.html">job Details</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="contact.html">Contact</a></li>
                     </ul>
                   </nav>
                 </div>
                 <!-- Header-btn -->
                 <div class="header-btn d-none f-right d-lg-block">
-                  <!-- <h1 v-if="checkAuth">Vue is awesome!</h1> -->
-                  <!-- <a @click.prevent="checkAuth()"  class="btn head-btn2" href="logout"> check </a> -->
                     <div v-if="isAuthenticated">
+                      <router-link class="btn head-btn2" :to="'/candidate/profile/store'"> Profile </router-link>
                       <a @click.prevent="showAlert()"  class="btn head-btn2" href="logout"> Logout </a>
                     </div>
                     <div v-else>

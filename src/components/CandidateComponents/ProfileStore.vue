@@ -61,7 +61,7 @@ export default {
     onMounted(async () => {
       var profileResult = await axios.get("http://127.0.0.1:8000/api/profiles/1", {
                           headers: { 
-                              'Authorization': `Bearer 28|Ci7TMPfGReVVZvUVJfLOHUAmCPTRxK57dd1xj2j0c2dce9f9`,
+                              'Authorization': `Bearer ${localStorage.getItem('token')}`,
                               'Accept': 'application/json',
                             }
                         });
@@ -93,7 +93,7 @@ export default {
           }, 
           {
             headers: { 
-                'Authorization': `Bearer 28|Ci7TMPfGReVVZvUVJfLOHUAmCPTRxK57dd1xj2j0c2dce9f9`,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Accept': 'application/json',
               }
           });
