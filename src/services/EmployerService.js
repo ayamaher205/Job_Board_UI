@@ -3,7 +3,7 @@ import axios from "axios";
 const url = import.meta.env.VITE_API_URL;
 
 const getEmployer = (id) => {
-  return axios.get(`http://127.0.0.1:8000/api/employers/${id}`, {
+    return axios.get(`http://127.0.0.1:8000/api/employers/${id}`, {
     headers: { Accept: "application/json" },
   });
 };

@@ -149,8 +149,8 @@ export default {
         },
         async fetchEmployer() {
             try {
+
                 const response = await getEmployer(localStorage.getItem('id'));
-                console.log("empid",localStorage.getItem('id'));
                 this.employer = {
                     id: response.data.data.id,
                     employer_id:response.data.data.employer_id,

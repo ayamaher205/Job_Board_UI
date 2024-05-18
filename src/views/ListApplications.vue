@@ -1,6 +1,6 @@
 <template>
     <div style="background-color:#EFF6F3; background-size: cover;">
-    <div class="typing-animation">
+      <div class="typing-animation flex justify-center items-center h-full">
       <div class="p-6">
 
         <h1 id="typing-text" class="p-6 text-2xl font-bold text-[#180a0af6]" style="color:#180a0af6"> 
@@ -18,23 +18,31 @@
             <li><strong>ID:</strong> {{ application.id }}</li>
             <li><strong>Email:</strong> {{ application.app_email }}</li>
             <li><strong>Phone:</strong> {{ application.app_phone }}</li>
+            <li><strong>Status:</strong> {{ application.status }}</li>
+
           </ul>
         </div>
         <!-- Buttons for Update, Delete, and Show -->
-        <div class="flex justify-between px-4 pb-4">
-          <button @click="goToUpdateComponent(application.id)"
-            class="text-sm text-blue-500 hover:text-blue-700">
-            Update
-          </button>
-          <button @click="deleteComponent(application.id)"
-            class="text-sm text-red-500 hover:text-red-700">
-            Delete
-          </button>
-          <button @click="showApplicationDetails(application.id)"
-            class="text-sm text-gray-500 hover:text-gray-700">
-            Show
-          </button>
-        </div>
+        <div class="flex justify-between px-6 pb-4">
+  <!-- Update Button -->
+  <!-- <button @click="goToUpdateComponent(application.id)"
+    class="text-sm text-blue-500 hover:text-blue-700 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-md">
+    Update
+  </button> -->
+
+  <!-- Delete Button -->
+  <button @click="deleteComponent(application.id)"
+    class="text-sm text-red-500 hover:text-red-700 bg-red-100 hover:bg-red-200 px-3 py-1 rounded-md">
+    Delete
+  </button>
+
+  <!-- Show Button -->
+  <button @click="showApplicationDetails(application.id)"
+    class="text-sm text-gray-500 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-md">
+    Show
+  </button>
+</div>
+
       </div>
     </div>
     </div>
