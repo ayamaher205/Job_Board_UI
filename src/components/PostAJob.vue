@@ -104,7 +104,7 @@ export default {
       try {
         await PostService.createPost(this.formData);
         this.clearForm();
-        this.$router.push('/posts');
+        this.$router.push('/employer-posts');
       } catch (error) {
         if (error.response && error.response.status === 422) {
           this.errors = error.response.data.errors;

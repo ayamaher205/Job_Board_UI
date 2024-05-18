@@ -117,22 +117,12 @@ const router = createRouter({
       component:EmployerDashboardView
     },
     {
-      path:'/employer-dashboard',
-      name:'Employer Dashboard',
-      component:EmployerDashboardView
-    },
-    {
       path:'/post-job',
       name:'create_post',
       component:EmployerPostJob
     },
     {
-      path:'/post-job',
-      name:'create_post',
-      component:EmployerPostJob
-    },
-    {
-      path:'/posts',
+      path:'/employer-posts',
       name:'posts',
       component:EmployerJobsView
     },

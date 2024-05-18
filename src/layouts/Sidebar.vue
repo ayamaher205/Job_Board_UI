@@ -68,7 +68,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/posts"
+          <router-link to="/employer-posts"
             class="flex no-underline items-center p-2 text-green-900 rounded-lg dark:text-green-900 hover:bg-green-700 dark:hover:bg-green-900 dark:hover:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor"

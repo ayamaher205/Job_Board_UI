@@ -119,6 +119,7 @@ import { getEmployer, updateEmployer } from "../services/EmployerService.js";
 import { useLoggedUser } from '@/stores/User.js';
 import { useEmployer } from '@/stores/EmployerStore.js'
 import router from "@/router/index.js";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
 export default {
     mounted() {
@@ -175,12 +176,16 @@ export default {
         },
         async handleSubmit() {
             try {
-                if (!this.employer.image) { delete this.employer.image; }
+                if (!this.employer.image||this.employer.image==null) { delete this.employer.image; }
                 //delete this.employer.employer_id;
                 const response = await updateEmployer(this.loggedEmployer.user.employer_id, this.employer);
                 router.push({ path: '/employer' })
                 this.loggedEmployer.setUser(response.data.data);
                 this.errorList = [];
+                this.$swal({
+                    title:'Profile Updated succefully',
+                    icon:'success'
+                })
             } catch (error) {
                 if (error.response) {
                     this.errorList = [];
