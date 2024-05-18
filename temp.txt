@@ -1,0 +1,27 @@
+ // {
+    //   path: "/get-applications",
+    //   name: "getApplications",
+    //   component: ListApplications,
+    // },
+    // {
+    //   path: "/edit-applications/:id",
+    //   name: "editApplications",
+    //   component: EditApplication,
+    // },
+    // {
+    //   path: "/show-applications/:id",
+    //   name: "showApplications",
+    //   component: ShowApplications,
+    // },
+    // {
+    //   path: "/delete-applications/:id",
+    //   name: "deleteApplications",
+    //   component: DeleteApplication,
+    // },
+
+    
+    // {
+    //   path: '/applications',
+    //   name: 'ApplicationForm',
+    //   component: ApplicationForm
+    // },
