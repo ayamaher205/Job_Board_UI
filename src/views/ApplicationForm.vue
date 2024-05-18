@@ -10,27 +10,27 @@
  
           <!-- Contact Details -->
           <div class="mb-4">
-            <label for="contact_details" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Contact Details</label>
-            <input type="text" v-model="formData.contact_details" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" >
+            <!-- <label for="contact_details" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Contact Details</label> -->
+            <input type="text" v-model="formData.contact_details" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2 " placeholder="Enter your contact details" >
           </div>
 
           <!-- Applicant Email -->
           <div class="mb-4">
-            <label for="app_email" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Applicant Email</label>
-            <input type="email" v-model="formData.app_email" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
+            <!-- <label for="app_email" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Applicant Email</label> -->
+            <input type="email" v-model="formData.app_email" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required placeholder="Enter your contact email">
             <span v-if="errors && errors.app_email" class="text-red-500">{{ errors.app_email[0] }}</span>
           </div>
 
           <!-- Applicant Phone -->
           <div class="mb-4">
-            <label for="app_phone" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Applicant Phone</label>
-            <input type="text" v-model="formData.app_phone" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
+            <!-- <label for="app_phone" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Applicant Phone</label> -->
+            <input type="text" v-model="formData.app_phone" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required placeholder="Enter your contact phone">
             <span v-if="errors && errors.app_phone" class="text-red-500">{{ errors.app_phone[0] }}</span>
           </div>
 
           <!-- Resume -->
           <div class="mb-4">
-            <label for="resume" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Resume</label>
+            <!-- <label for="resume" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Resume</label> -->
             <input type="file" @change="onFileChange" name="resume" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2">
             <span v-if="errors && errors.resume" class="text-red-500">{{ errors.resume[0] }}</span>
           </div>
