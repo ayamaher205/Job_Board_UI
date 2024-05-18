@@ -20,6 +20,7 @@ import Dashboard from '../views/AdminViews/DashBoard.vue';
 import candidates from '../views/AdminViews/candidates.vue';
 import employers from '../views/AdminViews/employers.vue';
 import AdminProfile from '@/components/AdminComponenets/AdminProfile.vue';
+import PostsAdmin from '@/views/AdminViews/PostsAdmin.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 
 const router = createRouter({
@@ -51,34 +52,36 @@ const router = createRouter({
     path: '/register',
     component: registeration,
     name:registeration,
-},
-
-    {
+  },
+  {
+    path: '/admin/posts',
+    name: 'PostsAdmin',
+    component: PostsAdmin,
+  },
+  {
     path: '/admin/add-admin',
     component: addAdmin,
     name:addAdmin,
     beforeEnter: requireAuth
   },
-  
-    {
-      path: '/admin/dashboard',
-      component: Dashboard,
-      name:'Dashboard',
-      beforeEnter: requireAuth 
- 
-    },
-    {
+  {
+    path: '/admin/dashboard',
+    component: Dashboard,
+    name:'Dashboard',
+    beforeEnter: requireAuth 
+  },
+  {
     path: '/admin/candidates',
     component: candidates,
     name:candidates,
     beforeEnter: requireAuth 
   },
-    {
+  {
     path: '/admin/employers',
     component: employers,
     name:employers,
     beforeEnter: requireAuth 
-    },
+  },
     // {
     // path: '/admin/update-post-status',
     // component: updatePostStatus,
