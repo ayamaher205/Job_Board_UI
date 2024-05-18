@@ -9,13 +9,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import App from './App.vue'
-import router from './router'
 import Vueform from '@vueform/vueform'
 import vueformConfig from '../vueform.config'
+import vueformConfig from './../vueform.config'
+import router from './router'
+import CandidateLayout from './layouts/CandidateLayout.vue'
 
-const app = createApp(App)
-
+const app = createApp(CandidateLayout)
 app.use(createPinia())
 app.use(Vueform, vueformConfig)
 
