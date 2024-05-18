@@ -41,4 +41,8 @@ export default {
   updatePost(postId, postData) {
     return axiosInstance.put(`/update-status/${postId}`, postData);
   },
+
+  updatePostStatus(postId, postData) {
+    return axiosInstance.put(`/post-update/${postId}`, postData);
+  }
 };

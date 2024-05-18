@@ -81,6 +81,10 @@ export default {
       PostService.getPosts()
         .then(res => {
           this.posts = res.data.data;
+          const filtered = this.posts.filter(res => res.status == 'pending');
+          this.posts = this.posts.filter(post => post.status !== 'pending');
+          this.posts = filtered;
+          console.log(this.posts);
         })
         .catch(err => console.log(err));
     },
@@ -92,11 +96,13 @@ export default {
     },
     approvePost(postId) {
       console.log(`Post ${postId} approved.`);
-      // Add logic for approving the post
+      PostService.updatePostStatus(postId, 'accepted');
+      this.posts = PostService.getPosts();
     },
     rejectPost(postId) {
       console.log(`Post ${postId} rejected.`);
-      // Add logic for rejecting the post
+      PostService.updatePostStatus(postId, 'rejected');
+      this.posts = PostService.getPosts();
     }
   },
   created() {
