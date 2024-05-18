@@ -1,7 +1,7 @@
 <template>
     <div style="background-color:#EFF6F3; background-size: cover;">
       <div class="typing-animation flex justify-center items-center h-full">
-      <div class="p-6">
+      <div class="p-6"></div></div></div>
 
         <h1 id="typing-text" class="p-6 text-2xl font-bold text-[#180a0af6]" style="color:#180a0af6"> 
         </h1>

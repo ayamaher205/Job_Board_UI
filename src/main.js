@@ -4,16 +4,12 @@ import './assets/style.css'
 import '../node_modules/flowbite-vue/dist/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
-
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import router from './router'
 import Vueform from '@vueform/vueform'
 import CandidateLayout from './layouts/CandidateLayout.vue'
 import VueSweetalert2 from 'vue-sweetalert2';
-import vueformConfig from './../vueform.config'
 import vueformConfig from '../vueform.config'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'flowbite'
