@@ -25,6 +25,7 @@ import PostsAdmin from '@/views/AdminViews/PostsAdmin.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 import DeactivatedEmployers from '@/components/AdminComponenets/DeactivatedEmployers.vue';
 import DeactivatedCandidates from '@/components/AdminComponenets/DeactivatedCandidates.vue';
+import EmployerProfileView from '@/views/EmployerProfileView.vue';
 
 
 
@@ -112,11 +113,11 @@ const router = createRouter({
     // // meta: { requiresAuth: true }
     // },
   
- /*    {
+    {
       path:'/employer',
       name:'empoyer_profile',
-      component:Sidebar
-    }, */
+      component:EmployerProfileView
+    },
     {
       path: '/employer-applications',
       name: 'profile',

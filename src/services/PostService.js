@@ -25,7 +25,9 @@ export default {
   getPosts() {
     return axiosInstance.get('/posts');
   },
-
+  getAllPosts() {
+    return axiosInstance.get('/allposts');
+  },
   getPost(postId) {
     return axiosInstance.get(`/posts/${postId}`);
   },

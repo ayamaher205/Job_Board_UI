@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white hover:bg-gray-50" v-for="post in posts" :key="post.id">
+        <tr class="bg-white hover:bg-gray-50" v-for="post in posts" :key="post.id" >
           <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
             <div class="ps-3">
               <div class="text-base font-semibold">{{ post.title }}</div>
@@ -46,7 +46,7 @@
             </ul>
           </td>
           <td class="px-6 py-4 flex space-x-2">
-            <div class="circle-button bg-green-500 text-white">
+            <div class="circle-button bg-red-500 text-white">
               <font-awesome-icon :icon="['fas', 'xmark']" @click="rejectPost(post.id)" />
             </div>
             <div class="circle-button bg-green-500 text-white">
@@ -78,13 +78,12 @@ export default {
   },
   methods: {
     getPosts() {
-      PostService.getPosts()
+      PostService.getAllPosts()
         .then(res => {
           this.posts = res.data.data;
           const filtered = this.posts.filter(res => res.status == 'pending');
-          this.posts = this.posts.filter(post => post.status !== 'pending');
           this.posts = filtered;
-          console.log(this.posts);
+          console.log(filtered);
         })
         .catch(err => console.log(err));
     },
@@ -97,12 +96,12 @@ export default {
     approvePost(postId) {
       console.log(`Post ${postId} approved.`);
       PostService.updatePostStatus(postId, 'accepted');
-      this.posts = PostService.getPosts();
+      this.getPosts();
     },
     rejectPost(postId) {
       console.log(`Post ${postId} rejected.`);
       PostService.updatePostStatus(postId, 'rejected');
-      this.posts = PostService.getPosts();
+     this.getPosts();
     }
   },
   created() {

@@ -127,8 +127,8 @@ export default {
                 if (!this.admin.image) { delete this.admin.image; }
                 //delete this.employer.employer_id;
                 const response = await updateAdmin(localStorage.getItem('id'), this.admin);
+                this.loggedAdmin.setUser(response.data.admin);
                 router.push({ path: '/admin-profile' })
-                this.loggedAdmin.setUser(response.data.data);
                 this.errorList = [];
                 this.$swal({
                     title:'profile updated successfully',

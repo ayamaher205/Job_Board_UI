@@ -28,12 +28,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'flowbite'
 
 
-import AdminLayout from './layouts/adminLayout.vue'
+//import AdminLayout from './layouts/adminLayout.vue'
 
 library.add(faEllipsisV);
 library.add(fas);
 
-const app = createApp(AdminLayout);
+const app = createApp(App);
 
 // const app = createApp(App)
 // Using Pinia for state management
