@@ -7,20 +7,7 @@
             <div class="border-b border-gray-300 pb-2 dark:border-dark-600">Application Details</div>
           </div>
 
-          <!-- User ID -->
-          <div class="mb-4">
-            <label for="user_id" class="block font-medium text-gray-700 dark:text-dark-200 w-64">User ID</label>
-            <input type="text" v-model="formData.user_id" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
-            <span v-if="errors && errors.user_id" class="text-red-500">{{ errors.user_id[0] }}</span>
-          </div>
-
-          <!-- Post ID -->
-          <div class="mb-4">
-            <label for="post_id" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Post ID</label>
-            <input type="text" v-model="formData.post_id" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" required>
-            <span v-if="errors && errors.post_id" class="text-red-500">{{ errors.post_id[0] }}</span>
-          </div>
-
+ 
           <!-- Contact Details -->
           <div class="mb-4">
             <label for="contact_details" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Contact Details</label>
@@ -63,11 +50,12 @@ import Swal from 'sweetalert2';
 
 export default {
   name: 'ApplicationForm',
+  props: ['postId'], 
   data() {
     return {
       formData: {
         user_id: '',
-        post_id: '',
+        post_id: this.$route.query.postId,
         contact_details: '',
         app_email: '',
         app_phone: '',
@@ -83,7 +71,6 @@ export default {
         console.log(this.formData);
         const response = await ApplicationService.submitApplication(this.formData);
         console.log('Application submitted successfully:', response.data);
-        this.formData.post_id = this.$route.params.postId;
         this.resetForm();
       } catch (error) {
         if (error.response && error.response.data && error.response.data.errors) {
@@ -117,6 +104,11 @@ export default {
     }
   },
   mounted() {
+    const userId = localStorage.getItem('id');
+    if (userId) {
+      this.formData.user_id = userId;
+    }
+
     Pusher.logToConsole = true;
 
     var pusher = new Pusher("5d052631cd1334c57a9d", {
