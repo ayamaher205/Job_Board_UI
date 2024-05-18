@@ -8,15 +8,25 @@ import ProfileStore from "../components/CandidateComponents/ProfileStore.vue";
 import UpdateProfile from "../components/CandidateComponents/UpdateProfile.vue";
 import SearchResult from '../views/SearchResult.vue';
 import JobsPage from '../views/JobsPage.vue';
+import EmployerProfileView from "@/views/EmployerProfileView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+
+    // general
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView
+    },
     {
       path: '/about',
       name: 'about',
       component: AboutView
     },
+
+    // auth
     {
       path: "/login",
       name: "login",
@@ -27,11 +37,20 @@ const router = createRouter({
       name: "registration",
       component: Register,
     },
+
+    // profile
     {
       path: "/candidate/profile/store",
       name: "candidate_profile_store",
       component: ProfileStore,
     },
+    {
+      path: "/candidate/profile/me",
+      name: "candidate_profile_view",
+      component: UpdateProfile,
+    },
+
+    // posts
     {
       path: "/jobs",
       name: "jobs",
@@ -42,17 +61,19 @@ const router = createRouter({
       name: "searchResult",
       component: SearchResult,
     },
-    { path: "/posts/:id", name: "job-details", component: JobDetails },
-    {
-      path: "/candidate/profile/me",
-      name: "candidate_profile_view",
-      component: UpdateProfile,
+    { 
+      path: "/posts/:id",
+      name: "job-details",
+      component: JobDetails 
     },
+    
+    // employer
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: '/employer',
+      name: 'empoyer_profile',
+      component: EmployerProfileView
     },
+
   ],
 });
 

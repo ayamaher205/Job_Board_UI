@@ -1,7 +1,7 @@
 
 <script setup>
-import Sidebar from '../layouts/Sidebar.vue'
-import EmployerProfile from '../components/EmployerProfile.vue'
+import Sidebar from '@/layouts/Sidebar.vue'
+import EmployerProfile from '@/components/EmployerProfile.vue'
 </script>
 <template>
 <div class="flex h-screen bg-gray-50 dark:bg-white-800">

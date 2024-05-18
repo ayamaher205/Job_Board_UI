@@ -113,7 +113,8 @@ export default {
         },
         async fetchEmployer() {
             try {
-                const response = await getEmployer(this.loggedEmployer.user.id);
+                // console.log(this.loggedEmployer.user)
+                const response = await getEmployer(localStorage.getItem("id"));
                 this.employer = {
                     ...response.data.data
                 };

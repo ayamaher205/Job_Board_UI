@@ -52,11 +52,12 @@
                         <div class="post-details2  mb-50">
                              
                             <div class="small-section-tittle">
-                                <h4>Required Knowledge, Skills, and Qualifications</h4>
+                                <h4>Responsibilities, Skills, and Qualifications</h4>
                             </div>
                            <ul>
+                               <li> {{ post.responsibilities }}</li>
                                <li> {{ post.qualifications }}</li>
-                               <li>{{ post.skills }}</li>
+                               <li> {{ post.skills }} </li>
                                
                            </ul>
                         </div>
@@ -91,7 +92,7 @@
                           <span>{{post.industry}}</span>
                         <ul>
                             <li>Name: <span>{{post.employer}} </span></li>
-                            <li>Web : <span> {{post.image}}</span></li>
+                            <!-- <li>Web : <span> {{post.image}}</span></li> -->
                             <li>Email: <span>{{post.email}}</span></li>
                         </ul>
                    </div>
