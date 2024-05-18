@@ -6,14 +6,9 @@ import Jobs from '@/components/Jobs.vue';
 import ViewJob from '../components/ViewJob.vue'
 import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
-import AdminLayout from '../layouts/adminLayout.vue';
 import { requireAuth } from '../services/auth';
 import addAdmin from '../views/AdminViews/addAdmin.vue';
-import Dashboard from '../views/AdminViews/DashBoard.vue';
-import candidates from '../views/AdminViews/candidates.vue';
-import employers from '../views/AdminViews/employers.vue';
 import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
-import EmployerProfileView from '@/views/EmployerProfileView.vue';
 import EmployerApplicationsView from '@/views/EmployerApplicationsView.vue';
 import ShowApplications from '@/views/ShowApplications.vue'
 import EditApplication from './../views/EditApplication.vue'

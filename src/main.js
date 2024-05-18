@@ -24,7 +24,6 @@ library.add(faEllipsisV);
 
 // const app = createApp(App)
 
-app.component('font-awesome-icon', FontAwesomeIcon);
 
 
 
@@ -36,6 +35,7 @@ import router from './router'
 const app = createApp(AdminLayout)
 
 
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(createPinia())
 app.use(Vueform, vueformConfig)
 
