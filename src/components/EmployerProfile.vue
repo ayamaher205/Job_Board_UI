@@ -119,7 +119,6 @@ import { getEmployer, updateEmployer } from "../services/EmployerService.js";
 import { useLoggedUser } from '@/stores/User.js';
 import { useEmployer } from '@/stores/EmployerStore.js'
 import router from "@/router/index.js";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 
 export default {
     mounted() {
@@ -179,8 +178,8 @@ export default {
                 if (!this.employer.image||this.employer.image==null) { delete this.employer.image; }
                 //delete this.employer.employer_id;
                 const response = await updateEmployer(this.loggedEmployer.user.employer_id, this.employer);
-                router.push({ path: '/employer' })
                 this.loggedEmployer.setUser(response.data.data);
+                router.push({ path: '/employer' })
                 this.errorList = [];
                 this.$swal({
                     title:'Profile Updated succefully',
