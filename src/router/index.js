@@ -12,8 +12,20 @@ import HomeView from '../views/HomeView.vue'
 // import Dashboard from '../views/AdminViews/DashBoard.vue';
 // import candidates from '../views/AdminViews/candidates.vue';
 // import employers from '../views/AdminViews/employers.vue';
+import HomeView from '../views/HomeView.vue';
+import SearchResult from '../views/SearchResult.vue';
+import JobsPage from '../views/JobsPage.vue';
+import Sidebar from '../components/Sidebar.vue'
+import EmployerProfile from '../views/EmployerProfileView.vue';
+import login from '../views/login.vue';
+import registeration from '../views/registeration.vue';
+import AdminLayout from '../layouts/adminLayout.vue';
+import { requireAuth } from '../services/auth';
+import addAdmin from '../views/AdminViews/addAdmin.vue';
+import Dashboard from '../views/AdminViews/DashBoard.vue';
+import candidates from '../views/AdminViews/candidates.vue';
+import employers from '../views/AdminViews/employers.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
-// import addAdmin from '../views/AdminViews/addAdmin.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

@@ -1,21 +1,11 @@
 <template>
-  <div class="admin-layout">
+  <div class="admin-layout bg-gray-100">
     <header>
-      <h1>Admin Panel</h1>
+      <Header/>
+      <hr class =" h-1 m-0 mx-auto bg-gray-900" >
     </header>
-    <nav>
-      <ul>
-        <li><router-link to="/admin/dashboard">Dashboard</router-link></li>
-        <li><router-link to="/admin/candidates">candidates</router-link></li>
-        <li><router-link to="/admin/employers">employers</router-link></li>
-        <li><router-link to="/admin/add-admin">add</router-link></li>
-      </ul>
-    </nav>
     <main>
-        <p>
-            lay out
-        </p>
-      <router-view></router-view>
+    <SideBar/>
     </main>
     <footer>
       <p>&copy; 2024 Admin Panel</p>
@@ -24,12 +14,20 @@
 </template>
 
 <script>
+import SideBar from '@/components/AdminComponenets/SideBar.vue';
+import Header from '@/components/AdminComponenets/Header.vue';
 export default {
-  name: 'AdminLayout'
+  name: 'AdminLayout',
+  components: {
+    SideBar,
+    Header
+  },
 }
 </script>
 
 <style scoped>
+hr{
+  width: 68%;
+}
 
-</style>>
 </style>
