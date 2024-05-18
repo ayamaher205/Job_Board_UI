@@ -19,6 +19,7 @@ import EmployerDashboardView from '@/views/EmployerDashboardView.vue'
 import Dashboard from '../views/AdminViews/DashBoard.vue';
 import candidates from '../views/AdminViews/candidates.vue';
 import employers from '../views/AdminViews/employers.vue';
+import AdminProfile from '@/components/AdminComponenets/AdminProfile.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 
 const router = createRouter({
@@ -42,6 +43,10 @@ const router = createRouter({
       component: login,
       name:login,
   },
+  {
+    path: '/admin-profile',
+    component: AdminProfile,
+},
   {
     path: '/register',
     component: registeration,
