@@ -3,7 +3,7 @@
     <div class="typing-animation">
       <div class="p-6">
 
-        <h1 id="typing-text" class="p-6 text-2xl font-bold text-[#fafafaf6]" style="color:#fafafaf6"> 
+        <h1 id="typing-text" class="p-6 text-2xl font-bold text-[#180a0af6]" style="color:#180a0af6"> 
         </h1>
 
       </div>

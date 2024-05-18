@@ -5,7 +5,7 @@
     <div class="my-4 rounded-lg p-10  max-w-xl shadow-box-circle bg-[#fafafae5] dark:bg-dark-1000 animate__animated animate__bounceIn">
       <form class="w-full" @submit.prevent="submitApplication">
         <div class="text-xl mb-4 col-span-12 text-green-800 dark:text-green-400">
-          <div class="border-b border-gray-300 pb-2 dark:border-dark-600">Application Details</div>
+          <div class="border-b border-gray-300 pb-2 dark:border-dark-600">Update status</div>
         </div>
 
         <!-- Status dropdown -->
