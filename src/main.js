@@ -21,8 +21,8 @@ import vueformConfig from '../vueform.config'
 
 library.add(faEllipsisV);
 // const app = createApp(App)
-app.component('font-awesome-icon', FontAwesomeIcon);
 const app = createApp(CandidateLayout)
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(createPinia())
 app.use(Vueform, vueformConfig)
 
