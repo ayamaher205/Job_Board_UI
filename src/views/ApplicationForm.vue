@@ -11,7 +11,7 @@
           <!-- Contact Details -->
           <div class="mb-4">
             <label for="contact_details" class="block font-medium text-gray-700 dark:text-dark-200 w-64">Contact Details</label>
-            <input type="text" v-model="formData.contact_details" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" placeholder="Enter your contact details">
+            <input type="text" v-model="formData.contact_details" class="mt-1 block w-full rounded-md border-black border-t-0 border-l-0  focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 outline-none px-4 py-2" >
           </div>
 
           <!-- Applicant Email -->

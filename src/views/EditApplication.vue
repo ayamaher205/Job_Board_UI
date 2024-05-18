@@ -1,5 +1,5 @@
 <template>
-      <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
+      <div style="background-color:#EFF6F3; background-size: cover;">
 
   <div class="h-screen flex justify-center items-center" >
     <div class="my-4 rounded-lg p-10  max-w-xl shadow-box-circle bg-[#fafafae5] dark:bg-dark-1000 animate__animated animate__bounceIn">
