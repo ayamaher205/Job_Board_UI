@@ -136,6 +136,45 @@ const router = createRouter({
       component:EmployerJobsView
     },
 
+    // admin
+    {
+      path: '/admin',
+      name:'AdminLayout',
+      component: AdminLayout,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/admin/add-admin',
+      component: addAdmin,
+      name:addAdmin,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/admin/dashboard',
+      component: Dashboard,
+      name:'Dashboard',
+      beforeEnter: requireAuth 
+  
+    },
+    {
+      path: '/admin/candidates',
+      component: candidates,
+      name:candidates,
+      beforeEnter: requireAuth 
+    },
+    {
+        path: '/admin/employers',
+        component: employers,
+        name:employers,
+        beforeEnter: requireAuth 
+    },
+    {
+      path: '/admin/update-post-status',
+      component: updatePostStatus,
+      name:updatePostStatus,
+      // meta: { requiresAuth: true }
+    },
+    
   ],
 
 });
