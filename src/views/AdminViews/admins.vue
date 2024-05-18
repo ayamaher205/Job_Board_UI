@@ -2,6 +2,10 @@
   <div class="w-100">
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold mx-auto">Admins</h2>
+       <button @click="goToDeactivatedCandidates" 
+        class="bg-red-400 text-white py-2 px-2 rounded">
+        Deactivated Candidates
+      </button>
     </div>
     <Spinner v-if="loading" />
     <div v-else class="table-container">

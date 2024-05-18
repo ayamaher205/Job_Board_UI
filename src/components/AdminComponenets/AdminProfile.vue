@@ -87,7 +87,7 @@ import { icon } from "@fortawesome/fontawesome-svg-core";
 
 export default {
     mounted() {
-        this.fetchEmployer();
+        this.fetchAdmin();
     },
     data() {
         return {
@@ -106,7 +106,7 @@ export default {
             const selectedFile = event.target.files[0];
             this.admin.image = selectedFile;
         },
-        async fetchEmployer() {
+        async fetchAdmin() {
             try {
                 const response = await getUser(localStorage.getItem('id'));
                 this.admin = {

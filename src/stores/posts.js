@@ -17,9 +17,6 @@ export const usePostsstore = defineStore('posts', {
         throw error;
       }
     },
-    
-    
-    
     // async fetchPostsByEmployers() {
     //   try {
     //     const posts = await this.fetchPostsCount(); 

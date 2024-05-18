@@ -2,6 +2,11 @@
   <div class="w-100">
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold mx-auto">Employers</h2>
+      <button 
+        @click="goToDeactivatedEmployers" 
+        class="bg-red-400 text-white py-2 px-2 rounded">
+        Deactivated Employers
+      </button>
     </div>
     <Spinner v-if="loading" />
     <div v-else class="table-container">
@@ -27,7 +32,7 @@
             </td>
             <td class="py-2 px-2 border-b border-gray-200">{{ employer.name }}</td>
             <td class="py-2 px-2 border-b border-gray-200">{{ employer.email }}</td>
-            <td class="py-2 px-2 border-b border-gray-200">{{ employer.industry }}</td>
+            <td class="py-2 px-2 border-b border-gray-200">{{ employer.employer.industry }}</td>
             <td class="py-2 px-2 border-b border-gray-200">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer text-yellow-500" @click="deactivate(employer)">
@@ -47,6 +52,7 @@ import { useEmployerstore } from '@/stores/employer';
 import Swal from 'sweetalert2';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Employers',
@@ -92,10 +98,14 @@ export default {
         }
       });
       console.log('Deactivating employer', employer);
+    },
+    goToDeactivatedEmployers() {
+      this.$router.push({ name: 'DeactivatedEmployers' });
     }
   }
 }
 </script>
+
 
 <style scoped>
 .table-container {

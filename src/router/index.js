@@ -23,10 +23,16 @@ import employers from '../views/AdminViews/employers.vue';
 import AdminProfile from '@/components/AdminComponenets/AdminProfile.vue';
 import PostsAdmin from '@/views/AdminViews/PostsAdmin.vue';
 // import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
+import DeactivatedEmployers from '@/components/AdminComponenets/DeactivatedEmployers.vue';
+import DeactivatedCandidates from '@/components/AdminComponenets/DeactivatedCandidates.vue';
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+
+  
     {
       path: '/',
       name: 'home',
@@ -88,6 +94,16 @@ const router = createRouter({
       component: admins,
       name:admins,
       beforeEnter: requireAuth 
+      },
+      {
+        path: '/deactivated-employers',
+        name: 'DeactivatedEmployers',
+        component: DeactivatedEmployers
+      },
+      {
+        path: '/deactivated-candidates',
+        name: 'DeactivatedCandidates',
+        component: DeactivatedCandidates
       },
     // {
     // path: '/admin/update-post-status',

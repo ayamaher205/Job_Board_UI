@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center h-75 w-100 overflow-hidden text-dark-400 bg-gray-100 p-7">
+    <div class="flex flex-col items-center h-75 w-100 overflow-hidden text-dark-400 bg-gray-100 p-5">
       <router-view />
     </div>
   </div>
