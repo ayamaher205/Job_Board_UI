@@ -18,9 +18,8 @@
                 <div class="main-menu">
                   <nav class="d-none d-lg-block">
                     <ul id="navigation">
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="jobs">Find a Jobs </a></li>
-                      <li><a href="about.html">About</a></li>
+                      <li> <router-link :to="'/'"> Home </router-link> </li>
+                      <li> <router-link :to="'/jobs'"> Find a Job </router-link> </li>
                       <li><a href="#">Page</a>
                         <ul class="submenu">
                           <li><a href="blog.html">Blog</a></li>
@@ -35,7 +34,7 @@
                 </div>
                 <!-- Header-btn -->
                 <div class="header-btn d-none f-right d-lg-block">
-                  <a href="#" class="btn head-btn1">Register</a>
+                    <router-link class="btn head-btn2" :to="'/candidate/register'"> Register </router-link>
                   <a href="#" class="btn head-btn2">Login</a>
                 </div>
               </div>

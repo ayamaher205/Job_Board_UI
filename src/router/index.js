@@ -83,6 +83,11 @@ const router = createRouter({
       name: "candidate_profile_view",
       component: UpdateProfile,
     },
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView
+    },
   ],
 });
 
