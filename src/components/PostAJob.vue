@@ -103,7 +103,9 @@ export default {
     async submitForm() {
       try {
         await PostService.createPost(this.formData);
+        const postId = response.data.id;
         this.clearForm();
+        this.$router.push({ name: 'ApplicationForm', params: { postId } });
         this.$router.push('/employer-posts');
       } catch (error) {
         if (error.response && error.response.status === 422) {

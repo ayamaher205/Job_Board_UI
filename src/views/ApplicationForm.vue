@@ -1,5 +1,5 @@
 <template>
-  <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover; height:650px">
+  <div style="background-color:#EFF6F3; background-size: cover; height:650px">
     <div class="flex justify-center items-center ">
       <div class=" my-4 rounded-lg p-10  max-w-xl shadow-box-circle bg-[#fafafae5] dark:bg-dark-1000 animate__animated animate__bounceIn">
         <form class="w-full" @submit.prevent="submitApplication">
@@ -83,6 +83,7 @@ export default {
         console.log(this.formData);
         const response = await ApplicationService.submitApplication(this.formData);
         console.log('Application submitted successfully:', response.data);
+        this.formData.post_id = this.$route.params.postId;
         this.resetForm();
       } catch (error) {
         if (error.response && error.response.data && error.response.data.errors) {

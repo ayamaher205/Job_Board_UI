@@ -1,9 +1,9 @@
 <template>
-    <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
+    <div style="background-color:#EFF6F3; background-size: cover;">
     <div class="typing-animation">
       <div class="p-6">
 
-        <h1 id="typing-text" class="p-6 text-2xl text-[#fafafaf6] flex justify-center items-center" style="background-color:#fafafaf6"> 
+        <h1 id="typing-text" class="p-6 text-2xl text-[#000000f6] flex justify-center items-center" style="background-color:#fafafaf6"> 
         </h1>
 
       </div>

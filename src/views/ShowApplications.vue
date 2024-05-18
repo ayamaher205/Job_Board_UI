@@ -1,5 +1,5 @@
 <template>
-    <div style="background-image: url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_960_720.png'); background-size: cover;">
+    <div style="background-color:#EFF6F3; background-size: cover;">
 
   <div class="flex justify-center items-center h-screen">
     <div v-if="application">
