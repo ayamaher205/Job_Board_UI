@@ -34,9 +34,15 @@
                 </div>
                 <!-- Header-btn -->
                 <div class="header-btn d-none f-right d-lg-block">
-                    <router-link class="btn head-btn2" :to="'/register'"> Register </router-link>
-                    <router-link class="btn head-btn2" :to="'/login'"> Login </router-link>
-                    <a @click.prevent="showAlert()"  class="btn head-btn2" href="logout"> Logout </a>
+                  <!-- <h1 v-if="checkAuth">Vue is awesome!</h1> -->
+                  <!-- <a @click.prevent="checkAuth()"  class="btn head-btn2" href="logout"> check </a> -->
+                    <div v-if="isAuthenticated">
+                      <a @click.prevent="showAlert()"  class="btn head-btn2" href="logout"> Logout </a>
+                    </div>
+                    <div v-else>
+                      <router-link class="btn head-btn2" :to="'/register'"> Register </router-link>
+                      <router-link class="btn head-btn2" :to="'/login'"> Login </router-link>
+                    </div>
                 </div>
               </div>
             </div>
@@ -57,6 +63,11 @@
 import { RouterLink } from 'vue-router';
 import AuthService from '../services/AuthService';
 export default{
+  data () {
+    return {
+      isAuthenticated: !!localStorage.getItem("token"),
+    }
+  },
   methods:{
     showAlert(){
       this.$swal({
@@ -68,6 +79,19 @@ export default{
         }
       });
     },
+    checkAuth() {
+      this.isAuthenticated = !!localStorage.getItem("token");
+    }
+  },
+  watch: {
+    // Watch the $route to react to changes in the route
+    '$route'() {
+      this.checkAuth();
+    }
+  },
+  created() {
+    // Ensure the auth status is correct on component creation
+    this.checkAuth();
   }
 }
 </script>
