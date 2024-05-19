@@ -154,8 +154,11 @@
   background-color: #fff;
  }
 
+  
  .select-itms .loc{
   width: 200px !important;
+  height: 30px !important;
+  padding:0 !important;
     max-width: 200px;
      
     border: 1px solid #ccc;  
