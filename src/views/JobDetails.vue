@@ -79,10 +79,10 @@
                           <li>Salary :  <span>{{ post.salary_range }}</span></li>
                       
                       </ul>
-                     <div class="apply-btn2">
-                        
-                        <router-link @click="apply" to="/applications" class="btn">Apply Now</router-link>
-                     </div>
+                      <div class="apply-btn2">
+                          <!-- <a href="#" class="btn apply-btn">Apply Now</a> -->
+                          <router-link  :to="{ name: 'ApplicationForm', query: { postId: post.id } }" class="btn">Apply Now</router-link>
+                       </div>
                    </div>
                     <div class="post-details4  mb-50">
                         

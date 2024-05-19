@@ -1,7 +1,5 @@
 <template>
   <main>   
-
-       
        <div class="slider-area ">
         <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="../..assets/img/hero/about.jpg">
           <!-- <div class="single-slider section-overly slider-height2 d-flex align-items-center" :style="{ backgroundImage: `url(${require('@/assets/img/hero/about.jpg')})` }">  -->
