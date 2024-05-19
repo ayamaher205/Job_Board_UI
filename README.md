@@ -1,5 +1,11 @@
 # Laravel-Vue Job Board
 
+## To run this project paste these commands in the terminal
+```
+docker build -t job .
+docker run -it -p 8080:8080 --rm --name jobAppContainer job
+```
+
 This is the frontend repository for the Laravel-Vue Job Board project. The project is designed to facilitate the job search and recruitment process, allowing employers to post job listings and candidates to apply for those jobs.
 
 ## Features

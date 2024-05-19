@@ -175,12 +175,16 @@ export default {
         },
         async handleSubmit() {
             try {
-                if (!this.employer.image) { delete this.employer.image; }
+                if (!this.employer.image||this.employer.image==null) { delete this.employer.image; }
                 //delete this.employer.employer_id;
                 const response = await updateEmployer(this.loggedEmployer.user.employer_id, this.employer);
-                router.push({ path: '/employer' })
                 this.loggedEmployer.setUser(response.data.data);
+                router.push({ path: '/employer' })
                 this.errorList = [];
+                this.$swal({
+                    title:'Profile Updated succefully',
+                    icon:'success'
+                })
             } catch (error) {
                 if (error.response) {
                     this.errorList = [];

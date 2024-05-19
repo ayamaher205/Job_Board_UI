@@ -1,38 +1,51 @@
+// General Views
+import AboutView from "../views/AboutView.vue";
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import SearchResult from '../views/SearchResult.vue';
-import JobsPage from '../views/JobsPage.vue';
-import Jobs from '@/components/Jobs.vue';
+import Sidebar from '../layouts/Sidebar.vue'
 import ViewJob from '../components/ViewJob.vue'
-import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import { requireAuth } from '../services/auth';
+
+// Candidate Views
+import Register from "../components/CandidateComponents/Register.vue";
+import Login from "../components/CandidateComponents/Login.vue";
+import ProfileStore from "../components/CandidateComponents/ProfileStore.vue";
+import UpdateProfile from "../components/CandidateComponents/UpdateProfile.vue";
+
+
+// Admin Views
+import AdminLayout from '../layouts/adminLayout.vue';
 import addAdmin from '../views/AdminViews/addAdmin.vue';
+import Dashboard from '../views/AdminViews/DashBoard.vue';
+import candidates from '../views/AdminViews/candidates.vue';
+import employers from '../views/AdminViews/employers.vue';
+
+// Employers Views
 import EmployerApplicationsView from '@/views/EmployerApplicationsView.vue';
+import EmployerDashboardView from '@/views/EmployerDashboardView.vue'
+import EmployerProfileView from "@/views/EmployerProfileView.vue";
+import EmployerJobsView from '@/views/EmployerJobsView.vue';
+import EmployerPostJob from '@/views/EmployerPostJob.vue';
+import EmployerProfile from '../components/EmployerProfile.vue';
+
+// Applications Views
 import ShowApplications from '@/views/ShowApplications.vue'
 import EditApplication from './../views/EditApplication.vue'
 import ListApplications from '@/views/ListApplications.vue'
 import DeleteApplication from './../views/DeleteApplication.vue'
 import ApplicationForm from '@/views/ApplicationForm.vue';
-import EmployerDashboardView from '@/views/EmployerDashboardView.vue'
-import Dashboard from '../views/AdminViews/DashBoard.vue';
-import candidates from '../views/AdminViews/candidates.vue';
-import admins from '../views/AdminViews/admins.vue';
-import employers from '../views/AdminViews/employers.vue';
-import AdminProfile from '@/components/AdminComponenets/AdminProfile.vue';
-import PostsAdmin from '@/views/AdminViews/PostsAdmin.vue';
-// import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
-import DeactivatedEmployers from '@/components/AdminComponenets/DeactivatedEmployers.vue';
-import DeactivatedCandidates from '@/components/AdminComponenets/DeactivatedCandidates.vue';
-import EmployerProfileView from '@/views/EmployerProfileView.vue';
 
-
+// Jobs Views
+import SearchResult from '../views/SearchResult.vue';
+import JobsPage from '../views/JobsPage.vue';
+import JobDetails from '../views/JobDetails.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
 
-  
+    // general
     {
       path: '/',
       name: 'home',
@@ -41,81 +54,70 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
+      // component: AboutView
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
+
+    // auth
     {
-      path: '/login',
-      component: login,
-      name:login,
-  },
-  {
-    path: '/admin-profile',
-    component: AdminProfile,
-},
-  {
-    path: '/register',
-    component: registeration,
-    name:registeration,
-  },
-  {
-    path: '/admin/posts',
-    name: 'PostsAdmin',
-    component: PostsAdmin,
-  },
-  {
-    path: '/admin/add-admin',
-    component: addAdmin,
-    name:addAdmin,
-    beforeEnter: requireAuth
-  },
-  {
-    path: '/admin/dashboard',
-    component: Dashboard,
-    name:'Dashboard',
-    beforeEnter: requireAuth 
-  },
-  {
-    path: '/admin/candidates',
-    component: candidates,
-    name:candidates,
-    beforeEnter: requireAuth 
-  },
-  {
-    path: '/admin/employers',
-    component: employers,
-    name:employers,
-    beforeEnter: requireAuth 
+      path: "/login",
+      name: "login",
+      component: Login,
     },
     {
-      path: '/admin/admins',
-      component: admins,
-      name:admins,
-      beforeEnter: requireAuth 
-      },
-      {
-        path: '/deactivated-employers',
-        name: 'DeactivatedEmployers',
-        component: DeactivatedEmployers
-      },
-      {
-        path: '/deactivated-candidates',
-        name: 'DeactivatedCandidates',
-        component: DeactivatedCandidates
-      },
-    // {
-    // path: '/admin/update-post-status',
-    // component: updatePostStatus,
-    // name:updatePostStatus,
-    // // meta: { requiresAuth: true }
-    // },
-  
+      path: "/register",
+      name: "registration",
+      component: Register,
+    },
+
+    // profile
     {
-      path:'/employer',
-      name:'empoyer_profile',
-      component:EmployerProfileView
+      path: "/candidate/profile/store",
+      name: "candidate_profile_store",
+      component: ProfileStore,
+    },
+    {
+      path: "/candidate/profile/me",
+      name: "candidate_profile_view",
+      component: UpdateProfile,
+    },
+
+    // posts
+    {
+      path: "/jobs",
+      name: "jobs",
+      component: JobsPage,
+    },
+    {
+      path: "/searchResult",
+      name: "searchResult",
+      component: SearchResult,
+    },
+  /*   {
+      path: '/posts/:id',
+      name: 'post',
+      component: ViewJob
+    }, */
+    { 
+      path: "/posts/:id",
+      name: "job-details",
+      component: JobDetails 
+    },
+    {
+      path:'/post-job',
+      name:'create_post',
+      component:EmployerPostJob
+    },
+
+
+    // employer
+    {
+      path: '/employer',
+      name: 'empoyer_profile',
+      component: EmployerProfileView
     },
     {
       path: '/employer-applications',
@@ -128,14 +130,42 @@ const router = createRouter({
       component:EmployerDashboardView
     },
     {
-      path: '/posts',
-      name: 'posts',
-      component: Jobs
+      path:'/employer-posts',
+      name:'posts',
+      component:EmployerJobsView
+    },
+
+    // admin
+    {
+      path: '/admin',
+      name:'AdminLayout',
+      component: AdminLayout,
+      beforeEnter: requireAuth
     },
     {
-      path: '/post/:id',
-      name: 'post',
-      component: ViewJob
+      path: '/admin/add-admin',
+      component: addAdmin,
+      name:addAdmin,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/admin/dashboard',
+      component: Dashboard,
+      name:'Dashboard',
+      beforeEnter: requireAuth 
+  
+    },
+    {
+      path: '/admin/candidates',
+      component: candidates,
+      name:candidates,
+      beforeEnter: requireAuth 
+    },
+    {
+        path: '/admin/employers',
+        component: employers,
+        name:employers,
+        beforeEnter: requireAuth 
     },
     {
       path: '/applications',
@@ -162,11 +192,9 @@ const router = createRouter({
       name: 'deleteApplications',
       component: DeleteApplication
     },
-    { path: '/jobs', name: 'Jobs', component: JobsPage }
-    ,
+    
+  ],
 
-    { path: '/searchResult', name: 'searchResult', component: SearchResult }
-  ]
-})
+});
 
-export default router
+export default router;

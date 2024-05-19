@@ -1,6 +1,6 @@
 <template>
   <header class="flex items-center justify-between text-dark-400 bg-white p-1 rounded-br-2xl">
-    <img src="../../assets/logo.png" class="object-fit w-24 h-10 mx-2">
+    <img src="" class="object-fit w-24 h-10 mx-2">
     <div class="hidden sm:block">
       <h1 class="text-lg font-bold">Admin Panel</h1>
     </div>

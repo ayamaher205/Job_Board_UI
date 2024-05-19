@@ -68,7 +68,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/employer-jobs"
+          <router-link to="/employer-posts"
             class="flex no-underline items-center p-2 text-green-900 rounded-lg dark:text-green-900 hover:bg-green-700 dark:hover:bg-green-900 dark:hover:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor"
@@ -105,7 +105,9 @@
           </router-link>
         </li>
         <li>
-          <router-link href="#"
+          <a
+            @click.prevent="showDeleteAlert"
+            href="#"
             class="flex no-underline items-center p-2 text-green-900 rounded-lg dark:text-green-900 hover:bg-green-700 dark:hover:bg-green-900 dark:hover:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
               stroke-width="2"
@@ -115,7 +117,7 @@
                 d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
             </svg>
             <span class="flex-1 ms-3 whitespace-nowrap">Delete Account</span>
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
@@ -123,15 +125,27 @@
 </template>
 <script>
 import { RouterLink } from 'vue-router';
+import Swal from 'sweetalert2';
 import AuthService from '../services/AuthService';
 import { useLoggedUser } from '@/stores/User';
+import { deleteEmployer, getEmployer } from '@/services/EmployerService';
+
 export default {
   data() {
     return {
-      loggedEmployer: useLoggedUser(),
+      loggedEmployer: null,
     }
   },
+  created() {
+    this.loggedEmployer = useLoggedUser();
+    this.getEmployer();
+  },
   methods: {
+    getEmployer() {
+      getEmployer(this.loggedEmployer.user.id)
+        .then(res => this.loggedEmployer = res.data.data.employer_id)
+        .catch(error => console.error('Error fetching employer:', error));
+    },
     showAlert() {
       this.$swal({
         title: "You Logged out Succefully!!",
@@ -141,6 +155,50 @@ export default {
           AuthService.logout();
         }
       })
+    },
+    showDeleteAlert() {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          try {
+            deleteEmployer(this.loggedEmployer);
+            AuthService.logout();
+            this.$router.push('/');
+            swalWithBootstrapButtons.fire({
+              title: "Deleted!",
+              text: "Your account has been deleted.",
+              icon: "success"
+            });
+          } catch (error) {
+            console.error('Error deleting account:', error);
+            swalWithBootstrapButtons.fire({
+              title: "Error",
+              text: "An error occurred while deleting your account.",
+              icon: "error"
+            });
+          }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your account is safe :)",
+            icon: "info"
+          });
+        }
+      });
     }
   }
 
