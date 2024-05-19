@@ -32,7 +32,7 @@
             </td>
             <td class="py-2 px-2 border-b border-gray-200">{{ employer.name }}</td>
             <td class="py-2 px-2 border-b border-gray-200">{{ employer.email }}</td>
-            <td class="py-2 px-2 border-b border-gray-200">{{ employer.employer.industry }}</td>
+            <td class="py-2 px-2 border-b border-gray-200" >{{employer.employer&&employer.employer.industry?employer.employer.industry:'NA'}} </td>
             <td class="py-2 px-2 border-b border-gray-200">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer text-yellow-500" @click="deactivate(employer)">

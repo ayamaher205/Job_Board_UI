@@ -31,8 +31,10 @@
             <td class="py-2 px-2 border-b border-gray-200"><img :src="'http://127.0.0.1:8000/images/users/' + candidate.image" alt="candidate image" class="w-10 h-10 rounded-full"></td>
             <td class="py-2 px-2 border-b border-gray-200">{{candidate.name}} </td>
             <td class="py-2 px-2 border-b border-gray-200">{{candidate.email}}</td>
-            <td class="py-2 px-2 border-b border-gray-200">{{candidate.profile.phone}} </td>
-            <td class="py-2 px-2 border-b border-gray-200">{{candidate.profile.address}} </td>
+            <td class="py-2 px-2 border-b border-gray-200">
+    {{ candidate.profile && candidate.profile.phone ? candidate.profile.phone : 'NA' }}
+  </td>
+            <td class="py-2 px-2 border-b border-gray-200" >{{candidate.profile&&candidate.profile.address?candidate.profile.address:'NA'}} </td>
             <td class="py-2 px-2 border-b border-gray-300">
               <svg 
               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer text-yellow-500"  @click="deactivate(candidate)">

@@ -111,8 +111,9 @@ export const useEmployerstore = defineStore('employers', {
       const postsStore = usePostsstore();
       const userStore = useUserstore();
 
-      const employers = userStore.employers || [];
-      const posts = postsStore.allposts || [];
+      const employers = userStore.Employers;
+      const posts = postsStore.allposts;
+
 
       return employers.map(employer => {
         let postsCount = 0;

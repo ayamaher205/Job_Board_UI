@@ -8,7 +8,6 @@ import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import { requireAuth } from '../services/auth';
 import addAdmin from '../views/AdminViews/addAdmin.vue';
-import updatePostStatus from '../views/AdminViews/updatePostStatus.vue';
 import EmployerApplicationsView from '@/views/EmployerApplicationsView.vue';
 import ShowApplications from '@/views/ShowApplications.vue'
 import EditApplication from './../views/EditApplication.vue'

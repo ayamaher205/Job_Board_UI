@@ -55,6 +55,7 @@ export default {
     const postsCount = computed(() => postsstore.PostsCount)
     const categoriesWithPostsCount = computed(() => categorystore.categoriesWithPostsCount)
     const employersWithPostsCount = computed(() => employerstore.employersWithPostsCount)
+    
 
 
     const doughnutChartData = ref({
@@ -109,6 +110,7 @@ export default {
 
     const categories = categoriesWithPostsCount.value
     const employers = employersWithPostsCount.value
+    console.log("employersWithPostsCount",employersWithPostsCount)
     
         const topCategories = categories.slice(0, 10)
         doughnutChartData.value.labels = topCategories.map(category => category.name)
@@ -116,7 +118,9 @@ export default {
         doughnutChartData.value.datasets[0].backgroundColor = topCategories.map(() => `#${Math.floor(Math.random() * 16777215).toString(16)}`)
 
         const topEmployers = employers.slice(0, 10)
+        console.log("employers",employers)
         employerChartData.value.labels = topEmployers.map(employer => employer.name)
+        console.log("tessssssst",employerChartData.value.labels)
         employerChartData.value.datasets[0].data = topEmployers.map(employer => employer.postsCount)
 
     isDataReady.value = true 

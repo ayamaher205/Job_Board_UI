@@ -26,6 +26,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'flowbite'
+import AdminLayout from './layouts/adminLayout.vue';
 
 
 //import AdminLayout from './layouts/adminLayout.vue'
@@ -33,7 +34,7 @@ import 'flowbite'
 library.add(faEllipsisV);
 library.add(fas);
 
-const app = createApp(App);
+const app = createApp(AdminLayout);
 
 // const app = createApp(App)
 // Using Pinia for state management

@@ -92,15 +92,15 @@ export const useCandidateStore = defineStore('candidates', {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           }
         });
-        const candidate = this.candidate.find(c => c.id === candidateId);
+        const candidate = this.candidates.find(c => c.id === candidateId);
         if (candidate) {
-          candidate.active = TRUE;
-          candidate.deleted_at = NULL;
+          candidate.active = true;
+          candidate.deleted_at = null;
           this.activatedCandidates.push(candidate);
           
         }      
       } catch (error) {
-        console.error('Error activating candidate:', error);
+        console.error('Error activating candidate: from', error);
         Swal.fire({
           icon: 'error',
           title: 'Error',

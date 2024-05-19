@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class=" postsTable relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-100 text-sm text-left text-gray-500">
       <thead class="text-xs text-gray-700 uppercase custom-thead">
         <tr>
@@ -123,5 +123,8 @@ export default {
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
+}
+.postsTable{
+  width: 99%;
 }
 </style>
