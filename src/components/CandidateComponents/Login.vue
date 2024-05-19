@@ -62,7 +62,7 @@
 
 <script>
 import AuthService from '@/services/AuthService';
-import { useLoggedUser } from '@/stores/User.js'
+import { useLoggedUser } from '@/stores/User.js';
 
 export default {
   name: 'login',

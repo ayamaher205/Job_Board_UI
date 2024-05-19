@@ -139,7 +139,7 @@ const router = createRouter({
     // admin
     {
       path: '/admin/login',
-      name:'AdminLogin',
+      name:'AdminLayout',
       component: LoginAdmin,
     },
     {

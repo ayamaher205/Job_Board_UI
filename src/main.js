@@ -15,15 +15,20 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import router from './router'
 import Vueform from '@vueform/vueform'
 import CandidateLayout from './layouts/CandidateLayout.vue'
+import AdminLayout from './layouts/adminLayout.vue';
+import WrapperLayout from './layouts/WrapperLayout.vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import vueformConfig from '../vueform.config'
 
 
 library.add(faEllipsisV);
 // const app = createApp(App)
-const app = createApp(CandidateLayout)
-app.component('font-awesome-icon', FontAwesomeIcon);
+
+const app = createApp(WrapperLayout)
 app.use(createPinia())
+
+
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(Vueform, vueformConfig)
 
 app.use(router)
