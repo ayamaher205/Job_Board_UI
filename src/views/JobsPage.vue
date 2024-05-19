@@ -59,7 +59,8 @@ export default {
         this.filters=filters;
         console.log(this.filters);
         console.log(response.data.data);
-        this.jobs = response.data.data;
+        this.jobs = response.data.data.filter (p => p.employer);
+          console.log("jobs",this.jobs);
         this.pagination = {
           currentPage: response.data.current_page,
           lastPage:  response.data.last_page,

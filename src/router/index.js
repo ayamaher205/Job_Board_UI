@@ -16,6 +16,7 @@ import UpdateProfile from "../components/CandidateComponents/UpdateProfile.vue";
 
 // Admin Views
 import AdminLayout from '../layouts/adminLayout.vue';
+import LoginAdmin from '../views/login.vue';
 import addAdmin from '../views/AdminViews/addAdmin.vue';
 import Dashboard from '../views/AdminViews/DashBoard.vue';
 import candidates from '../views/AdminViews/candidates.vue';
@@ -136,6 +137,11 @@ const router = createRouter({
     },
 
     // admin
+    {
+      path: '/admin/login',
+      name:'AdminLogin',
+      component: LoginAdmin,
+    },
     {
       path: '/admin',
       name:'AdminLayout',

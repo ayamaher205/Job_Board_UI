@@ -74,6 +74,13 @@ export default {
       errorMessage: '',
     };
   },
+  created() {
+    var isAdmin = prompt("are you an admin ? yes  | YES ");
+    console.log(isAdmin);
+    if (isAdmin == "yes") {
+      this.$router.push('/admin/login');
+    }
+  },
   methods: {
     login() {
       
