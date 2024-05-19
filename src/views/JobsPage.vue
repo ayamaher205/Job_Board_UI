@@ -1,7 +1,5 @@
 <template>
   <main>   
-
-       
        <div class="slider-area ">
         <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="../..assets/img/hero/about.jpg">
           <!-- <div class="single-slider section-overly slider-height2 d-flex align-items-center" :style="{ backgroundImage: `url(${require('@/assets/img/hero/about.jpg')})` }">  -->
@@ -61,7 +59,8 @@ export default {
         this.filters=filters;
         console.log(this.filters);
         console.log(response.data.data);
-        this.jobs = response.data.data;
+        this.jobs = response.data.data.filter (p => p.employer);
+          console.log("jobs",this.jobs);
         this.pagination = {
           currentPage: response.data.current_page,
           lastPage:  response.data.last_page,

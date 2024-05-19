@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import Sidebar from '../layouts/Sidebar.vue'
 import ViewJob from '../components/ViewJob.vue'
-import login from '../views/login.vue';
 import registeration from '../views/registeration.vue';
 import { requireAuth } from '../services/auth';
 
@@ -98,6 +97,11 @@ const router = createRouter({
       name: "searchResult",
       component: SearchResult,
     },
+  /*   {
+      path: '/posts/:id',
+      name: 'post',
+      component: ViewJob
+    }, */
     { 
       path: "/posts/:id",
       name: "job-details",
@@ -108,11 +112,7 @@ const router = createRouter({
       name:'create_post',
       component:EmployerPostJob
     },
-    {
-      path: '/post/:id',
-      name: 'post',
-      component: ViewJob
-    },
+
 
     // employer
     {
@@ -173,6 +173,31 @@ const router = createRouter({
       component: updatePostStatus,
       name:updatePostStatus,
       // meta: { requiresAuth: true }
+    },
+    {
+      path: '/applications',
+      name: 'ApplicationForm',
+      component: ApplicationForm
+    },
+    {
+      path: '/get-applications',
+      name: 'getApplications',
+      component: ListApplications
+    },
+    {
+      path: '/edit-applications/:id',
+      name: 'editApplications',
+      component: EditApplication
+    },
+    {
+      path: '/show-applications/:id',
+      name: 'showApplications',
+      component: ShowApplications
+    },
+    {
+      path: '/delete-applications/:id',
+      name: 'deleteApplications',
+      component: DeleteApplication
     },
     
   ],

@@ -104,6 +104,10 @@ export default {
       try {
         await PostService.createPost(this.formData);
         this.clearForm();
+        this.$swal({
+          title:' waiting approval from our admin team',
+          icon:'info'
+        })
         this.$router.push('/employer-posts');
       } catch (error) {
         if (error.response && error.response.status === 422) {

@@ -12,7 +12,7 @@ const updateEmployer = (id, data) => {
   return axios.post(`http://127.0.0.1:8000/api/employers/${id}`, data, {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
     Accept:'application/json',
-    'Content-Type': 'multipart/form-data'
+    'Content-Type':'multipart/form-data'
    }
   });
 };
