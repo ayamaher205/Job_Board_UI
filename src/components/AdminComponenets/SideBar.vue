@@ -70,7 +70,7 @@
             </svg>
             <span class="ml-2 text-sm font-medium">Add Admin</span>
           </router-link>
-          <router-link to="/admin-profile"
+          <router-link to="/admin/admin-profile"
             class="flex items-center w-full h-10 px-2 mt-2 rounded hover:bg-green-900 text-green-700 hover:text-green-100">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">

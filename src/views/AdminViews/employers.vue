@@ -51,13 +51,15 @@
 import { useEmployerstore } from '@/stores/employer';
 import Swal from 'sweetalert2';
 import Loading from 'vue-loading-overlay';
+import Spinner from '@/components/Spinner.vue';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { useRouter } from 'vue-router';
 
 export default {
   name: 'Employers',
   components: {
-    Loading
+    Loading,
+    Spinner
   },
   data() {
     return {

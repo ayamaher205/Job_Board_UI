@@ -21,6 +21,9 @@ import addAdmin from '../views/AdminViews/addAdmin.vue';
 import Dashboard from '../views/AdminViews/DashBoard.vue';
 import candidates from '../views/AdminViews/candidates.vue';
 import employers from '../views/AdminViews/employers.vue';
+import admins from '../views/AdminViews/admins.vue';
+import PostsAdmin from '../views/AdminViews/PostsAdmin.vue';
+import AdminProfile from '../components/AdminComponenets/AdminProfile.vue';
 
 // Employers Views
 import EmployerApplicationsView from '@/views/EmployerApplicationsView.vue';
@@ -139,7 +142,7 @@ const router = createRouter({
     // admin
     {
       path: '/admin/login',
-      name:'AdminLayout',
+      name:'LoginAdmin',
       component: LoginAdmin,
     },
     {
@@ -173,6 +176,25 @@ const router = createRouter({
         name:employers,
         beforeEnter: requireAuth 
     },
+    {
+      path: '/admin/admins',
+      component: admins,
+      name:admins,
+      beforeEnter: requireAuth 
+    },
+    {
+      path: '/admin/posts',
+      component: PostsAdmin,
+      name:PostsAdmin,
+      beforeEnter: requireAuth 
+    },
+    {
+      path: '/admin/admin-profile',
+      component: AdminProfile,
+      name:AdminProfile,
+      beforeEnter: requireAuth 
+    },
+    
     {
       path: '/applications',
       name: 'ApplicationForm',

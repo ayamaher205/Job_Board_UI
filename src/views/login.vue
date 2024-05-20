@@ -74,8 +74,8 @@ export default {
           if (response.data.user.role == 'admin') {
             this.$router.push('/admin/dashboard');
           }
-          else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
-            this.$router.push('/employer');
+          else {
+            this.$router.push('/');
           }
 
         })
