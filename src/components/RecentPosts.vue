@@ -73,13 +73,13 @@
               <div v-for="job in jobs" :key="job.id" class="single-job-items mb-30">
                   <div class="job-items">
                       <div class="company-img">
-                          <a href="#"> <img v-if="job.employer.profile_photo_url" :src="job.employer.logo" width="70px" height="70px" alt="Employer Logo" />
-                              <img v-else src="https://5.imimg.com/data5/SELLER/Default/2023/9/340980630/YL/AL/SM/59465795/company-logo-design-service-500x500.jpg" width="70px" height="70px" alt="Default Logo" /></a>
+                          <router-link :to="{ name: 'job-details', params: { id: job.id } }"> <img v-if="job.employer.profile_photo_url" :src="job.employer.logo" width="70px" height="70px" alt="Employer Logo" />
+                              <img v-else src="https://5.imimg.com/data5/SELLER/Default/2023/9/340980630/YL/AL/SM/59465795/company-logo-design-service-500x500.jpg" width="70px" height="70px" alt="Default Logo" /></router-link>
                       </div>
                       <div class="job-tittle job-tittle2">
-                          <a href="#">
+                        <router-link :to="{ name: 'job-details', params: { id: job.id } }">
                               <h4 >{{ job.title }}</h4>
-                          </a>
+                        </router-link>
                           <ul>
                               <li>{{ job.employer.name }}</li>
                               <li><i class="bi bi-geo-alt-fill"></i>{{ job.location }}</li>
@@ -161,7 +161,7 @@
     </template>
     
     <script>
-    import { useRouter } from 'vue-router';
+    import { RouterLink, useRouter } from 'vue-router';
    
     export default {
       props: {

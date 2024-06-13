@@ -12,7 +12,7 @@ export default {
     });
   },
   getApplications() {
-    return axios.get(`${API_BASE_URL}/applications`, {
+    return axios.get(`${API_BASE_URL}/applications/`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
   },
