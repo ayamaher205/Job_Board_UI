@@ -1,8 +1,6 @@
 <template>
   <div class="admin-layout bg-gray-100">
-    <header>
       <Header/>
-    </header>
     <main>
     <SideBar/>
     </main>

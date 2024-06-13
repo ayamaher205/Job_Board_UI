@@ -74,13 +74,13 @@ export default {
       errorMessage: '',
     };
   },
-  created() {
+ /*  created() {
     var isAdmin = prompt("are you an admin ? yes  | YES ");
     console.log(isAdmin);
     if (isAdmin == "yes") {
       this.$router.push('/admin/login');
     }
-  },
+  }, */
   methods: {
     login() {
       
@@ -108,8 +108,11 @@ export default {
           if (response.data.user.role == 'admin') {
             this.$router.push('/admin');
           }
-          else if (response.data.user.role == 'employer' || response.data.user.role == 'candidate') {
+          else if (response.data.user.role == 'employer' ) {
             this.$router.push('/employer');
+          }
+          if( response.data.user.role == 'candidate'){
+            this.$router.push('/candidate/profile/store');
           }
 
         })
