@@ -136,7 +136,8 @@ const router = createRouter({
     {
       path:'/employer-posts',
       name:'posts',
-      component:EmployerJobsView
+      component:EmployerJobsView,
+      beforeEnter: requireAuth
     },
 
     // admin
